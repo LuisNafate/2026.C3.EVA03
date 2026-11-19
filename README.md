@@ -19,6 +19,8 @@ Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Univ
 
 La latencia incluye la ruta por Wi-Fi y SSH. El [resumen por celda](results/processed/benchmark/resumen_celdas.csv) conserva medianas, cuartiles y tamaño de muestra. El [artículo PDF](report/articulo.pdf) explica las diferencias entre las consultas y sus límites.
 
+La [comprobación del voltaje interno](results/raw/alimentacion-software/resumen.json) es un ensayo posterior. El [plan de trabajo](protocol/plan-de-trabajo.md) indica qué sigue pendiente del requisito eléctrico.
+
 ![P95 por volumen de pedidos con un cliente. Q1 aumenta más rápido que Q2.](results/figures/latencia-p95.png)
 
 ## Dónde está cada evidencia

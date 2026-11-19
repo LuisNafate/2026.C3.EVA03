@@ -1,0 +1,54 @@
+{
+  "status": "completed",
+  "errors": [],
+  "input_5v": "no medido",
+  "energy": "no medida",
+  "q1_valid_queries": 49,
+  "phases": {
+    "reposo": {
+      "samples": 25,
+      "vc4_core_v_min": 1.25,
+      "vc4_core_v_median": 1.25,
+      "vc4_core_v_max": 1.2625,
+      "arm_mhz": [
+        600.0,
+        700.0,
+        1000.0,
+        1000.104
+      ],
+      "soc_temp_c_max": 45.084,
+      "firmware_flags": [
+        "0x0"
+      ]
+    },
+    "carga": {
+      "samples": 25,
+      "vc4_core_v_min": 1.2625,
+      "vc4_core_v_median": 1.2625,
+      "vc4_core_v_max": 1.2625,
+      "arm_mhz": [
+        999.998,
+        1000.0
+      ],
+      "soc_temp_c_max": 47.236,
+      "firmware_flags": [
+        "0x0"
+      ]
+    },
+    "recuperacion": {
+      "samples": 14,
+      "vc4_core_v_min": 1.25,
+      "vc4_core_v_median": 1.25,
+      "vc4_core_v_max": 1.2625,
+      "arm_mhz": [
+        600.0,
+        999.998,
+        1000.0
+      ],
+      "soc_temp_c_max": 46.16,
+      "firmware_flags": [
+        "0x0"
+      ]
+    }
+  }
+}

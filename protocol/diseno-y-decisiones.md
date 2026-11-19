@@ -25,3 +25,7 @@ Caso de estudio de una Raspberry Pi Zero 2 W. El protocolo original propone dos 
 ## Enmienda durante la ejecución
 
 El intento inicial `final-50000-q1-c1-r2` devolvió una operación válida de 3,481 ms fuera de la ventana de 5 s, con cinco muestras de telemetría. Se registró como fallido bajo esa definición de completitud. El calentamiento podía cruzar el inicio y consumir parte de la ventana. La continuación empieza a medir tras una barrera común al completar el calentamiento, conserva 5 s en Q2 y eleva a 20 s la ventana de Q1 a 50,000 pedidos. Se rehacen ambas celdas de 50,000 pedidos con cinco repeticiones cada una, se retoman c2/c5 y quedan rastreables todos los intentos. No se mezclan repeticiones del plan inicial y enmendado en la misma celda.
+
+## Alcance eléctrico en la Zero 2 W
+
+La máscara registrada conserva estados del firmware. En la familia Zero no debe interpretarse como prueba de ausencia de caídas en la entrada de 5 V. El [plan de trabajo](plan-de-trabajo.md) describe la comprobación interna posterior y la evidencia aún pendiente.
