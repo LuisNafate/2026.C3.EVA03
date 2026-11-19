@@ -1,0 +1,12 @@
+postgresql 17+278 installed
+postgresql-15-pllua  not-installed
+postgresql-17 17.12-0+deb13u1 installed
+postgresql-17-jit-llvm  not-installed
+postgresql-17-pllua  not-installed
+postgresql-9.1  not-installed
+psql (PostgreSQL) 17.12 (Debian 17.12-0+deb13u1)
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+active
+
+exit_status=0

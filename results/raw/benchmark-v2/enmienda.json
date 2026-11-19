@@ -1,0 +1,21 @@
+{
+  "origen": "benchmark-v1",
+  "db": "edge_lab_20261119_042318",
+  "celdas": [
+    [
+      50000,
+      1
+    ],
+    [
+      10000,
+      2
+    ],
+    [
+      10000,
+      5
+    ]
+  ],
+  "motivo": "Q1 a 50k devolvió filas válidas fuera de la ventana de 5 s (v1, repetición 2).",
+  "cambios": "Calentamientos terminan antes de una barrera común. Q1 a 50k usa 20 s. Q2 a 50k y concurrencia restante conservan 5 s. Cinco repeticiones en estas celdas.",
+  "incorporacion": "Se usan las 40 corridas válidas v1 de 1k a 25k con c1 y las 30 v2. Se conservan los cuatro intentos originales de 50k como antecedente."
+}

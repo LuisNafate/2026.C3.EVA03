@@ -1,0 +1,6 @@
+Nov 18 02:20:11 edge-db systemd[1]: Starting postgresql.service - PostgreSQL RDBMS...
+Nov 18 02:20:11 edge-db systemd[1]: Finished postgresql.service - PostgreSQL RDBMS.
+Nov 18 02:20:34 edge-db systemd[1]: Starting postgresql@17-main.service - PostgreSQL Cluster 17-main...
+Nov 18 02:20:37 edge-db systemd[1]: Started postgresql@17-main.service - PostgreSQL Cluster 17-main.
+
+exit_status=0

@@ -1,0 +1,2 @@
+client,start_monotonic_s,end_monotonic_s,latency_ms,rows,valid,inside_window
+1,2296.1076957,2299.588898,3481.20229999995,16,1,0

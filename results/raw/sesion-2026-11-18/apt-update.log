@@ -1,0 +1,22 @@
+Hit:1 http://deb.debian.org/debian trixie InRelease
+Get:2 http://deb.debian.org/debian trixie-updates InRelease [47.3 kB]
+Get:3 http://deb.debian.org/debian-security trixie-security InRelease [43.4 kB]
+Get:4 http://deb.debian.org/debian trixie-updates/main armhf Packages.diff/Index [8361 B]
+Get:5 http://deb.debian.org/debian trixie-updates/main arm64 Packages.diff/Index [8361 B]
+Get:6 http://deb.debian.org/debian trixie-updates/main Translation-en.diff/Index [7239 B]
+Get:7 http://deb.debian.org/debian trixie-updates/main armhf Packages T-2026-11-05-1401.10-F-2026-10-22-2004.53.pdiff [1053 B]
+Get:8 http://deb.debian.org/debian trixie-updates/main arm64 Packages T-2026-11-05-1401.10-F-2026-10-22-2004.53.pdiff [1053 B]
+Get:7 http://deb.debian.org/debian trixie-updates/main armhf Packages T-2026-11-05-1401.10-F-2026-10-22-2004.53.pdiff [1053 B]
+Get:8 http://deb.debian.org/debian trixie-updates/main arm64 Packages T-2026-11-05-1401.10-F-2026-10-22-2004.53.pdiff [1053 B]
+Get:9 http://deb.debian.org/debian trixie-updates/main Translation-en T-2026-10-30-1402.07-F-2026-10-22-2004.53.pdiff [935 B]
+Get:9 http://deb.debian.org/debian trixie-updates/main Translation-en T-2026-10-30-1402.07-F-2026-10-22-2004.53.pdiff [935 B]
+Get:10 http://deb.debian.org/debian-security trixie-security/main armhf Packages [270 kB]
+Get:11 http://deb.debian.org/debian-security trixie-security/main arm64 Packages [306 kB]
+Get:12 http://deb.debian.org/debian-security trixie-security/main Translation-en [184 kB]
+Get:13 http://archive.raspberrypi.com/debian trixie InRelease [54.9 kB]
+Get:14 http://archive.raspberrypi.com/debian trixie/main armhf Packages [490 kB]
+Get:15 http://archive.raspberrypi.com/debian trixie/main arm64 Packages [505 kB]
+Fetched 1837 kB in 3s (666 kB/s)
+Reading package lists...
+
+exit_status=0

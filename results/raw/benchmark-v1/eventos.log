@@ -1,0 +1,14 @@
+2026-11-19T04:23:20+00:00 Preparación de base aislada edge_lab_20261119_042318.
+2026-11-19T04:24:33+00:00 Reposo del motor: 62 muestras.
+2026-11-19T04:24:37+00:00 orders_1000: inserción y Q1/Q2 verificadas.
+2026-11-19T04:24:39+00:00 orders_5000: inserción y Q1/Q2 verificadas.
+2026-11-19T04:24:44+00:00 orders_10000: inserción y Q1/Q2 verificadas.
+2026-11-19T04:24:56+00:00 orders_25000: inserción y Q1/Q2 verificadas.
+2026-11-19T04:25:25+00:00 orders_50000: inserción y Q1/Q2 verificadas.
+2026-11-19T04:25:41+00:00 Persistencia de 1,000 documentos y Q1 confirmadas después de reiniciar el clúster.
+2026-11-19T04:26:16+00:00 Piloto completo. Matriz registrada antes de medir: ventana 5 s.
+2026-11-19T04:27:36+00:00 Final completado: 1000 documentos, 1 cliente(s).
+2026-11-19T04:28:58+00:00 Final completado: 5000 documentos, 1 cliente(s).
+2026-11-19T04:30:19+00:00 Final completado: 10000 documentos, 1 cliente(s).
+2026-11-19T04:31:44+00:00 Final completado: 25000 documentos, 1 cliente(s).
+2026-11-19T04:32:18+00:00 Experimento interrumpido: RuntimeError: final-50000-q1-c1-r2: Ventana sin operaciones completas o sin telemetría.

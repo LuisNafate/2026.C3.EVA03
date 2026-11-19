@@ -1,0 +1,25 @@
+{
+  "db": "edge_lab_20261119_042318",
+  "warm_s": 1,
+  "window_s": 5,
+  "cool_s": 1,
+  "piloto_p95_max_ms": 312.0773000000554,
+  "sizes_c1": [
+    1000,
+    5000,
+    10000,
+    25000,
+    50000
+  ],
+  "extra_concurrency_at_10000": [
+    2,
+    5
+  ],
+  "replicates": 5,
+  "order_seed": 42,
+  "thermal_stop_c": 70,
+  "mem_available_stop_kib": 65536,
+  "cache": "caliente, sin vaciar caches; reinicio antes del piloto",
+  "energy": "no medida",
+  "ambient_temperature": "no medida"
+}

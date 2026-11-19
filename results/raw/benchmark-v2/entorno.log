@@ -1,0 +1,19 @@
+Thu 19 Nov 04:34:00 UTC 2026
+Linux 6.18.50+rpt-rpi-v8 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+035ff9a3-fe50-4afa-92db-aa94765f7e82
+               total        used        free      shared  buff/cache   available
+Mem:          425116      216628      110784       71876      223392      208488
+Swap:         424956       11060      413896
+throttled=0x0
+
+exit_status=0

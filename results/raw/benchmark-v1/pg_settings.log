@@ -1,0 +1,10 @@
+effective_cache_size|524288|8kB|default
+fsync|on||default
+jit|on||default
+max_connections|100||configuration file
+max_parallel_workers_per_gather|2||default
+server_version|17.12 (Debian 17.12-0+deb13u1)||default
+shared_buffers|16384|8kB|configuration file
+synchronous_commit|on||default
+track_io_timing|off||default
+work_mem|4096|kB|default

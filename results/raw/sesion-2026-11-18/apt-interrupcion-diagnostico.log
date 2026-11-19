@@ -1,0 +1,21 @@
+Wed 18 Nov 08:21:09 UTC 2026
+2026-11-18 01:37:32
+         system boot  2026-10-05 18:27
+Filename				Type		Size		Used		Priority
+/dev/zram0                              partition	424956		30728		100
+== Procesos de instalación ==
+   7125       1 postgres        /usr/lib/postgresql/17/bin/postgres -D /var/lib/postgresql/17/main -c config_file=/etc/postgresql/17/main/postgresql.conf
+   7126    7125 postgres        postgres: 17/main: checkpointer 
+   7127    7125 postgres        postgres: 17/main: background writer 
+   7129    7125 postgres        postgres: 17/main: walwriter 
+   7130    7125 postgres        postgres: 17/main: autovacuum launcher 
+   7131    7125 postgres        postgres: 17/main: logical replication launcher 
+== Estado de paquetes ==
+libllvm19:arm64 1:19.1.7-3+b1 installed
+postgresql 17+278 installed
+postgresql-17 17.12-0+deb13u1 installed
+== Clúster ==
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+
+exit_status=0
