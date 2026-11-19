@@ -1,0 +1,47 @@
+[
+  {
+    "dataset_id": "orders-1000",
+    "seed": 202603,
+    "documents": 1000,
+    "items": 3023,
+    "q2_qualified": 598,
+    "bytes_jsonl": 371212,
+    "sha256": "93365ef87e1ab28ad0664f433265947ff66af613414341f01974a3629e0c4699"
+  },
+  {
+    "dataset_id": "orders-5000",
+    "seed": 202603,
+    "documents": 5000,
+    "items": 14949,
+    "q2_qualified": 3004,
+    "bytes_jsonl": 1853204,
+    "sha256": "2b9e89740a6c26bd8846d9a1a28cce53e96799d24fbb0cf779d2b78890351b10"
+  },
+  {
+    "dataset_id": "orders-10000",
+    "seed": 202603,
+    "documents": 10000,
+    "items": 29939,
+    "q2_qualified": 5960,
+    "bytes_jsonl": 3708912,
+    "sha256": "91ed93ae228c2bba76e8f640141a52a43e2280f81132f0638a6f28c5a7dfc811"
+  },
+  {
+    "dataset_id": "orders-25000",
+    "seed": 202603,
+    "documents": 25000,
+    "items": 74769,
+    "q2_qualified": 14972,
+    "bytes_jsonl": 9285636,
+    "sha256": "a355656f7c7fd3e71aff89e3172ac2f885fd9b0b561bc0a8e0c14f4866163484"
+  },
+  {
+    "dataset_id": "orders-50000",
+    "seed": 202603,
+    "documents": 50000,
+    "items": 149760,
+    "q2_qualified": 30171,
+    "bytes_jsonl": 18592877,
+    "sha256": "407e53c0e3dde60fc51b80dbd597f14ff617ae09189327d3ce26e69b29692c64"
+  }
+]

@@ -1,0 +1,6 @@
+__pycache__/
+tmp/
+dataset/generado-v1/*.jsonl
+report/*.log
+report/*.aux
+report/*.out
