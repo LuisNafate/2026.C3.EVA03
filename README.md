@@ -1,0 +1,51 @@
+# EDGE-DB · Agregaciones JSON en una Raspberry Pi
+
+[![Plataforma: Raspberry Pi Zero 2 W](https://img.shields.io/badge/plataforma-Zero%202%20W-163F6A)](hardware/inventario-pi.md)
+[![Motor medido: PostgreSQL 17.12](https://img.shields.io/badge/motor-PostgreSQL%2017.12-007960)](protocol/diseno-y-decisiones.md)
+[![Artículo: LaTeX y PDF](https://img.shields.io/badge/art%C3%ADculo-LaTeX%20%2B%20PDF-526A7A)](report/articulo.pdf)
+
+Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. PostgreSQL se evalúa con cargas JSONB. MongoDB Community 8.0 se trata como una evaluación documental de factibilidad en este hardware.
+
+## Dónde está cada evidencia
+
+| Ruta | Contenido |
+| --- | --- |
+| [Protocolo y decisiones](protocol/diseno-y-decisiones.md) | Cambios frente al playbook, controles, mediciones y criterios de parada |
+| [Bitácora](protocol/bitacora.md) y [auditoría de IA](protocol/auditoria-ia.md) | Cronología, herramientas, comprobaciones y revisión humana pendiente |
+| [Prompt maestro](protocol/prompts/maestro-edge-db.md) | Alcance y reglas de trabajo |
+| [Inventario](hardware/inventario-pi.md) | Plataforma instalada y datos físicos declarados |
+| [Generador](dataset/generar.py) y [manifiesto](dataset/generado-v1/manifiesto.json) | JSONL reproducible y hashes SHA-256 |
+| [Consultas](workloads/) | SQL medido para PostgreSQL y pipelines propuestos para MongoDB |
+| [Runner](runner/experimento.py) y [telemetría](telemetry/) | Captura local, preparación y ejecución por SSH |
+| [Evidencia](results/raw/) y [derivados](results/processed/) | CSV por intento, latencias por operación, métricas, planes y resúmenes |
+| [Artículo](report/) | LaTeX y PDF, con gráficas compiladas a partir de los CSV |
+
+## Reproducción
+
+Los comandos se ejecutan en la laptop desde la raíz del proyecto. Se necesita Python 3.13, Paramiko y Tectonic. La Pi debe tener PostgreSQL 17.12 con su clúster `17/main`, una cuenta SSH con permisos de administración y una clave de host ya verificada. Usa un directorio nuevo para cada ensayo. El runner crea una base de estudio aislada y puede reiniciar el clúster si no encuentra otras conexiones de usuario. Ejecútalo durante una ventana de mantenimiento.
+
+```powershell
+python -m pip install -r telemetry/widget/requirements.txt
+python dataset/generar.py dataset/reproduccion
+python runner/experimento.py --host IP_DE_LA_PI --user USUARIO --dataset dataset/reproduccion --raw results/raw/reproduccion
+```
+
+El runner pide la contraseña al iniciar y conserva la evidencia en la laptop. El monitor gráfico es opcional y se usa fuera de la medición. Si una ejecución se interrumpe, conserva su carpeta y sus estados. `runner/continuar.py` implementa la enmienda específica del ensayo original a partir de sus tablas, oráculos y plan. Su invocación original fue `python runner/continuar.py --previous results/raw/benchmark-v1 --raw results/raw/benchmark-v2`.
+
+Para regenerar las tablas y el PDF con los datos del estudio:
+
+```powershell
+python results/analizar.py results/raw/benchmark-v1 results/processed/benchmark report --continuation results/raw/benchmark-v2
+Push-Location report
+tectonic articulo.tex
+Pop-Location
+```
+
+Los [logs redactados](results/redacted/) reemplazan los identificadores de red del inventario crudo y de la prueba inicial de RTT. Los originales se conservan en la laptop.
+
+## Referencias de partida
+
+- [NIST SP 500-325, modelo conceptual de fog computing](https://doi.org/10.6028/NIST.SP.500-325)
+- [PostgreSQL 17, tipos JSON](https://www.postgresql.org/docs/17/datatype-json.html) y [funciones JSON](https://www.postgresql.org/docs/17/functions-json.html)
+- [Raspberry Pi Zero, modelos y especificaciones](https://www.raspberrypi.com/documentation/computers/zero.html)
+- [Manual Arm Cortex-A53](https://documentation-service.arm.com/static/6040c321ee937942ba301626) y [requisitos ARM64 de MongoDB 8.0](https://www.mongodb.com/docs/v8.0/administration/production-notes/#arm64)

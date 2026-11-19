@@ -1,0 +1,95 @@
+Copia de publicación. Se retiraron IP local y/o MAC.
+
+== Identidad y plataforma ==
+2026-11-18T08:07:51Z
+edge-db
+Raspberry Pi Zero 2 W Rev 1.0
+Linux 6.18.50+rpt-rpi-v8 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+arm64
+Architecture:                            aarch64
+CPU op-mode(s):                          32-bit, 64-bit
+Byte Order:                              Little Endian
+CPU(s):                                  4
+On-line CPU(s) list:                     0-3
+Vendor ID:                               ARM
+Model name:                              Cortex-A53
+Model:                                   4
+Thread(s) per core:                      1
+Core(s) per cluster:                     4
+Socket(s):                               -
+Cluster(s):                              1
+Stepping:                                r0p4
+Frequency boost:                         disabled
+CPU(s) scaling MHz:                      100%
+CPU max MHz:                             1000.0000
+CPU min MHz:                             600.0000
+BogoMIPS:                                38.40
+Flags:                                   fp asimd evtstrm crc32 cpuid
+L1d cache:                               128 KiB (4 instances)
+L1i cache:                               128 KiB (4 instances)
+L2 cache:                                512 KiB (1 instance)
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0-3
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Not affected
+Vulnerability Spectre v1:                Mitigation; __user pointer sanitization
+Vulnerability Spectre v2:                Not affected
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
+== Memoria y swap ==
+               total        used        free      shared  buff/cache   available
+Mem:          425116      158540      139116        2680      183444      266576
+Swap:         424956           0      424956
+bash: line 14: swapon: command not found
+== Almacenamiento ==
+NAME        TYPE  SIZE MODEL FSTYPE MOUNTPOINTS
+loop0       loop  415M       swap
+mmcblk0     disk 57.8G
+|-mmcblk0p1 part  512M       vfat   /boot/firmware
+`-mmcblk0p2 part 57.3G       ext4   /
+zram0       disk  415M       swap   [SWAP]
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/mmcblk0p2   57G  2.3G   52G   5% /
+manfid=0x00001d
+oemid=0x4144
+name=SD
+date=03/2026
+== Interfaz de red y tiempo encendido ==
+wlan0            UP             [MAC retirada] <BROADCAST,MULTICAST,UP,LOWER_UP>
+ 02:07:51 up 30 min,  2 users,  load average: 0.00, 0.02, 0.08
+== Frecuencia, temperatura y alimentación ==
+scaling_governor=ondemand
+scaling_min_freq=600000
+scaling_max_freq=1000000
+temp=43.5'C
+throttled=0x0
+== Bases de datos al inicio ==
+postgresql-15-pllua  not-installed
+postgresql-17-pllua  not-installed
+postgresql-pgmp  not-installed
+Sin procesos postgres ni mongod.
+
+exit_status=0

@@ -1,0 +1,15 @@
+Copia de publicación. Se retiraron IP local y/o MAC.
+
+
+Haciendo ping a [IP local retirada] con 32 bytes de datos:
+Respuesta desde [IP local retirada]: bytes=32 tiempo=6ms TTL=64
+Respuesta desde [IP local retirada]: bytes=32 tiempo=4ms TTL=64
+Respuesta desde [IP local retirada]: bytes=32 tiempo=4ms TTL=64
+Respuesta desde [IP local retirada]: bytes=32 tiempo=8ms TTL=64
+Respuesta desde [IP local retirada]: bytes=32 tiempo=9ms TTL=64
+
+Estadísticas de ping para [IP local retirada]:
+    Paquetes: enviados = 5, recibidos = 5, perdidos = 0
+    (0% perdidos),
+Tiempos aproximados de ida y vuelta en milisegundos:
+    Mínimo = 4ms, Máximo = 9ms, Media = 6ms
