@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "source": "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial",
+  "archive_sha256": "ebbf873eeee24f2fedf7f418e08d0acd7fd68016ba46a0c6fda18b93fb44e7fa",
+  "scope": "Variante comunitaria. Prueba funcional sin mediciones de rendimiento.",
+  "dataset_sha256": "93365ef87e1ab28ad0664f433265947ff66af613414341f01974a3629e0c4699",
+  "error": "mongod no pudo ejecutar --version. Consulta el log."
+}

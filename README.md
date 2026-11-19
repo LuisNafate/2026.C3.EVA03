@@ -4,7 +4,7 @@
 [![Motor medido: PostgreSQL 17.12](https://img.shields.io/badge/motor-PostgreSQL%2017.12-007960)](protocol/diseno-y-decisiones.md)
 [![Artículo: LaTeX y PDF](https://img.shields.io/badge/art%C3%ADculo-LaTeX%20%2B%20PDF-526A7A)](report/articulo.pdf)
 
-Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. PostgreSQL se evalúa con cargas JSONB. MongoDB Community 8.0 se trata como una evaluación documental de factibilidad en este hardware.
+Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. PostgreSQL se evalúa con cargas JSONB. El estudio incluye una revisión documental de MongoDB Community 8.0 y una prueba funcional de una compilación comunitaria de MongoDB 7.0.40.
 
 ## Resultado observado
 
@@ -14,12 +14,14 @@ Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Univ
 | Piloto y matriz final | 6 corridas piloto y 70 finales utilizables. Se conservan 4 intentos de 50,000 pedidos previos a la enmienda |
 | Escala con un cliente | Hasta 50,000 pedidos. P95 mediano de 3,115 ms en Q1 y 313.3 ms en Q2 |
 | Escala en concurrencia | Hasta cinco clientes a 10,000 pedidos. En Q2 subió el throughput y también el P95 |
-| Factibilidad de MongoDB 8.0 | Incompatibilidad documentada del binario oficial ARM64 con el Cortex-A53 |
+| Factibilidad de MongoDB | El binario oficial ARM64 requiere otra microarquitectura. La variante comunitaria 7.0.40 pasó la prueba funcional de 1,000 pedidos en la Pi |
 | Revisión académica | Pendientes la verificación humana final, la confirmación docente del cambio a una placa y la etiqueta de la fuente |
 
 La latencia incluye la ruta por Wi-Fi y SSH. El [resumen por celda](results/processed/benchmark/resumen_celdas.csv) conserva medianas, cuartiles y tamaño de muestra. El [artículo PDF](report/articulo.pdf) explica las diferencias entre las consultas y sus límites.
 
 La [comprobación del voltaje interno](results/raw/alimentacion-software/resumen.json) es un ensayo posterior. El [plan de trabajo](protocol/plan-de-trabajo.md) indica qué sigue pendiente del requisito eléctrico.
+
+La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La matriz de rendimiento corresponde a PostgreSQL.
 
 ![P95 por volumen de pedidos con un cliente. Q1 aumenta más rápido que Q2.](results/figures/latencia-p95.png)
 

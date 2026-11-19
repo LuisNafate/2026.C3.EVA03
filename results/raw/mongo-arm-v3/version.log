@@ -1,0 +1,20 @@
+Running as unit: edge-mongo-rbzca6ec-version.service
+db version v7.0.40
+Build Info: {
+    "version": "7.0.40",
+    "gitVersion": "d18b92bf3d150c32f129aba9317efb627d3f5ab1",
+    "openSSLVersion": "OpenSSL 1.1.1w  11 Sep 2023",
+    "modules": [],
+    "allocator": "tcmalloc",
+    "raspberryPi": "true",
+    "environment": {
+        "distarch": "aarch64",
+        "target_arch": "aarch64"
+    }
+}
+Finished with result: success
+Main processes terminated with: code=exited, status=0/SUCCESS
+Service runtime: 3.612s
+CPU time consumed: 502ms
+
+exit_status=0

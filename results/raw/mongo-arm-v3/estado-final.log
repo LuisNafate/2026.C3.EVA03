@@ -1,0 +1,7 @@
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+               total        used        free      shared  buff/cache   available
+Mem:          425116      162840      129460       13820      200324      262276
+Swap:         424956       14280      410676
+
+exit_status=0

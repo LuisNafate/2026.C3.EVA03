@@ -51,7 +51,7 @@
 En este experimento, un pedido es un documento con fecha, cliente, pago y lista de artículos. Se eligió JSONB, la representación interna de PostgreSQL para datos JSON que facilita procesar documentos sin volver a interpretar el texto completo en cada operación \cite{pgjson}. El estudio mide hasta dónde llegó esta configuración y cómo se comportó mientras trabajaba.
 
 \vfill
-{\small \textbf{Alcance.} Una placa, una microSD y una condición térmica. La evaluación de MongoDB es documental. Los datos de los pedidos son sintéticos. Las mediciones provienen del hardware real.}
+{\small \textbf{Alcance.} Una placa, una microSD y una condición térmica. La matriz mide PostgreSQL. Una compilación comunitaria de MongoDB se verificó funcionalmente en una sesión aparte. Los pedidos son sintéticos y las mediciones provienen del hardware real.}
 \end{titlepage}
 \setcounter{page}{2}
 
@@ -59,7 +59,9 @@ En este experimento, un pedido es un documento con fecha, cliente, pago y lista 
 La Raspberry Pi Zero 2 W Rev 1.0 incorpora un Cortex-A53 de cuatro núcleos y 512 MB nominales \cite{pi}. Se utilizó Raspberry Pi OS Lite de 64 bits, Debian 13.7, kernel \clave{6.18.50+rpt-rpi-v8}, y una microSD ADATA de 64 GB UHS-I, Class 10, V10. El usuario confirmó el montaje sin disipador. La fuente y el cable quedaron sin identificar y no se midieron ambiente ni energía. La propuesta original contempla dos placas \cite{playbook}. Este estudio registra como desviación el uso de una sola.
 
 \entrada{Factibilidad y validez de las consultas}
-PostgreSQL se instaló mediante APT. Se cargaron los cinco conjuntos en una base aislada, se compararon ambas salidas con un oráculo Python y se comprobó la persistencia de 1,000 pedidos y su Q1 tras reiniciar el clúster. En MongoDB Community 8.0, los binarios ARM64 oficiales requieren ARMv8.2-A o posterior \cite{mongo}. El manual del Cortex-A53 documenta Armv8-A \cite{arm}. Por esa incompatibilidad documentada, MongoDB quedó fuera de la ejecución y del contraste de rendimiento.
+PostgreSQL se instaló mediante APT. Se cargaron los cinco conjuntos en una base aislada, se compararon ambas salidas con un oráculo Python y se comprobó la persistencia de 1,000 pedidos y su Q1 tras reiniciar el clúster. Los binarios oficiales de MongoDB 8.0 para ARM64 requieren ARMv8.2-A o posterior \cite{mongo}. El Cortex-A53 implementa Armv8-A \cite{arm}.
+
+En un ensayo separado, la compilación comunitaria 7.0.40 \cite{community} requirió añadir OpenSSL 1.1 a una unidad aislada. Cargó 1,000 pedidos y coincidió con el oráculo en los 16 grupos de Q1 y los 598 pedidos de Q2, antes y después del reinicio. El ensayo prueba la factibilidad funcional de esa variante. La corrección de WiredTiger sin atómicas LSE requiere verificaciones adicionales \cite{wiredtiger}. La matriz cronometrada se limita a PostgreSQL.
 
 \textbf{Q1} desanida artículos con \clave{jsonb\_array\_elements} \cite{pgfunctions}, conserva precios mayores a 50 y agrupa subtotales por país y categoría. \textbf{Q2} toma pedidos completados entre el 1 de marzo inclusive y el 1 de diciembre exclusivo de 2025. Devuelve los 1,000 mayores por total de pago, con desempate por identificador ascendente. La tabla usa una clave primaria sobre el identificador y una columna JSONB. Se conservó la configuración del motor, con \clave{shared\_buffers} de 128 MiB y \clave{work\_mem} de 4 MiB.
 
@@ -167,7 +169,7 @@ Ruta del proyecto & Evidencia\\
 \midrule
 \clave{hardware/} & Inventario de la placa y características físicas declaradas.\\
 \clave{dataset/} & Generador, archivos JSONL y manifiesto con semilla y hashes.\\
-\clave{workloads/} & Consultas PostgreSQL verificadas y equivalentes propuestas para MongoDB.\\
+\clave{workloads/} & Consultas verificadas en las dos configuraciones ensayadas.\\
 \clave{results/raw/} & Línea base, ejecución por operación, telemetría, planes y logs.\\
 \clave{results/processed/} & Resumen por celda, cálculos y planes normalizados.\\
 \clave{protocol/} & Diseño, bitácora, prompt maestro y auditoría de IA.\\
@@ -177,7 +179,7 @@ Ruta del proyecto & Evidencia\\
 \medskip
 \textbf{Uso de IA.} Codex asistió con código, ejecución, análisis y redacción. Los logs y las mediciones son salidas de la placa y del cliente, y el oráculo es un cálculo independiente en Python. El repositorio contiene la trazabilidad de esa asistencia y los puntos pendientes de revisión humana.
 
-\begin{thebibliography}{10}
+\begin{thebibliography}{99}
 \small\raggedright
 \bibitem{nist} M. Iorga y otros. \textit{Fog Computing Conceptual Model}. NIST SP 500-325, 2018. \href{https://doi.org/10.6028/NIST.SP.500-325}{DOI: 10.6028/NIST.SP.500-325}.
 \bibitem{pgjson} PostgreSQL Global Development Group. \textit{PostgreSQL 17: JSON Types}. \href{https://www.postgresql.org/docs/17/datatype-json.html}{Documentación oficial}.
@@ -191,6 +193,8 @@ Ruta del proyecto & Evidencia\\
 \bibitem{benchmark} T. Kalibera y R. E. Jones. \textit{Rigorous Benchmarking in Reasonable Time}. ISMM, 2013. \href{https://doi.org/10.1145/2464157.2464160}{DOI: 10.1145/2464157.2464160}.
 \bibitem{firmware} Raspberry Pi Ltd. \textit{Raspberry Pi OS: vcgencmd}. \href{https://www.raspberrypi.com/documentation/computers/os.html#measure_volts-block}{Voltajes internos y comandos de firmware}.
 \bibitem{power} Raspberry Pi Ltd. \textit{Raspberry Pi computer hardware: Power supply warnings}. \href{https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply-warnings}{Detección de bajo voltaje por familia}.
+\bibitem{community} themattman. \textit{r7.0.40 Unofficial Raspberry Pi Binaries}. \href{https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial}{Distribución comunitaria y SHA-256}.
+\bibitem{wiredtiger} MongoDB. \textit{Investigate changes to WiredTiger for non-LSE ARM platforms}. \href{https://jira.mongodb.org/browse/WT-9256}{Registro técnico WT-9256}.
 \end{thebibliography}
 
 \newpage

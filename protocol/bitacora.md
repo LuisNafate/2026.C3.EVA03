@@ -65,3 +65,7 @@ Codex (GPT-6.2) preparó el recolector, ejecutó el inventario y organizó la ev
 ## 18 de noviembre de 2026 · Comprobación de alimentación
 
 Codex (GPT-6.2) usó documentación oficial de Raspberry Pi y creó un [runner de diagnóstico](../runner/diagnostico_alimentacion.py) para verificar qué ofrece el firmware de esta Zero 2 W. El canal `EXT5V_V` devolvió `Command not registered`. El ensayo de reposo, carga Q1 y recuperación produjo 64 muestras y 49 consultas válidas. El [resumen](../results/raw/alimentacion-software/resumen.json) conserva los voltajes internos reportados por fase. Se corrigió la interpretación de la máscara `0x0` en el artículo y se registró el [plan de trabajo](plan-de-trabajo.md). La verificación humana del requisito eléctrico queda pendiente.
+
+## 19 de noviembre de 2026 · MongoDB comunitario en ARMv8-A
+
+Codex (GPT-6.2) verificó la fuente y los hashes, implementó la ejecución aislada por SSH y comparó las salidas con el oráculo del benchmark. Los [tres intentos](mongodb-armv8-experimental.md) conservan fallos del lanzador, ausencia de libcrypto.so.1.1 y la prueba exitosa. En la prueba funcional se insertaron 1,000 pedidos. El motor devolvió los 16 grupos de Q1 y los 598 pedidos de Q2 esperados antes y después del reinicio. Al terminar, se verificó el clúster PostgreSQL activo. Quedan pendientes la revisión humana, la aceptación de la variante por el docente y, si procede, un piloto de rendimiento separado.

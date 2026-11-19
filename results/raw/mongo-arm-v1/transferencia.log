@@ -1,0 +1,5 @@
+release.tar.gz: OK
+59cfb8767ec7850fd69da83e06caa3090c9b2577a91d67c79abe26461093314b  mongod
+ed71c5588b48e3ed3cf6076a31cd98d3a41e4b1778e30f76e4ce9c38725ef9df  mongo
+
+exit_status=0

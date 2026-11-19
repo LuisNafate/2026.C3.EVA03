@@ -11,7 +11,7 @@ Caso de estudio de una Raspberry Pi Zero 2 W. El protocolo original propone dos 
 | PostgreSQL 17.12 ARM64 | Instalación APT, consulta JSONB, cargas aisladas, oráculo independiente y verificación de persistencia | Factibilidad en el equipo observado. Consultar los logs para el alcance verificado |
 | MongoDB Community 8.0 ARM64 | Contraste de requisitos oficiales de instrucciones con el Cortex-A53 identificado en el inventario | Incompatible con los binarios oficiales especificados. Sin instalación ni medición en esta placa |
 
-[MongoDB exige ARMv8.2-A o posterior en ARM64](https://www.mongodb.com/docs/v8.0/administration/production-notes/#arm64). [Arm documenta el Cortex-A53 como Armv8-A](https://documentation-service.arm.com/static/6040c321ee937942ba301626). [Raspberry Pi identifica el SoC y la RAM de la Zero 2 W](https://www.raspberrypi.com/documentation/computers/zero.html). La conclusión se limita a la versión y distribución oficiales elegidas. Los pipelines de MongoDB son propuestas de equivalencia sin validación en ese motor.
+[MongoDB exige ARMv8.2-A o posterior en ARM64](https://www.mongodb.com/docs/v8.0/administration/production-notes/#arm64). [Arm documenta el Cortex-A53 como Armv8-A](https://documentation-service.arm.com/static/6040c321ee937942ba301626). [Raspberry Pi identifica el SoC y la RAM de la Zero 2 W](https://www.raspberrypi.com/documentation/computers/zero.html). La conclusión se limita a la versión y distribución oficiales elegidas. Los pipelines se validaron en una [compilación comunitaria 7.0.40](mongodb-armv8-experimental.md) en una sesión posterior sin medir rendimiento.
 
 ## Contrato de medición
 
