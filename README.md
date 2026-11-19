@@ -19,6 +19,8 @@ Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Univ
 
 La latencia incluye la ruta por Wi-Fi y SSH. El [resumen por celda](results/processed/benchmark/resumen_celdas.csv) conserva medianas, cuartiles y tamaño de muestra. El [artículo PDF](report/articulo.pdf) explica las diferencias entre las consultas y sus límites.
 
+![P95 por volumen de pedidos con un cliente. Q1 aumenta más rápido que Q2.](results/figures/latencia-p95.png)
+
 ## Dónde está cada evidencia
 
 | Ruta | Contenido |
@@ -48,10 +50,7 @@ El runner pide la contraseña al iniciar y conserva la evidencia en la laptop. E
 Para regenerar las tablas y el PDF con los datos del estudio:
 
 ```powershell
-python results/analizar.py results/raw/benchmark-v1 results/processed/benchmark report --continuation results/raw/benchmark-v2
-Push-Location report
-tectonic articulo.tex
-Pop-Location
+.\report\reconstruir.ps1
 ```
 
 Los [logs redactados](results/redacted/) reemplazan los identificadores de red del inventario crudo y de la prueba inicial de RTT. Los originales se conservan en la laptop.

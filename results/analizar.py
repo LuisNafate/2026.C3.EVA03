@@ -119,6 +119,8 @@ def analyze(raw, processed, report, continuation=None):
         "flags": ", ".join(sorted({r["throttled"] for r in trace + trace_more})),
         "window": plan["window_s"], "warm": plan["warm_s"], "cool": plan["cool_s"],
     }
+    facts["read_mib"] = f"{facts['run_read_max'] / 1048576:.1f}"
+    facts["write_mib"] = f"{facts['run_write_max'] / 1048576:.1f}"
     for q in ("q1", "q2"):
         for n, c in ((1000, 1), (10000, 1), (10000, 2), (10000, 5), (50000, 1)):
             cell = summaries[n, c, q]
