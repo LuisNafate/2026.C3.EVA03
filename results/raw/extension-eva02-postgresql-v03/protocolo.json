@@ -1,0 +1,108 @@
+{
+  "baseline": "benchmark-v1",
+  "sizes_and_clients": [
+    [
+      1000,
+      1
+    ],
+    [
+      5000,
+      1
+    ],
+    [
+      10000,
+      1
+    ],
+    [
+      10000,
+      2
+    ],
+    [
+      10000,
+      5
+    ],
+    [
+      25000,
+      1
+    ],
+    [
+      50000,
+      1
+    ]
+  ],
+  "seed": 202603,
+  "pilot_seconds_warm_measure_cool": [
+    5,
+    30,
+    5
+  ],
+  "pilot_repeats": 3,
+  "final_seconds_warm_measure_cool": [
+    10,
+    60,
+    120
+  ],
+  "final_repeats": 5,
+  "diagnostic_seconds_warm_measure_cool": [
+    5,
+    30,
+    120
+  ],
+  "cooldown_threshold_c_above_baseline": 3,
+  "cooldown_max_s": 300,
+  "idle_seconds": 600,
+  "cache": "caliente",
+  "stop_temperature_c": 70,
+  "stop_available_kib": 65536,
+  "resume": [
+    "extension-eva02-postgresql-v1",
+    "extension-eva02-postgresql-v2"
+  ],
+  "skip_run_ids": [
+    "v2-ampliacion-1000-q1-c1-r1",
+    "v2-ampliacion-1000-q1-c1-r2",
+    "v2-ampliacion-1000-q1-c1-r3",
+    "v2-ampliacion-1000-q1-c1-r4",
+    "v2-ampliacion-1000-q1-c1-r5",
+    "v2-ampliacion-1000-q2-c1-r1",
+    "v2-ampliacion-1000-q2-c1-r2",
+    "v2-ampliacion-1000-q2-c1-r3",
+    "v2-ampliacion-1000-q2-c1-r4",
+    "v2-ampliacion-1000-q2-c1-r5",
+    "v2-ampliacion-10000-q1-c1-r1",
+    "v2-ampliacion-10000-q1-c1-r2",
+    "v2-ampliacion-10000-q1-c1-r3",
+    "v2-ampliacion-10000-q1-c1-r4",
+    "v2-ampliacion-10000-q1-c1-r5",
+    "v2-ampliacion-10000-q1-c2-r1",
+    "v2-ampliacion-10000-q1-c2-r2",
+    "v2-ampliacion-10000-q1-c2-r3",
+    "v2-ampliacion-10000-q1-c2-r4",
+    "v2-ampliacion-10000-q2-c1-r1",
+    "v2-ampliacion-10000-q2-c1-r2",
+    "v2-ampliacion-10000-q2-c1-r3",
+    "v2-ampliacion-10000-q2-c1-r4",
+    "v2-ampliacion-10000-q2-c1-r5",
+    "v2-ampliacion-10000-q2-c2-r1",
+    "v2-ampliacion-10000-q2-c2-r2",
+    "v2-ampliacion-10000-q2-c2-r3",
+    "v2-ampliacion-10000-q2-c2-r4",
+    "v2-ampliacion-5000-q1-c1-r1",
+    "v2-ampliacion-5000-q1-c1-r2",
+    "v2-ampliacion-5000-q1-c1-r3",
+    "v2-ampliacion-5000-q1-c1-r4",
+    "v2-ampliacion-5000-q1-c1-r5",
+    "v2-ampliacion-5000-q2-c1-r1",
+    "v2-ampliacion-5000-q2-c1-r2",
+    "v2-ampliacion-5000-q2-c1-r3",
+    "v2-ampliacion-5000-q2-c1-r4",
+    "v2-ampliacion-5000-q2-c1-r5",
+    "v2-piloto-1000-q1-c1-r1",
+    "v2-piloto-1000-q1-c1-r2",
+    "v2-piloto-1000-q1-c1-r3",
+    "v2-piloto-1000-q2-c1-r1",
+    "v2-piloto-1000-q2-c1-r2",
+    "v2-piloto-1000-q2-c1-r3"
+  ],
+  "resume_max_telemetry_gap_s": 5
+}

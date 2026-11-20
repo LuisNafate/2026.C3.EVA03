@@ -63,8 +63,10 @@ def recover(root, host, user, password, tag, experiment, inputs, update):
             latest = json.loads((previous[-1] / "estado.json").read_text(encoding="utf-8"))
             if latest["status"] == "completed":
                 return latest
-            if not re.search(r"[Tt]elemetr[ií]a|timed out|TimeoutError|connection (?:closed|reset)|SSHException",
-                             latest.get("error", "")):
+            if latest["status"] != "paused" and not re.search(
+                r"[Tt]elemetr[ií]a|timed out|TimeoutError|connection (?:closed|reset)|SSHException",
+                latest.get("error", ""),
+            ):
                 return latest
         directory = root / f"extension-eva02-{tag}-v{len(previous) + 1:02d}"
         before = len(extension_eva02.history(previous)[1])

@@ -1,0 +1,15 @@
+{
+  "status": "paused",
+  "started_utc": "2026-11-19T22:22:09.104-06:00",
+  "completed": 12,
+  "attempted": 12,
+  "phase": "enfriamiento",
+  "phase_started_utc": "2026-11-19T23:34:08.237-06:00",
+  "baseline_temperature_c": 44.008,
+  "query": "q1",
+  "documents": 10000,
+  "clients": 5,
+  "repetition": 5,
+  "ended_utc": "2026-11-20T05:36:03.8046172+00:00",
+  "reason": "Pausa solicitada por el usuario después de la corrida válida. Enfriamiento de la última corrida quedó interrumpido."
+}

@@ -1,0 +1,9 @@
+{
+  "started_utc": "2026-11-19T20:10:13.039-06:00",
+  "stage": "paused",
+  "status": "paused",
+  "blocks": {},
+  "current_session": "extension-eva02-postgresql-v03",
+  "ended_utc": "2026-11-20T05:36:03.8046172+00:00",
+  "resume_point": "Retomar PostgreSQL desde 25000 documentos, un cliente. Conservar toda corrida válida y después retomar MongoDB y diagnóstico."
+}

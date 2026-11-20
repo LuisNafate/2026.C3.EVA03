@@ -1,0 +1,7 @@
+Fri 20 Nov 05:36:42 UTC 2026
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+throttled=0x0
+               total        used        free      shared  buff/cache   available
+Mem:          425116      176552      167844       29544      162968      248564
+Swap:         424956       12344      412612
