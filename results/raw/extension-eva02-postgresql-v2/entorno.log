@@ -1,0 +1,24 @@
+Fri 20 Nov 02:03:49 UTC 2026
+Linux 6.18.50+rpt-rpi-v8 aarch64 GNU/Linux
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+VERSION="13 (trixie)"
+VERSION_CODENAME=trixie
+DEBIAN_VERSION_FULL=13.7
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+d3dcde63-366c-4aff-a326-f09154fcab51
+NTPSynchronized=yes
+Ver Cluster Port Status Owner    Data directory              Log file
+17  main    5432 online postgres /var/lib/postgresql/17/main /var/log/postgresql/postgresql-17-main.log
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/mmcblk0p2   57G  3.6G   51G   7% /
+               total        used        free      shared  buff/cache   available
+Mem:          425116      157600      157924       15176      177436      267516
+Swap:         424956       13596      411360
+throttled=0x0
+
+exit_status=0

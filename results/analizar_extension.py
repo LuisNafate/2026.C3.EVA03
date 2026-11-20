@@ -57,6 +57,8 @@ def summarize(valid, field):
 def analyze(sources, output):
     output.mkdir(parents=True, exist_ok=True)
     groups = defaultdict(list)
+    combined = defaultdict(list)
+    completed_ids = set()
     sessions = []
     for directory in sources:
         session = meta(directory)
@@ -64,7 +66,14 @@ def analyze(sources, output):
         rows = read_csv(table) if table.exists() else []
         for row in rows:
             verify(directory, row)
-            groups[(directory.name, *(row[field] for field in CELL))].append(row)
+            key = tuple(row[field] for field in CELL)
+            groups[(directory.name, *key)].append(row)
+            combined[key].append(row)
+            if row["status"] == "completed":
+                record = (row["engine"], row["run_id"])
+                if record in completed_ids:
+                    raise ValueError(f"Repetición válida duplicada: {record}.")
+                completed_ids.add(record)
         complete = [row for row in rows if row["status"] == "completed"]
         if (len(rows), len(complete)) != (session["attempted"], session["completed"]):
             raise ValueError(f"El estado no coincide con las corridas exportadas de {directory.name}.")
@@ -88,19 +97,21 @@ def analyze(sources, output):
         )
         sessions.append(session)
 
-    with (output / "resumen_celdas.csv").open("w", encoding="utf-8", newline="") as stream:
-        fields = ("session", *CELL, "attempted", "valid", "incomplete", "observations_p99_low_sample",
-                  "p50_median_ms", "p95_median_ms", "p95_q1_ms", "p95_q3_ms", "p99_median_ms", "qps_median")
-        writer = csv.writer(stream)
-        writer.writerow(fields)
-        for key, rows in groups.items():
-            valid = [row for row in rows if row["status"] == "completed"]
-            p95 = [float(row["latency_p95_ms"]) for row in valid]
-            quartiles = quantiles(p95, n=4, method="inclusive") if len(p95) > 1 else (None, None, None)
-            writer.writerow((*key, len(rows), len(valid), len(rows) - len(valid),
-                             sum(row["p99_low_sample"] == "True" for row in valid), summarize(valid, MOMENTS[0]),
-                             summarize(valid, MOMENTS[1]), quartiles[0], quartiles[2], summarize(valid, MOMENTS[2]),
-                             summarize(valid, "throughput_qps")))
+    for name, dataset, keys in (("resumen_celdas.csv", groups, ("session", *CELL)),
+                                ("matriz_consolidada.csv", combined, CELL)):
+        with (output / name).open("w", encoding="utf-8", newline="") as stream:
+            fields = (*keys, "attempted", "valid", "incomplete", "observations_p99_low_sample",
+                      "p50_median_ms", "p95_median_ms", "p95_q1_ms", "p95_q3_ms", "p99_median_ms", "qps_median")
+            writer = csv.writer(stream)
+            writer.writerow(fields)
+            for key, rows in sorted(dataset.items()):
+                valid = [row for row in rows if row["status"] == "completed"]
+                p95 = [float(row["latency_p95_ms"]) for row in valid]
+                quartiles = quantiles(p95, n=4, method="inclusive") if len(p95) > 1 else (None, None, None)
+                writer.writerow((*key, len(rows), len(valid), len(rows) - len(valid),
+                                 sum(row["p99_low_sample"] == "True" for row in valid), summarize(valid, MOMENTS[0]),
+                                 summarize(valid, MOMENTS[1]), quartiles[0], quartiles[2], summarize(valid, MOMENTS[2]),
+                                 summarize(valid, "throughput_qps")))
     (output / "sesiones.json").write_text(json.dumps(sessions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 

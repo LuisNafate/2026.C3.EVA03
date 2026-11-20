@@ -1,0 +1,7 @@
+Origen: extension-eva02-postgresql-v2/telemetria.csv y corridas.csv
+Corrida: v2-ampliacion-10000-q2-c2-r5
+Ultima muestra dentro de ventana: 53.26 s
+Primera muestra posterior al fin: 8.61 s despues del cierre
+Brecha dentro de la ventana: 6.74 s
+Brecha total entre muestras que cruzan el cierre: 15.35 s
+Flags de la corrida: 0x0. Temperatura maxima muestreada: 53.692 C. Causa fisica sin aislar.

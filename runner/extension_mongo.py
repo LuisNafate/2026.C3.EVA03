@@ -19,7 +19,7 @@ import paramiko
 from pymongo import MongoClient
 
 from experimento import ROOT, Telemetry, base, expected, run_cell, utc, write_json
-from extension_eva02 import DIAGNOSTIC_TIMES, FINAL_TIMES, SIZES, check, cooldown, temperature
+from extension_eva02 import DIAGNOSTIC_TIMES, FINAL_TIMES, SIZES, check, cooldown, history, temperature
 from probar_mongo_arm import ISOLATION, MONGOD_SHA, RELEASE, SSL_SHA, cents
 
 
@@ -178,12 +178,7 @@ def experiment(args, password):
     try:
         plan = pipelines()
         entries = {item["documents"]: item for item in json.loads((args.dataset / "manifiesto.json").read_text())}
-        resume = getattr(args, "resume", None)
-        completed = set()
-        if resume:
-            with (resume / "corridas.csv").open(encoding="utf-8", newline="") as source:
-                completed = {row["run_id"] for row in csv.DictReader(source)
-                             if row["status"] == "completed" and row["phase"] == "piloto-topk"}
+        resume, completed = history(getattr(args, "resume", None))
         write_json(raw / "consultas.json", plan)
         write_json(raw / "protocolo.json", {"source": RELEASE, "server_sha256": MONGOD_SHA,
                    "cache_gb": 0.25, "memory_cap_mib": 320, "swap_cap_mib": 128,
@@ -192,7 +187,7 @@ def experiment(args, password):
                    "final_seconds": FINAL_TIMES, "final_repeats": 5,
                    "disk_diagnostic_seconds": DIAGNOSTIC_TIMES, "disk_diagnostic_repeats": 5,
                    "cooldown_threshold_c_above_baseline": 3, "cooldown_max_s": 300,
-                   "resume": resume.name if resume else None, "skip_run_ids": sorted(completed)})
+                   "resume": [path.name for path in resume], "skip_run_ids": sorted(completed)})
         with paramiko.SSHClient() as ssh:
             ssh.load_system_host_keys(str(Path.home() / ".ssh/known_hosts"))
             ssh.connect(args.host, username=args.user, password=password, timeout=10, allow_agent=False, look_for_keys=False)

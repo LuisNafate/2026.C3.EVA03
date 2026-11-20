@@ -1,0 +1,15 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-20T01:32:20.694+00:00",
+  "completed": 6,
+  "attempted": 7,
+  "phase": "ampliacion",
+  "phase_started_utc": "2026-11-20T02:01:37.623+00:00",
+  "baseline_temperature_c": 44.008,
+  "documents": 1000,
+  "clients": 1,
+  "query": "q2",
+  "repetition": 4,
+  "error": "v2-ampliacion-1000-q2-c1-r4: 127.0.0.1:49740: timed out (configured timeouts: socketTimeoutMS: 12000.0ms, connectTimeoutMS: 8000.0ms)",
+  "ended_utc": "2026-11-20T02:02:16.540+00:00"
+}

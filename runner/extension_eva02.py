@@ -21,6 +21,17 @@ FINAL_TIMES = (10, 60, 120)
 DIAGNOSTIC_TIMES = (5, 30, 120)
 
 
+def history(resume):
+    paths = [resume] if isinstance(resume, Path) else resume or []
+    completed = set()
+    for path in paths:
+        table = path / "corridas.csv"
+        if table.exists():
+            with table.open(encoding="utf-8", newline="") as source:
+                completed.update(row["run_id"] for row in csv.DictReader(source) if row["status"] == "completed")
+    return paths, completed
+
+
 def temperature(telemetry, seconds):
     floor = monotonic() - seconds
     values = [sample[4] for sample in telemetry.records if sample[0] >= floor]
@@ -74,11 +85,7 @@ def experiment(args, password):
                 raise ValueError("Nombre de base experimental inesperado.")
             references = json.loads((baseline / "referencias.json").read_text())
             entries = {entry["documents"]: entry for entry in json.loads((baseline / "tamanos_almacenados.json").read_text())}
-            resume = getattr(args, "resume", None)
-            completed = set()
-            if resume:
-                with (resume / "corridas.csv").open(encoding="utf-8", newline="") as source:
-                    completed = {row["run_id"] for row in csv.DictReader(source) if row["status"] == "completed"}
+            resume, completed = history(getattr(args, "resume", None))
             write_json(raw / "protocolo.json", {
                 "baseline": baseline.name, "sizes_and_clients": SIZES, "seed": 202603,
                 "pilot_seconds_warm_measure_cool": [5, 30, 5], "pilot_repeats": 3,
@@ -86,7 +93,7 @@ def experiment(args, password):
                 "diagnostic_seconds_warm_measure_cool": DIAGNOSTIC_TIMES,
                 "cooldown_threshold_c_above_baseline": 3, "cooldown_max_s": 300,
                 "idle_seconds": 600, "cache": "caliente", "stop_temperature_c": 70,
-                "stop_available_kib": 65536, "resume": resume.name if resume else None,
+                "stop_available_kib": 65536, "resume": [path.name for path in resume],
                 "skip_run_ids": sorted(completed), "resume_max_telemetry_gap_s": 5 if resume else None,
             })
             ssh.load_system_host_keys(str(Path.home() / ".ssh/known_hosts"))

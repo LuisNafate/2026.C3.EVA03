@@ -1,0 +1,56 @@
+{
+  "started_utc": "2026-11-20T01:30:35.691+00:00",
+  "stage": "closed",
+  "status": "partial",
+  "blocks": {
+    "mongodb-intento-previo": {
+      "status": "interrupted",
+      "started_utc": "2026-11-20T01:14:38.857+00:00",
+      "completed": 6,
+      "attempted": 6,
+      "phase": "piloto-topk",
+      "phase_started_utc": "2026-11-20T01:28:23.856+00:00",
+      "documents": 5000,
+      "clients": 1,
+      "query": "q1",
+      "repetition": 3,
+      "error": "127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms), Timeout: 15.0s, Topology Description: <TopologyDescription id: 6aff9f079b77db8039d69e6a, topology_type: Single, servers: [<ServerDescription ('127.0.0.1', 59776) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms)')>]>",
+      "ended_utc": "2026-11-20T01:29:38.078+00:00"
+    },
+    "mongodb-v2": {
+      "status": "interrupted",
+      "started_utc": "2026-11-20T01:32:20.694+00:00",
+      "completed": 6,
+      "attempted": 7,
+      "phase": "ampliacion",
+      "phase_started_utc": "2026-11-20T02:01:37.623+00:00",
+      "baseline_temperature_c": 44.008,
+      "documents": 1000,
+      "clients": 1,
+      "query": "q2",
+      "repetition": 4,
+      "error": "v2-ampliacion-1000-q2-c1-r4: 127.0.0.1:49740: timed out (configured timeouts: socketTimeoutMS: 12000.0ms, connectTimeoutMS: 8000.0ms)",
+      "ended_utc": "2026-11-20T02:02:16.540+00:00"
+    },
+    "postgresql-v2": {
+      "status": "interrupted",
+      "started_utc": "2026-11-20T02:03:46.553+00:00",
+      "completed": 38,
+      "attempted": 39,
+      "phase": "ampliacion",
+      "phase_started_utc": "2026-11-20T04:18:53.881+00:00",
+      "baseline_temperature_c": 44.008,
+      "query": "q2",
+      "documents": 10000,
+      "clients": 2,
+      "repetition": 5,
+      "error": "v2-ampliacion-10000-q2-c2-r5: Brecha de telemetría de 6.7 s dentro de la ventana.",
+      "ended_utc": "2026-11-20T04:20:13.679+00:00"
+    },
+    "postgresql-diagnostico": {
+      "status": "skipped",
+      "reason": "La matriz PostgreSQL se interrumpió antes de cerrar."
+    }
+  },
+  "ended_utc": "2026-11-20T04:20:14.877+00:00"
+}
