@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+from threading import Event, Thread
 from time import monotonic, sleep, time
 from types import SimpleNamespace
 import traceback
@@ -17,7 +18,7 @@ from experimento import ROOT, utc, write_json
 
 
 def predecessor(path):
-    deadline = monotonic() + 3 * 3600
+    deadline = monotonic() + 10 * 3600
     while monotonic() < deadline:
         try:
             record = json.loads((path / "estado.json").read_text(encoding="utf-8"))
@@ -30,20 +31,49 @@ def predecessor(path):
         if time() - (path / "telemetria.csv").stat().st_mtime > 180:
             raise RuntimeError("El primer ensayo dejó de escribir telemetría.")
         sleep(10)
-    raise TimeoutError("El primer ensayo no confirmó su cierre en tres horas.")
+    raise TimeoutError("El primer ensayo no confirmó su cierre en el plazo del supervisor.")
+
+
+def checkpoints(args, stop):
+    with (args.raw / "seguimiento.jsonl").open("x", encoding="utf-8", buffering=1) as stream:
+        while True:
+            active = {}
+            for path in args.raw.parent.glob("extension-eva02-*/estado.json"):
+                try:
+                    record = json.loads(path.read_text(encoding="utf-8"))
+                except (OSError, json.JSONDecodeError):
+                    continue
+                if record.get("status") == "running":
+                    trace = path.with_name("telemetria.csv")
+                    if trace.exists():
+                        record["seconds_since_telemetry"] = round(time() - trace.stat().st_mtime, 1)
+                    active[path.parent.name] = record
+            print(json.dumps({"utc": utc(), "active": active}, ensure_ascii=False), file=stream)
+            if stop.wait(1800):
+                return
 
 
 def run(args, password):
-    status = {"started_utc": utc(), "stage": "waiting_mongodb" if args.resume_from else "waiting_postgresql",
+    status = {"started_utc": utc(), "stage": "waiting_mongodb" if args.resume_from or args.restart_both else "waiting_postgresql",
               "status": "running", "blocks": {}}
     state_path = args.raw / "estado.json"
     sibling = args.predecessor.parent
     write_json(state_path, status)
+    stop = Event()
+    monitor = Thread(target=checkpoints, args=(args, stop), daemon=True)
+    monitor.start()
     try:
         first = predecessor(args.predecessor)
         previous = ROOT / "results/raw/benchmark-v1"
         diagnostic = ("postgresql-diagnostico", extension_eva02.experiment, {"previous": previous, "diagnostic": True})
-        if args.resume_from:
+        if args.restart_both:
+            status["blocks"]["mongodb-intento-previo"] = first
+            targets = [("mongodb-v2", extension_mongo.experiment, {
+                "dataset": ROOT / "dataset/generado-v1", "resume": args.predecessor,
+            }), ("postgresql-v2", extension_eva02.experiment, {
+                "previous": previous, "diagnostic": False, "resume": args.restart_both,
+            }), diagnostic]
+        elif args.resume_from:
             status["blocks"]["mongodb"] = first
             targets = [("postgresql-v2", extension_eva02.experiment, {
                 "previous": previous, "diagnostic": False, "resume": args.resume_from,
@@ -68,12 +98,14 @@ def run(args, password):
                 status["blocks"][name] = json.loads((directory / "estado.json").read_text(encoding="utf-8"))
             except (OSError, json.JSONDecodeError):
                 status["blocks"][name] = {"status": "failed", "reason": "No hay estado válido del bloque"}
-        statuses = {block["status"] for block in status["blocks"].values()}
+        statuses = {block["status"] for name, block in status["blocks"].items() if name != "mongodb-intento-previo"}
         status.update(stage="closed", status="completed" if statuses == {"completed"} else "partial")
     except Exception as exc:
         status.update(status="failed", error=str(exc))
         raise
     finally:
+        stop.set()
+        monitor.join(timeout=10)
         status["ended_utc"] = utc()
         write_json(state_path, status)
 
@@ -85,6 +117,7 @@ if __name__ == "__main__":
     parser.add_argument("--predecessor", type=Path, required=True)
     parser.add_argument("--raw", type=Path, required=True)
     parser.add_argument("--resume-from", type=Path, help="Reanuda PostgreSQL tras el cierre del bloque MongoDB.")
+    parser.add_argument("--restart-both", type=Path, help="Retoma ambos pilotos previos con el protocolo de enfriamiento vigente.")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.worker:

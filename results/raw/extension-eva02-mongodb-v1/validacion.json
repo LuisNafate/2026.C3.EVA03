@@ -1,0 +1,8 @@
+{
+  "5000": {
+    "documents": 5000,
+    "q1_rows": 16,
+    "q2_rows": 1000,
+    "q2_qualifying": 3004
+  }
+}

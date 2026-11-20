@@ -1,0 +1,58 @@
+{
+  "source": "https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial",
+  "server_sha256": "59cfb8767ec7850fd69da83e06caa3090c9b2577a91d67c79abe26461093314b",
+  "cache_gb": 0.25,
+  "memory_cap_mib": 320,
+  "swap_cap_mib": 128,
+  "transport": "cliente PyMongo externo, túnel SSH y servidor loopback",
+  "sizes_and_clients": [
+    [
+      1000,
+      1
+    ],
+    [
+      5000,
+      1
+    ],
+    [
+      10000,
+      1
+    ],
+    [
+      10000,
+      2
+    ],
+    [
+      10000,
+      5
+    ],
+    [
+      25000,
+      1
+    ],
+    [
+      50000,
+      1
+    ]
+  ],
+  "seed": 202603,
+  "idle_s": 600,
+  "pilot_seconds": [
+    5,
+    30,
+    5
+  ],
+  "pilot_repeats": 3,
+  "final_seconds": [
+    10,
+    60,
+    15
+  ],
+  "final_repeats": 5,
+  "disk_diagnostic_seconds": [
+    5,
+    30,
+    10
+  ],
+  "disk_diagnostic_repeats": 5
+}

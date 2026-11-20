@@ -1,0 +1,1767 @@
+Secsh channel 5 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59777)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 6 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59778)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 7 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59779)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 8 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59780)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 9 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59781)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 10 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59782)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 11 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59783)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 12 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59784)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 13 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59785)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 14 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59786)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 15 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59787)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 16 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59788)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 17 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59789)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 18 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59790)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 19 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 59791)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 20 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 58274)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 21 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 58275)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 26 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57477)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 27 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57478)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 28 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57479)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 29 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57480)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 30 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57481)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 31 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57482)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 32 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57484)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 33 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57485)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 34 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57486)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 35 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57487)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 36 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57488)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 37 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57489)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 38 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57490)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 39 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57491)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 40 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57492)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 41 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57493)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 42 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57494)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 43 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57495)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 44 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57496)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 45 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57497)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 46 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57498)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 47 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57499)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 48 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57500)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 49 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57501)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 50 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57502)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 51 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57503)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 52 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57504)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 53 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57505)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 54 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57506)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 55 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57507)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 56 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57508)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 57 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57509)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 58 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57510)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 59 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57511)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 60 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57512)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 61 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57513)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 62 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57514)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 63 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57515)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 64 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 57516)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 65 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64350)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 66 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64351)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 67 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64352)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 68 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64353)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 69 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64354)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 70 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64355)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 71 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64356)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 72 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64357)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 73 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64358)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 74 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64359)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 75 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64360)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 76 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64361)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 77 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64362)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 78 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64363)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 79 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64364)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 80 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64365)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 81 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64366)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 82 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64367)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 83 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64368)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 84 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64369)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 85 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64370)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 86 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64371)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 87 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64372)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Secsh channel 88 open FAILED: Connection refused: Connect failed
+----------------------------------------
+Exception occurred during processing of request from ('127.0.0.1', 64373)
+Traceback (most recent call last):
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 697, in process_request_thread
+    self.finish_request(request, client_address)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 362, in finish_request
+    self.RequestHandlerClass(request, client_address, self)
+    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
+    self.handle()
+    ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+    channel = self.server.transport.open_channel(
+        "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+    raise e
+paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
+----------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\continuar_extension.py", line 57, in run
+    status["blocks"][name] = {"status": "skipped", "reason": "La matriz PostgreSQL se interrumpió antes de cerrar."}
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 222, in experiment
+    load(collection, fixture)
+    ~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 137, in load
+    collection.insert_many(batch)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\_csot.py", line 136, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\collection.py", line 967, in insert_many
+    blk.execute(write_concern, session, _Op.INSERT)
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\bulk.py", line 448, in execute
+    return self.execute_command(generator, write_concern, session, operation)
+           ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\bulk.py", line 309, in execute_command
+    _ = client._retryable_write(
+        self.is_retryable,
+    ...<4 lines>...
+        operation_id=op_id,
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2188, in _retryable_write
+    return self._retry_with_session(retryable, func, s, bulk, operation, operation_id)
+           ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2053, in _retry_with_session
+    return self._retry_internal(
+           ~~~~~~~~~~~~~~~~~~~~^
+        func=func,
+        ^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\_csot.py", line 136, in csot_wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2109, in _retry_internal
+    ).run()
+      ~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 2917, in run
+    res = self._read() if self._is_read else self._write()
+                                             ~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 3078, in _write
+    self._server = self._get_server()
+                   ~~~~~~~~~~~~~~~~^^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 3063, in _get_server
+    return self._client._select_server(
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        self._server_selector,
+        ^^^^^^^^^^^^^^^^^^^^^^
+    ...<4 lines>...
+        operation_id=self._operation_id,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\mongo_client.py", line 1962, in _select_server
+    server = topology.select_server(
+        server_selector,
+    ...<2 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\topology.py", line 305, in select_server
+    server = self._select_server(
+        selector,
+    ...<4 lines>...
+        operation_id=operation_id,
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\topology.py", line 279, in _select_server
+    servers = self.select_servers(
+        selector,
+    ...<4 lines>...
+        deprioritized_servers,
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\topology.py", line 196, in select_servers
+    server_descriptions = self._select_servers_loop(
+        selector,
+    ...<4 lines>...
+        deprioritized_servers=deprioritized_servers,
+    )
+  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\pymongo\synchronous\topology.py", line 244, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+    ...<2 lines>...
+    )
+pymongo.errors.ServerSelectionTimeoutError: 127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms), Timeout: 15.0s, Topology Description: <TopologyDescription id: 6aff9f079b77db8039d69e6a, topology_type: Single, servers: [<ServerDescription ('127.0.0.1', 59776) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms)')>]>

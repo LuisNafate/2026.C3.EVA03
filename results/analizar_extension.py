@@ -68,6 +68,10 @@ def analyze(sources, output):
         complete = [row for row in rows if row["status"] == "completed"]
         if (len(rows), len(complete)) != (session["attempted"], session["completed"]):
             raise ValueError(f"El estado no coincide con las corridas exportadas de {directory.name}.")
+        cooldown_path = directory / "enfriamiento.csv"
+        recoveries = read_csv(cooldown_path) if cooldown_path.exists() else []
+        if not {row["run_id"] for row in recoveries} <= {row["run_id"] for row in complete}:
+            raise ValueError(f"El enfriamiento contiene corridas no conciliadas de {directory.name}.")
         telem = directory / "telemetria.csv"
         samples = read_csv(telem) if telem.exists() else []
         session.update(
@@ -77,6 +81,10 @@ def analyze(sources, output):
             telemetry_samples=len(samples),
             min_available_mib=round(min(int(row["available_kib"]) for row in samples) / 1024, 1) if samples else None,
             max_soc_c=max(float(row["soc_c"]) for row in samples) if samples else None,
+            cooldowns_logged=len(recoveries),
+            cooldowns_recovered=sum(row["within_baseline_plus_3c"] == "1" for row in recoveries),
+            median_cooldown_s=summarize(recoveries, "cooldown_s"),
+            longest_cooldown_s=max((float(row["cooldown_s"]) for row in recoveries), default=None),
         )
         sessions.append(session)
 

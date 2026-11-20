@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-11-19T19:17:24.278-06:00",
+  "stage": "waiting_mongodb",
+  "status": "superseded",
+  "blocks": {},
+  "ended_utc": "2026-11-20T01:28:02.1667118Z",
+  "reason": "El usuario amplió el enfriamiento entre corridas. Se reemplaza la cola antes de reanudar PostgreSQL."
+}

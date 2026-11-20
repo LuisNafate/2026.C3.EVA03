@@ -1,0 +1,14 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-20T01:14:38.857+00:00",
+  "completed": 6,
+  "attempted": 6,
+  "phase": "piloto-topk",
+  "phase_started_utc": "2026-11-20T01:28:23.856+00:00",
+  "documents": 5000,
+  "clients": 1,
+  "query": "q1",
+  "repetition": 3,
+  "error": "127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms), Timeout: 15.0s, Topology Description: <TopologyDescription id: 6aff9f079b77db8039d69e6a, topology_type: Single, servers: [<ServerDescription ('127.0.0.1', 59776) server_type: Unknown, rtt: None, error=AutoReconnect('127.0.0.1:59776: connection closed (configured timeouts: socketTimeoutMS: 8000.0ms, connectTimeoutMS: 8000.0ms)')>]>",
+  "ended_utc": "2026-11-20T01:29:38.078+00:00"
+}

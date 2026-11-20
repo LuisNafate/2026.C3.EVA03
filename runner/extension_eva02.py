@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 import random
 import re
+from statistics import median
 from time import monotonic, sleep
 import warnings
 
@@ -16,6 +17,39 @@ from experimento import Psql, QUERIES, Telemetry, base, run_cell, utc, write_jso
 
 
 SIZES = ((1000, 1), (5000, 1), (10000, 1), (10000, 2), (10000, 5), (25000, 1), (50000, 1))
+FINAL_TIMES = (10, 60, 120)
+DIAGNOSTIC_TIMES = (5, 30, 120)
+
+
+def temperature(telemetry, seconds):
+    floor = monotonic() - seconds
+    values = [sample[4] for sample in telemetry.records if sample[0] >= floor]
+    return median(values) if len(values) >= seconds / 2 else None
+
+
+def cooldown(telemetry, raw, row, minimum, baseline):
+    if minimum < 120:
+        check(telemetry, minimum)
+        return
+    path = raw / "enfriamiento.csv"
+    started = monotonic()
+    values = [utc(), row["run_id"], baseline, row["temperature_max_c"]]
+    current, recovered = None, False
+    try:
+        check(telemetry, minimum)
+        while True:
+            current = temperature(telemetry, 15)
+            recovered = current is not None and current <= baseline + 3
+            if recovered or monotonic() - started >= 300:
+                break
+            check(telemetry, 5)
+    finally:
+        header = not path.exists()
+        with path.open("a", encoding="utf-8", newline="") as output:
+            writer = csv.writer(output)
+            if header:
+                writer.writerow(("started_utc", "run_id", "baseline_c", "load_max_c", "end_median_c", "cooldown_s", "within_baseline_plus_3c"))
+            writer.writerow((*values, current, round(monotonic() - started, 1), int(recovered)))
 
 
 def check(telemetry, duration):
@@ -48,7 +82,9 @@ def experiment(args, password):
             write_json(raw / "protocolo.json", {
                 "baseline": baseline.name, "sizes_and_clients": SIZES, "seed": 202603,
                 "pilot_seconds_warm_measure_cool": [5, 30, 5], "pilot_repeats": 3,
-                "final_seconds_warm_measure_cool": [10, 60, 15], "final_repeats": 5,
+                "final_seconds_warm_measure_cool": FINAL_TIMES, "final_repeats": 5,
+                "diagnostic_seconds_warm_measure_cool": DIAGNOSTIC_TIMES,
+                "cooldown_threshold_c_above_baseline": 3, "cooldown_max_s": 300,
                 "idle_seconds": 600, "cache": "caliente", "stop_temperature_c": 70,
                 "stop_available_kib": 65536, "resume": resume.name if resume else None,
                 "skip_run_ids": sorted(completed), "resume_max_telemetry_gap_s": 5 if resume else None,
@@ -78,14 +114,18 @@ def experiment(args, password):
                     status.update(phase="reposo_diagnostico", phase_started_utc=utc())
                     write_json(raw / "estado.json", status)
                     check(telemetry, 30)
-                    stages = tuple((f"work_mem_{mem}MiB", SIZES[-1:], 1, 5, 30, 10, mem, rep)
+                    stages = tuple((f"work_mem_{mem}MiB", SIZES[-1:], 1, *DIAGNOSTIC_TIMES, mem, rep)
                                    for rep in range(1, 6) for mem in rng.sample([4, 16], 2))
                 else:
                     status.update(phase="reposo", phase_started_utc=utc())
                     write_json(raw / "estado.json", status)
                     check(telemetry, 600)
                     stages = (("piloto", SIZES[:1], 3, 5, 30, 5, None, 1),
-                              ("ampliacion", SIZES, 5, 10, 60, 15, None, 1))
+                              ("ampliacion", SIZES, 5, *FINAL_TIMES, None, 1))
+                baseline_temp = temperature(telemetry, 25 if args.diagnostic else 60)
+                if baseline_temp is None:
+                    raise RuntimeError("Telemetría insuficiente para estimar la temperatura basal.")
+                status.update(baseline_temperature_c=baseline_temp)
                 writer = None
                 for tag, cells, repeats, warm, measure, cool, mem, first_rep in stages:
                     for size, clients in cells:
@@ -112,7 +152,9 @@ def experiment(args, password):
                                 if row["status"] != "completed":
                                     raise RuntimeError(f"{row['run_id']}: {row['error']}")
                                 status["completed"] += 1
-                                check(telemetry, cool)
+                                status.update(phase="enfriamiento", phase_started_utc=utc())
+                                write_json(raw / "estado.json", status)
+                                cooldown(telemetry, raw, row, cool, baseline_temp)
                 if args.diagnostic:
                     with Psql(ssh, password, db) as psql:
                         for mem in (4, 16):

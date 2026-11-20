@@ -19,7 +19,7 @@ import paramiko
 from pymongo import MongoClient
 
 from experimento import ROOT, Telemetry, base, expected, run_cell, utc, write_json
-from extension_eva02 import SIZES, check
+from extension_eva02 import DIAGNOSTIC_TIMES, FINAL_TIMES, SIZES, check, cooldown, temperature
 from probar_mongo_arm import ISOLATION, MONGOD_SHA, RELEASE, SSL_SHA, cents
 
 
@@ -82,7 +82,7 @@ def server(ssh, password, raw):
                "dpkg-deb -x libssl-arm64.deb compat")
     if capture(ssh, raw / "transferencia.log", prepare, timeout=120):
         raise RuntimeError("No se verificó el entorno de MongoDB.")
-    isolation = (ISOLATION.replace("-p PrivateNetwork=yes ", "").replace("RuntimeMaxSec=120", "RuntimeMaxSec=10800")
+    isolation = (ISOLATION.replace("-p PrivateNetwork=yes ", "").replace("RuntimeMaxSec=120", "RuntimeMaxSec=32400")
                  + f" -p BindReadOnlyPaths={stage}:/opt/edge-mongo -p StateDirectory={UNIT}"
                    " --setenv=LD_LIBRARY_PATH=/opt/edge-mongo/compat/usr/lib/aarch64-linux-gnu")
     guard = f"""
@@ -178,13 +178,21 @@ def experiment(args, password):
     try:
         plan = pipelines()
         entries = {item["documents"]: item for item in json.loads((args.dataset / "manifiesto.json").read_text())}
+        resume = getattr(args, "resume", None)
+        completed = set()
+        if resume:
+            with (resume / "corridas.csv").open(encoding="utf-8", newline="") as source:
+                completed = {row["run_id"] for row in csv.DictReader(source)
+                             if row["status"] == "completed" and row["phase"] == "piloto-topk"}
         write_json(raw / "consultas.json", plan)
         write_json(raw / "protocolo.json", {"source": RELEASE, "server_sha256": MONGOD_SHA,
                    "cache_gb": 0.25, "memory_cap_mib": 320, "swap_cap_mib": 128,
                    "transport": "cliente PyMongo externo, túnel SSH y servidor loopback", "sizes_and_clients": SIZES,
                    "seed": 202603, "idle_s": 600, "pilot_seconds": [5, 30, 5], "pilot_repeats": 3,
-                   "final_seconds": [10, 60, 15], "final_repeats": 5,
-                   "disk_diagnostic_seconds": [5, 30, 10], "disk_diagnostic_repeats": 5})
+                   "final_seconds": FINAL_TIMES, "final_repeats": 5,
+                   "disk_diagnostic_seconds": DIAGNOSTIC_TIMES, "disk_diagnostic_repeats": 5,
+                   "cooldown_threshold_c_above_baseline": 3, "cooldown_max_s": 300,
+                   "resume": resume.name if resume else None, "skip_run_ids": sorted(completed)})
         with paramiko.SSHClient() as ssh:
             ssh.load_system_host_keys(str(Path.home() / ".ssh/known_hosts"))
             ssh.connect(args.host, username=args.user, password=password, timeout=10, allow_agent=False, look_for_keys=False)
@@ -193,13 +201,17 @@ def experiment(args, password):
             with server(ssh, password, raw), Tunnel(ssh) as tunnel, MongoClient(
                 "127.0.0.1", tunnel.server_address[1], directConnection=True, serverSelectionTimeoutMS=15000,
                 connectTimeoutMS=8000, socketTimeoutMS=12000, retryReads=False, retryWrites=False,
-            ) as client, Telemetry(ssh, raw / "telemetria.csv", "mongod") as telemetry:
+            ) as client, Telemetry(ssh, raw / "telemetria.csv", "mongod", timeout=20) as telemetry:
                 version = client.server_info()["version"]
                 if version != "7.0.40":
                     raise RuntimeError(f"Versión inesperada: {version}")
                 status.update(phase="reposo", phase_started_utc=utc())
                 write_json(raw / "estado.json", status)
                 check(telemetry, 600)
+                baseline_temp = temperature(telemetry, 60)
+                if baseline_temp is None:
+                    raise RuntimeError("Telemetría insuficiente para estimar la temperatura basal.")
+                status.update(baseline_temperature_c=baseline_temp)
                 db = client.edge_lab
                 oracle, fixtures = {}, {}
                 write_json(raw / "validacion.json", fixtures)
@@ -208,9 +220,9 @@ def experiment(args, password):
                     writer = None
                     for tag, cells, repeats, warm, measure, cool in (
                         ("piloto-topk", ((5000, 1),), 3, 5, 30, 5),
-                        ("ampliacion", SIZES, 5, 10, 60, 15),
-                        ("sin-disco", ((10000, 1),), 5, 5, 30, 10),
-                        ("con-disco", ((10000, 1),), 5, 5, 30, 10),
+                        ("ampliacion", SIZES, 5, *FINAL_TIMES),
+                        ("sin-disco", ((10000, 1),), 5, *DIAGNOSTIC_TIMES),
+                        ("con-disco", ((10000, 1),), 5, *DIAGNOSTIC_TIMES),
                     ):
                         for size, clients in cells:
                             collection = db[f"orders_{size}"]
@@ -234,6 +246,8 @@ def experiment(args, password):
                             for rep in range(1, repeats + 1):
                                 queries = ["q2"] if tag in ("con-disco", "sin-disco") else rng.sample(list(plan), 2)
                                 for name in queries:
+                                    if f"v2-{tag}-{size}-{name}-c{clients}-r{rep}" in completed:
+                                        continue
                                     status.update(phase=tag, documents=size, clients=clients, query=name, repetition=rep,
                                                   phase_started_utc=utc())
                                     write_json(raw / "estado.json", status)
@@ -241,7 +255,7 @@ def experiment(args, password):
                                     row = run_cell(ssh, password, "", telemetry, raw, tag, size, name, clients,
                                                    rep, warm, measure, oracle[size][name], entries[size], synchronized=True,
                                                    connect=lambda: Query(collection), statement=(name, plan[name], disk),
-                                                   engine=("MongoDB comunitario", version))
+                                                   engine=("MongoDB comunitario", version), telemetry_gap_s=5)
                                     if writer is None:
                                         writer = csv.DictWriter(stream, fieldnames=row)
                                         writer.writeheader()
@@ -251,7 +265,9 @@ def experiment(args, password):
                                     if row["status"] != "completed":
                                         raise RuntimeError(f"{row['run_id']}: {row['error']}")
                                     status["completed"] += 1
-                                    check(telemetry, cool)
+                                    status.update(phase="enfriamiento", phase_started_utc=utc())
+                                    write_json(raw / "estado.json", status)
+                                    cooldown(telemetry, raw, row, cool, baseline_temp)
                 for size in sorted(oracle):
                     for name, pipeline in plan.items():
                         check(telemetry, 1)
@@ -273,4 +289,5 @@ if __name__ == "__main__":
     parser.add_argument("--user", default="rasp")
     parser.add_argument("--dataset", type=Path, required=True)
     parser.add_argument("--raw", type=Path, required=True)
+    parser.add_argument("--resume", type=Path, help="Conserva los pilotos válidos de una sesión previa.")
     experiment(parser.parse_args(), getpass("Contraseña SSH (entrada oculta): "))

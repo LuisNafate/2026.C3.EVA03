@@ -1,0 +1,3 @@
+Failed to stop edge-mongo-eva02.service: Unit edge-mongo-eva02.service not loaded.
+
+exit_status=5
