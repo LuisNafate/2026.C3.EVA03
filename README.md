@@ -23,6 +23,8 @@ La [comprobación del voltaje interno](results/raw/alimentacion-software/resumen
 
 La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La matriz de rendimiento corresponde a PostgreSQL.
 
+La [ampliación a partir de EVA02](protocol/extension-eva02.md) detalla la auditoría de la consigna, las ventanas de 60 segundos y el orden de los diagnósticos y de la comparación entre motores.
+
 ![P95 por volumen de pedidos con un cliente. Q1 aumenta más rápido que Q2.](results/figures/latencia-p95.png)
 
 ## Dónde está cada evidencia
@@ -34,7 +36,7 @@ La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva 
 | [Prompt maestro](protocol/prompts/maestro-edge-db.md) | Alcance y reglas de trabajo |
 | [Inventario](hardware/inventario-pi.md) | Plataforma instalada y datos físicos declarados |
 | [Generador](dataset/generar.py) y [manifiesto](dataset/generado-v1/manifiesto.json) | JSONL reproducible y hashes SHA-256 |
-| [Consultas](workloads/) | SQL medido para PostgreSQL y pipelines propuestos para MongoDB |
+| [Consultas](workloads/) | SQL medido para PostgreSQL y pipelines validados funcionalmente en MongoDB |
 | [Runner](runner/experimento.py) y [telemetría](telemetry/) | Captura local, preparación y ejecución por SSH |
 | [Evidencia](results/raw/) y [derivados](results/processed/) | CSV por intento, latencias por operación, métricas, planes y resúmenes |
 | [Artículo](report/) | LaTeX y PDF, con gráficas compiladas a partir de los CSV |

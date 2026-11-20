@@ -195,6 +195,7 @@ Ruta del proyecto & Evidencia\\
 \bibitem{power} Raspberry Pi Ltd. \textit{Raspberry Pi computer hardware: Power supply warnings}. \href{https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply-warnings}{Detección de bajo voltaje por familia}.
 \bibitem{community} themattman. \textit{r7.0.40 Unofficial Raspberry Pi Binaries}. \href{https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial}{Distribución comunitaria y SHA-256}.
 \bibitem{wiredtiger} MongoDB. \textit{Investigate changes to WiredTiger for non-LSE ARM platforms}. \href{https://jira.mongodb.org/browse/WT-9256}{Registro técnico WT-9256}.
+\bibitem{eva02} L. A. Nafate Hernandez. \textit{Medición de métricas en bases documentales: MongoDB frente a PostgreSQL JSONB bajo contención de CPU y memoria}. Reporte EVA02, 2026.
 \end{thebibliography}
 
 \newpage
@@ -223,4 +224,15 @@ La RAM disponible y la frecuencia de CPU 0 forman parte de \EdgeDato{trace_sampl
 \par\smallskip
 {\small \textit{Figura A2.} Lectura de \texttt{scaling\_cur\_freq} de CPU 0. Se muestra un punto cada cinco muestras. La frecuencia reportada complementa la máscara de limitación y la temperatura del SoC.}
 \end{center}
+\newpage
+\section{Ampliación del experimento anterior}
+El antecedente EVA02 probó las dos consultas con 500,000 pedidos en Docker Desktop, tres perfiles de CPU y RAM y ventanas de observación de 300 s \cite{eva02}. En la Raspberry Pi se conservan la validación independiente, la ejecución por motor, los percentiles de latencia, los planes y el registro de fallos. Los tamaños, la condición de caché y los tiempos se adaptan a la memoria física, la microSD y la red. Los resultados de Docker describen su propio entorno.
+
+\entrada{Cobertura y límites de la consigna}
+El repositorio contiene el prompt, las reglas y la auditoría de IA, el código y los CSV. El artículo cubre los análisis exploratorio, descriptivo y diagnóstico para la matriz original de PostgreSQL. Se utilizó una placa sin disipador. Quedan pendientes la segunda condición térmica, la identificación de la fuente y del cable y la comparación de rendimiento entre motores. El consumo eléctrico requiere instrumentación externa. La revisión humana final y la aceptación docente de la variante comunitaria están pendientes.
+
+\entrada{Protocolo de ventanas largas}
+El bloque de PostgreSQL se inició con 10 minutos de reposo instrumentado. El diseño prevé seis pilotos con ventanas de 30 s y una matriz de hasta 70 corridas. Cada corrida final contempla 10 s de calentamiento, 60 s de medición y 15 s de recuperación. Se reutilizan los cinco volúmenes, la concurrencia a 10,000 pedidos y el oráculo. Se registran resultados, errores, métricas por operación y telemetría, con parada preventiva a 70~°C o menos de 64 MiB de memoria disponible.
+
+El tiempo estimado de PostgreSQL es de 1 h 55 min a 2 h 15 min, más 10 a 20 min para el contraste de memoria de ordenamiento y los planes. El piloto y la matriz de MongoDB podrían tomar 2 a 3 h si la variante se mantiene estable y valida el Top-1000. El total estimado es de 4 a 6 h con preparación y cierre. Los datos de la ampliación quedan identificados por sesión y por ventana de medición.
 \end{document}

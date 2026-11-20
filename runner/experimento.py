@@ -111,12 +111,13 @@ class Psql:
 
 
 class Telemetry:
-    def __init__(self, ssh, path):
+    def __init__(self, ssh, path, process="postgres"):
         self.path = path
         self.records = []
         self.stop = Event()
         self.incident = None
-        self.stream = base["channel"](ssh, SAMPLE, 8)
+        self.process = process
+        self.stream = base["channel"](ssh, SAMPLE.replace("-C postgres", f"-C {process}"), 8)
         self.thread = Thread(target=self.collect, daemon=True)
 
     def __enter__(self):
@@ -135,7 +136,7 @@ class Telemetry:
                 writer = csv.writer(output)
                 writer.writerow(("utc", "monotonic_s", "cpu_pct", "cpu_total", "cpu_idle", "ram_kib", "available_kib",
                                  "swap_kib", "swap_free_kib", "soc_c", "cpu0_khz", "read_sectors", "write_sectors",
-                                 "throttled", "postgres_rss_sum_kib"))
+                                 "throttled", f"{self.process}_rss_sum_kib"))
                 for line in self.stream.makefile("r"):
                     if self.stop.is_set():
                         return
@@ -165,25 +166,28 @@ class Telemetry:
                 self.incident = f"Telemetría: {exc}"
 
 
-def run_cell(client, password, db, telem, raw, tag, size, query, concurrency, repetition, warm, window, reference, entry, synchronized=False):
+def run_cell(client, password, db, telem, raw, tag, size, query, concurrency, repetition, warm, window, reference, entry, synchronized=False, *, session_sql="", connect=None, statement=None, engine=("PostgreSQL", "17.12")):
     run_id = f"{'v2-' if synchronized else ''}{tag}-{size}-{query}-c{concurrency}-r{repetition}"
     operations = []
     row = {
         "run_id": run_id, "phase": tag, "timestamp_start": utc(), "device_id": "edge-db",
-        "thermal_condition": "sin_disipador", "engine": "PostgreSQL", "engine_version": "17.12",
+        "thermal_condition": "sin_disipador", "engine": engine[0], "engine_version": engine[1],
         "dataset_id": entry["dataset_id"], "dataset_hash": entry["sha256"], "document_count": size,
         "query_id": query, "concurrency": concurrency, "run_number": repetition,
     }
-    sql = QUERIES[query].replace("__TABLE__", f"orders_{size}")
+    sql = QUERIES[query].replace("__TABLE__", f"orders_{size}") if statement is None else statement
     starts, stops = None, None
     error = None
     with ExitStack() as opened:
         try:
             if telem.incident:
                 raise RuntimeError(telem.incident)
-            workers = [opened.enter_context(Psql(client, password, db)) for _ in range(concurrency)]
-            for worker in workers:
-                worker.execute("SET statement_timeout='8s'; SET default_transaction_read_only=on;")
+            if connect is None:
+                workers = [opened.enter_context(Psql(client, password, db)) for _ in range(concurrency)]
+                for worker in workers:
+                    worker.execute("SET statement_timeout='8s'; SET default_transaction_read_only=on;" + session_sql)
+            else:
+                workers = [opened.enter_context(connect()) for _ in range(concurrency)]
             starts = monotonic() + warm
             stops = starts + window
 

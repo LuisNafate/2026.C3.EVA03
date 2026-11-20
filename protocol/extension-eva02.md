@@ -1,0 +1,33 @@
+# Auditoría y extensión de EVA02 a Raspberry Pi
+
+El criterio de entrega procede del aviso de EVA03. El playbook EDGE-DB v1.3 describe el diseño experimental. El reporte EVA02 es un antecedente metodológico del usuario, ejecutado en Docker Desktop con 500 000 pedidos. Sus cifras corresponden a ese entorno.
+
+Se revisaron las secciones de método, resultados, planes y fallos de EVA02 (pp. 3–14 del PDF) y las cuatro páginas del playbook. SHA-256 de los PDF originales leídos: EVA02 `1b34bdb72dfc30c3fe846bdf02f1d55e007a5b18ec7e9f3cfe9f54d87de26590`, playbook `e9b2f422ab139706ab3887e1578da56494d8958c3d41b2a3ad6d232f94af9919`.
+
+## Estado de los criterios
+
+| Criterio | Estado y evidencia |
+| --- | --- |
+| Repositorio con proceso, agentes, reglas, habilidades, herramientas, prompts y CSV | Documentado. El [prompt](prompts/maestro-edge-db.md), las [reglas del repositorio](../AGENTS.md), la [auditoría](auditoria-ia.md), los scripts y los CSV se conservan junto al informe. La auditoría identifica agente, herramientas y habilidades. |
+| Integridad y originalidad | Los manifiestos, el oráculo y los logs enlazan entradas y resultados. La revisión de coincidencias con entregas ajenas corresponde a la evaluación docente. |
+| Análisis exploratorio, descriptivo y diagnóstico, en LaTeX y PDF | Cubierto para la matriz original de PostgreSQL. [Artículo y fuente](../report/). |
+| Modelos de IA y auditoría | El [registro](auditoria-ia.md) identifica el modelo, el papel de IA y las verificaciones. La revisión humana formal está pendiente. |
+| Diseño de dos placas y disipación cruzada | Parcial. El usuario trabaja con una placa sin disipador. Falta confirmar con el docente la adaptación y quedan sin estimar diferencias entre placas y condiciones térmicas. |
+| Motores probados secuencialmente | Factibilidad documentada para [ambos motores](mongodb-armv8-experimental.md). El servicio PostgreSQL se detuvo durante la prueba aislada de MongoDB y se restauró. PostgreSQL siguió instalado. Se debe declarar esta diferencia respecto del playbook. |
+| Rendimiento, concurrencia y límites operativos por motor | La matriz original cubre PostgreSQL. MongoDB comunitario solo tiene evidencia funcional de 1 000 pedidos. |
+| Montaje, reposo y telemetría | Inventario, reposo de al menos 10 minutos previo a instalar el motor y telemetría disponibles. Se vuelve a medir reposo de 10 minutos con PostgreSQL. Fuente, cable y temperatura ambiental siguen sin verificar. |
+| Entrada de 5 V, corriente y energía | Sin medición externa. El firmware dio lecturas del riel interno VC4. El KPI de energía es condicional en el playbook. |
+
+## Protocolo de ampliación
+
+- **A1. PostgreSQL con ventanas largas.** Verificar versión y conteos de las tablas existentes, registrar reposo de 600 s, ejecutar 6 pilotos a 1 000 pedidos (5 s de calentamiento, 30 de medición y 5 de enfriamiento). Matriz de 70 corridas previstas. Q1 y Q2 en cinco tamaños con un cliente y, a 10 000, también con dos y cinco clientes. Cinco repeticiones, orden Q1/Q2 con semilla fija, ciclo de 10/60/15 s. Cómputo de reloj: 10 + 4 + 70 × 85/60 = 113,2 min antes de conexiones y drenado. Estimación **1 h 55 min a 2 h 15 min** si completa la matriz. Aceptación por corrida: resultados iguales al oráculo, al menos una operación y telemetría en la ventana, y sin alcanzar criterios de parada.
+- **A2. Diagnóstico de PostgreSQL.** A 50 000 y un cliente, alternar `work_mem` de 4 y 16 MiB por sesión para Q1/Q2; conservar planes JSON y resultados validados. Cinco repeticiones por perfil con planes fuera del tramo cronometrado. Estimación **10–20 min**. El control de 16 MiB se elige por la RAM y se coteja contra la configuración nominal del estudio. Comprobar archivos temporales con `EXPLAIN (ANALYZE, BUFFERS, TIMING OFF)` y repetir con ventanas idénticas para estimar dispersión. [Documentación de EXPLAIN](https://www.postgresql.org/docs/17/using-explain.html).
+- **A3. MongoDB y comparación.** Antes de cronometrar, validar el Top-1000 con 5 000 pedidos y levantar una línea base del motor. El protocolo de CPU, RAM, temperatura, frecuencia, I/O y paradas será común. Capturar `executionStats` fuera de medición; con carga estable, ensayar la misma matriz y una sensibilidad explícita al uso de disco. Estimación inicial **2–3 h** si completa el alcance; la factibilidad y el piloto pueden acortarlo. La variante comunitaria y su límite de memoria son parte de la configuración observada. [Documentación de executionStats](https://www.mongodb.com/docs/v7.0/reference/explain-results/).
+
+El antecedente usó ventanas de 300 s dentro de ciclos de 420 s, 500 000 pedidos y tres perfiles Docker. Se conservan la lógica de las dos consultas, el control por motor, el análisis de percentiles y planes y el registro de fallos. Se adaptan datos, escala, caché y tiempos a la placa. Las matrices de 5/20 s y 60 s quedan identificadas por separado. La duración técnica estimada de los bloques es **4 a 6 h** en conjunto con preparación y cierre, condicionada a las paradas. El umbral de 70 °C es preventivo del protocolo; también se detiene ante RAM disponible inferior a 64 MiB, flags actuales de limitación o pérdida de telemetría. El tiempo y resultado observados se informarán a partir de los registros.
+
+Los crudos de A1 se guardan en `results/raw/extension-eva02-postgresql-v1/`. Se conservan errores, celdas incompletas y operaciones que terminan fuera de la ventana. P99 se etiqueta como de muestra pequeña por debajo de 100 operaciones completas. La actividad de microSD corresponde al dispositivo completo y la latencia es de extremo a extremo por SSH. Las conclusiones diagnósticas distinguen planes, telemetría y tiempo de resultado.
+
+PostgreSQL usa `psql` sobre canales SSH y MongoDB, PyMongo sobre un túnel SSH. La configuración y los clientes forman parte de cada condición. Los percentiles de ambos recorridos describen la experiencia del cliente y pueden diferir también por serialización y transporte. El diagnóstico opcional de MongoDB compara `allowDiskUse` en Q2 a 10 000 pedidos. El permiso por sí mismo no prueba un derrame; se debe revisar el plan.
+
+Ejecución desde el directorio del proyecto con Python 3.13, Paramiko 5.1.0 y PyMongo 4.20.1. Para A1 se usa `runner/extension_eva02.py --host <Pi> --previous results/raw/benchmark-v1 --raw <directorio-nuevo>`. A2 añade `--diagnostic` y usa su propio directorio. A3 usa `runner/extension_mongo.py --host <Pi> --dataset dataset/generado-v1 --raw <directorio-nuevo>`, tras preparar en la placa el único directorio verificado de la prueba funcional. Los comandos piden la contraseña en una entrada oculta.

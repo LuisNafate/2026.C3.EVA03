@@ -69,3 +69,7 @@ Codex (GPT-6.2) usó documentación oficial de Raspberry Pi y creó un [runner d
 ## 19 de noviembre de 2026 · MongoDB comunitario en ARMv8-A
 
 Codex (GPT-6.2) verificó la fuente y los hashes, implementó la ejecución aislada por SSH y comparó las salidas con el oráculo del benchmark. Los [tres intentos](mongodb-armv8-experimental.md) conservan fallos del lanzador, ausencia de libcrypto.so.1.1 y la prueba exitosa. En la prueba funcional se insertaron 1,000 pedidos. El motor devolvió los 16 grupos de Q1 y los 598 pedidos de Q2 esperados antes y después del reinicio. Al terminar, se verificó el clúster PostgreSQL activo. Quedan pendientes la revisión humana, la aceptación de la variante por el docente y, si procede, un piloto de rendimiento separado.
+
+## 19 de noviembre de 2026 · Ampliación a partir de EVA02
+
+Se cotejaron aviso, playbook, EVA02 y evidencia de EVA03 en la [auditoría](extension-eva02.md). La conexión por llave del alias no autenticó. Se verificó la placa por contraseña y se instaló Paramiko en un entorno virtual local después de que el Python de la laptop no encontró la dependencia. A las 18:57 (Ciudad de México) se inició [A1](../results/raw/extension-eva02-postgresql-v1/) por SSH con verificación de versión, tamaños y reposo de 600 s. El [supervisor](../runner/continuar_extension.py) encadena el diagnóstico y MongoDB a su cierre. Los resultados cerrados se recomputan desde cada CSV de operaciones.
