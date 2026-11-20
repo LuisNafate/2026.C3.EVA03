@@ -1,0 +1,4 @@
+Running timer as unit: edge-eva03-apagado.timer
+Will run service as unit: edge-eva03-apagado.service
+
+exit_status=0
