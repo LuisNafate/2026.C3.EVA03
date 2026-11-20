@@ -34,25 +34,32 @@ def predecessor(path):
 
 
 def run(args, password):
-    status = {"started_utc": utc(), "stage": "waiting_postgresql", "status": "running", "blocks": {}}
+    status = {"started_utc": utc(), "stage": "waiting_mongodb" if args.resume_from else "waiting_postgresql",
+              "status": "running", "blocks": {}}
     state_path = args.raw / "estado.json"
     sibling = args.predecessor.parent
     write_json(state_path, status)
     try:
-        status["blocks"]["postgresql"] = first = predecessor(args.predecessor)
-        targets = []
-        if first["status"] == "completed":
-            targets.append(("postgresql-diagnostico", extension_eva02.experiment, {
-                "previous": ROOT / "results/raw/benchmark-v1", "diagnostic": True,
-            }))
+        first = predecessor(args.predecessor)
+        previous = ROOT / "results/raw/benchmark-v1"
+        diagnostic = ("postgresql-diagnostico", extension_eva02.experiment, {"previous": previous, "diagnostic": True})
+        if args.resume_from:
+            status["blocks"]["mongodb"] = first
+            targets = [("postgresql-v2", extension_eva02.experiment, {
+                "previous": previous, "diagnostic": False, "resume": args.resume_from,
+            }), diagnostic]
         else:
-            status["blocks"]["postgresql-diagnostico"] = {"status": "skipped", "reason": "La matriz PostgreSQL se interrumpió antes de cerrar."}
-        targets.append(("mongodb", extension_mongo.experiment, {"dataset": ROOT / "dataset/generado-v1"}))
+            status["blocks"]["postgresql"] = first
+            targets = [diagnostic] if first["status"] == "completed" else []
+            targets.append(("mongodb", extension_mongo.experiment, {"dataset": ROOT / "dataset/generado-v1"}))
         for name, experiment, extra in targets:
+            if name == "postgresql-diagnostico" and status["blocks"].get("postgresql-v2", first)["status"] != "completed":
+                status["blocks"][name] = {"status": "skipped", "reason": "La matriz PostgreSQL se interrumpió antes de cerrar."}
+                continue
             status.update(stage=name)
             write_json(state_path, status)
             sleep(90)  # Recuperación entre motores o bloques independientes.
-            directory = sibling / f"extension-eva02-{name}-v1"
+            directory = sibling / f"extension-eva02-{name if name.endswith('-v2') else name + '-v1'}"
             try:
                 experiment(SimpleNamespace(host=args.host, user=args.user, raw=directory, **extra), password)
             except Exception:
@@ -77,6 +84,7 @@ if __name__ == "__main__":
     parser.add_argument("--user", default="rasp")
     parser.add_argument("--predecessor", type=Path, required=True)
     parser.add_argument("--raw", type=Path, required=True)
+    parser.add_argument("--resume-from", type=Path, help="Reanuda PostgreSQL tras el cierre del bloque MongoDB.")
     parser.add_argument("--worker", action="store_true", help=argparse.SUPPRESS)
     args = parser.parse_args()
     if args.worker:

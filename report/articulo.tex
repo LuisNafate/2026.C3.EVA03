@@ -235,4 +235,9 @@ El repositorio contiene el prompt, las reglas y la auditoría de IA, el código 
 El bloque de PostgreSQL se inició con 10 minutos de reposo instrumentado. El diseño prevé seis pilotos con ventanas de 30 s y una matriz de hasta 70 corridas. Cada corrida final contempla 10 s de calentamiento, 60 s de medición y 15 s de recuperación. Se reutilizan los cinco volúmenes, la concurrencia a 10,000 pedidos y el oráculo. Se registran resultados, errores, métricas por operación y telemetría, con parada preventiva a 70~°C o menos de 64 MiB de memoria disponible.
 
 El tiempo estimado de PostgreSQL es de 1 h 55 min a 2 h 15 min, más 10 a 20 min para el contraste de memoria de ordenamiento y los planes. El piloto y la matriz de MongoDB podrían tomar 2 a 3 h si la variante se mantiene estable y valida el Top-1000. El total estimado es de 4 a 6 h con preparación y cierre. Los datos de la ampliación quedan identificados por sesión y por ventana de medición.
+
+En EVA02, las 162 corridas principales de 420 s sumaban 18 h 54 min de reloj programado, antes de verificaciones, pausas y recuperación. Aplicar ese mismo ciclo a las 140 corridas principales previstas en la Raspberry demandaría 16 h 20 min solo para la matriz. Las ventanas de 60 s permiten ampliar cobertura en menos tiempo, a costa de contar con menos datos para estimar el P99 de las consultas lentas.
+
+\entrada{Primer intento en la Raspberry}
+PostgreSQL completó los seis pilotos de 30 s sobre 1,000 pedidos y las 3,363 operaciones aceptadas coincidieron con el oráculo. La primera corrida de 60 s se excluyó al perderse la telemetría; se conservaron sus operaciones y el log. El identificador de arranque coincidió, la temperatura máxima registrada fue de 50.5~°C y la búsqueda de OOM y errores de I/O en el kernel no encontró coincidencias. La reanudación conserva los pilotos y verifica la cobertura de la telemetría dentro de cada ventana.
 \end{document}

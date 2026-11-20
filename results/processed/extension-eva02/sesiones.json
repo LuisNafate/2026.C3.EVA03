@@ -1,0 +1,24 @@
+[
+  {
+    "session": "extension-eva02-postgresql-v1",
+    "status": "interrupted",
+    "started_utc": "2026-11-20T00:57:50.937+00:00",
+    "completed": 6,
+    "attempted": 7,
+    "phase": "ampliacion",
+    "phase_started_utc": "2026-11-20T01:12:01.831+00:00",
+    "query": "q1",
+    "documents": 1000,
+    "clients": 1,
+    "repetition": 1,
+    "error": "v2-ampliacion-1000-q1-c1-r1: Telemetría: ",
+    "ended_utc": "2026-11-20T01:12:52.188+00:00",
+    "elapsed_s": 901.3,
+    "validated_operations": 3363,
+    "pilot_valid": 6,
+    "final_valid": 0,
+    "telemetry_samples": 841,
+    "min_available_mib": 236.4,
+    "max_soc_c": 50.464
+  }
+]

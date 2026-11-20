@@ -1,0 +1,8 @@
+{
+  "started_utc": "2026-11-19T19:03:08.899-06:00",
+  "stage": "waiting_postgresql",
+  "status": "superseded",
+  "blocks": {},
+  "ended_utc": "2026-11-20T01:05:20.4211031Z",
+  "reason": "Cambio de almacenamiento del bloque MongoDB a microSD. Supervisor actualizado antes de iniciar A2 o A3."
+}

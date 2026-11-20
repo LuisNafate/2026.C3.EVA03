@@ -73,3 +73,5 @@ Codex (GPT-6.2) verificó la fuente y los hashes, implementó la ejecución aisl
 ## 19 de noviembre de 2026 · Ampliación a partir de EVA02
 
 Se cotejaron aviso, playbook, EVA02 y evidencia de EVA03 en la [auditoría](extension-eva02.md). La conexión por llave del alias no autenticó. Se verificó la placa por contraseña y se instaló Paramiko en un entorno virtual local después de que el Python de la laptop no encontró la dependencia. A las 18:57 (Ciudad de México) se inició [A1](../results/raw/extension-eva02-postgresql-v1/) por SSH con verificación de versión, tamaños y reposo de 600 s. El [supervisor](../runner/continuar_extension.py) encadena el diagnóstico y MongoDB a su cierre. Los resultados cerrados se recomputan desde cada CSV de operaciones.
+
+A las 19:12, A1 terminó con seis pilotos válidos y una corrida larga interrumpida por telemetría. El supervisor avanzó a MongoDB a las 19:14. La sesión MongoDB confirmó el montaje del directorio de datos sobre la microSD. Se programó reanudar A1 después del cierre de MongoDB, conservando los pilotos y verificando la cobertura de telemetría en las ventanas nuevas.

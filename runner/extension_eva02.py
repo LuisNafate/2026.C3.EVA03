@@ -40,12 +40,18 @@ def experiment(args, password):
                 raise ValueError("Nombre de base experimental inesperado.")
             references = json.loads((baseline / "referencias.json").read_text())
             entries = {entry["documents"]: entry for entry in json.loads((baseline / "tamanos_almacenados.json").read_text())}
+            resume = getattr(args, "resume", None)
+            completed = set()
+            if resume:
+                with (resume / "corridas.csv").open(encoding="utf-8", newline="") as source:
+                    completed = {row["run_id"] for row in csv.DictReader(source) if row["status"] == "completed"}
             write_json(raw / "protocolo.json", {
                 "baseline": baseline.name, "sizes_and_clients": SIZES, "seed": 202603,
                 "pilot_seconds_warm_measure_cool": [5, 30, 5], "pilot_repeats": 3,
                 "final_seconds_warm_measure_cool": [10, 60, 15], "final_repeats": 5,
                 "idle_seconds": 600, "cache": "caliente", "stop_temperature_c": 70,
-                "stop_available_kib": 65536, "restored_before_retry": "reinicio manual en una carpeta de evidencia nueva",
+                "stop_available_kib": 65536, "resume": resume.name if resume else None,
+                "skip_run_ids": sorted(completed), "resume_max_telemetry_gap_s": 5 if resume else None,
             })
             ssh.load_system_host_keys(str(Path.home() / ".ssh/known_hosts"))
             ssh.connect(args.host, username=args.user, password=password, timeout=10,
@@ -67,7 +73,7 @@ def experiment(args, password):
                         raise RuntimeError(f"Recuento inesperado para {n} pedidos.")
 
             rng = random.Random(202603)
-            with Telemetry(ssh, raw / "telemetria.csv") as telemetry, (raw / "corridas.csv").open("x", newline="", encoding="utf-8") as stream:
+            with Telemetry(ssh, raw / "telemetria.csv", timeout=20 if resume else 8) as telemetry, (raw / "corridas.csv").open("x", newline="", encoding="utf-8") as stream:
                 if args.diagnostic:
                     status.update(phase="reposo_diagnostico", phase_started_utc=utc())
                     write_json(raw / "estado.json", status)
@@ -87,12 +93,16 @@ def experiment(args, password):
                             order = list(QUERIES)
                             rng.shuffle(order)
                             for query in order:
+                                run_id = f"v2-{tag}-{size}-{query}-c{clients}-r{repetition}"
+                                if run_id in completed:
+                                    continue
                                 status.update(phase=tag, query=query, documents=size, clients=clients,
                                               repetition=repetition, phase_started_utc=utc())
                                 write_json(raw / "estado.json", status)
                                 row = run_cell(ssh, password, db, telemetry, raw, tag, size, query, clients,
                                                repetition, warm, measure, references[str(size)][query], entries[size],
-                                               synchronized=True, session_sql=f"SET work_mem='{mem}MB';" if mem else "")
+                                               synchronized=True, session_sql=f"SET work_mem='{mem}MB';" if mem else "",
+                                               telemetry_gap_s=5 if resume else None)
                                 if writer is None:
                                     writer = csv.DictWriter(stream, fieldnames=row)
                                     writer.writeheader()
@@ -134,6 +144,7 @@ if __name__ == "__main__":
     parser.add_argument("--previous", type=Path, required=True)
     parser.add_argument("--raw", type=Path, required=True)
     parser.add_argument("--diagnostic", action="store_true", help="Contraste 4/16 MiB y planes a 50,000 pedidos.")
+    parser.add_argument("--resume", type=Path, help="Captura previa cuyas corridas completas se conservan.")
     args = parser.parse_args()
     warnings.filterwarnings("error", category=GetPassWarning)
     experiment(args, getpass("Contraseña SSH (entrada oculta): "))

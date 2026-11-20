@@ -1,0 +1,51 @@
+{
+  "baseline": "benchmark-v1",
+  "sizes_and_clients": [
+    [
+      1000,
+      1
+    ],
+    [
+      5000,
+      1
+    ],
+    [
+      10000,
+      1
+    ],
+    [
+      10000,
+      2
+    ],
+    [
+      10000,
+      5
+    ],
+    [
+      25000,
+      1
+    ],
+    [
+      50000,
+      1
+    ]
+  ],
+  "seed": 202603,
+  "pilot_seconds_warm_measure_cool": [
+    5,
+    30,
+    5
+  ],
+  "pilot_repeats": 3,
+  "final_seconds_warm_measure_cool": [
+    10,
+    60,
+    15
+  ],
+  "final_repeats": 5,
+  "idle_seconds": 600,
+  "cache": "caliente",
+  "stop_temperature_c": 70,
+  "stop_available_kib": 65536,
+  "restored_before_retry": "reinicio manual en una carpeta de evidencia nueva"
+}

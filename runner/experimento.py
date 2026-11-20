@@ -111,13 +111,13 @@ class Psql:
 
 
 class Telemetry:
-    def __init__(self, ssh, path, process="postgres"):
+    def __init__(self, ssh, path, process="postgres", timeout=8):
         self.path = path
         self.records = []
         self.stop = Event()
         self.incident = None
         self.process = process
-        self.stream = base["channel"](ssh, SAMPLE.replace("-C postgres", f"-C {process}"), 8)
+        self.stream = base["channel"](ssh, SAMPLE.replace("-C postgres", f"-C {process}"), timeout)
         self.thread = Thread(target=self.collect, daemon=True)
 
     def __enter__(self):
@@ -163,10 +163,10 @@ class Telemetry:
                     self.incident = "Se interrumpió la telemetría."
         except Exception as exc:
             if not self.stop.is_set():
-                self.incident = f"Telemetría: {exc}"
+                self.incident = f"Telemetría: {type(exc).__name__}: {exc}"
 
 
-def run_cell(client, password, db, telem, raw, tag, size, query, concurrency, repetition, warm, window, reference, entry, synchronized=False, *, session_sql="", connect=None, statement=None, engine=("PostgreSQL", "17.12")):
+def run_cell(client, password, db, telem, raw, tag, size, query, concurrency, repetition, warm, window, reference, entry, synchronized=False, *, session_sql="", connect=None, statement=None, engine=("PostgreSQL", "17.12"), telemetry_gap_s=None):
     run_id = f"{'v2-' if synchronized else ''}{tag}-{size}-{query}-c{concurrency}-r{repetition}"
     operations = []
     row = {
@@ -234,6 +234,11 @@ def run_cell(client, password, db, telem, raw, tag, size, query, concurrency, re
     cpu = [s[1] for s in metrics if s[1] is not None]
     if not inside or not metrics:
         error = error or "Ventana sin operaciones completas o sin telemetría."
+    if telemetry_gap_s and starts is not None:
+        timestamps = [starts, *(sample[0] for sample in metrics), stops]
+        gap = max(right - left for left, right in zip(timestamps, timestamps[1:]))
+        if gap > telemetry_gap_s:
+            error = error or f"Brecha de telemetría de {gap:.1f} s dentro de la ventana."
     row.update(
         window_start_monotonic_s=starts, window_end_monotonic_s=stops,
         operations_completed=len(inside), operations_crossing_end=sum(not op[6] for op in operations),
