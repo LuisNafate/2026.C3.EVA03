@@ -64,7 +64,7 @@ def recover(root, host, user, password, tag, experiment, inputs, update):
             if latest["status"] == "completed":
                 return latest
             if latest["status"] != "paused" and not re.search(
-                r"[Tt]elemetr[ií]a|timed out|TimeoutError|connection (?:closed|reset)|SSHException",
+                r"[Tt]elemetr[ií]a|timed out|TimeoutError|Timeout opening channel|connection (?:closed|reset)|SSHException|Falló la verificación del entorno",
                 latest.get("error", ""),
             ):
                 return latest

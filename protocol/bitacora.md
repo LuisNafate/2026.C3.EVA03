@@ -83,3 +83,5 @@ A las 23:38 se solicitó el apagado ordenado de `edge-db` por SSH. Antes del apa
 ## 21 de noviembre de 2026 · Reanudación
 
 Se retomó PostgreSQL a 25 000 pedidos con un cliente. La sesión V04 conservó nueve corridas válidas y se detuvo por pérdida de telemetría durante el enfriamiento. El supervisor recuperó las once corridas pendientes en V05 y cerró la matriz de PostgreSQL con 70 repeticiones válidas. A continuación inició MongoDB, conservando sus seis corridas válidas previas. [V04](../results/raw/extension-eva02-postgresql-v04/) · [V05](../results/raw/extension-eva02-postgresql-v05/).
+
+El primer supervisor de la reanudación cerró con 63 corridas finales válidas de MongoDB. Un corte SSH en V10 impidió ejecutar el cierre remoto y quedó activo el servicio temporal. El diagnóstico de PostgreSQL rechazó ese entorno. Se cerró el servicio MongoDB y se puso en línea el clúster PostgreSQL por una conexión nueva, se comprobó el estado y se retomaron las siete corridas de MongoDB que faltaban. El cierre del runner incorpora esa recuperación para futuras interrupciones. [Evidencia de recuperación](../results/raw/extension-eva02-recuperacion-mongodb-v10/).

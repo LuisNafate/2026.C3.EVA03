@@ -1,0 +1,15 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-22T03:47:16.864+00:00",
+  "completed": 6,
+  "attempted": 7,
+  "phase": "ampliacion",
+  "phase_started_utc": "2026-11-22T04:17:39.074+00:00",
+  "baseline_temperature_c": 45.084,
+  "documents": 25000,
+  "clients": 1,
+  "query": "q2",
+  "repetition": 4,
+  "error": "v2-ampliacion-25000-q2-c1-r4: Brecha de telemetría de 7.8 s dentro de la ventana.",
+  "ended_utc": "2026-11-22T04:18:57.764+00:00"
+}

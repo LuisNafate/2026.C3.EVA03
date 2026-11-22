@@ -13,6 +13,7 @@ import re
 from shlex import quote
 from socketserver import BaseRequestHandler, ThreadingTCPServer
 from threading import Thread
+from time import sleep
 
 from bson import Decimal128, json_util
 import paramiko
@@ -70,8 +71,31 @@ class TunnelConnection(BaseRequestHandler):
                 pass
 
 
+def restore_services(host, user, password, raw):
+    """Recover the experimental services using a fresh SSH connection."""
+    command = (f"systemctl stop {UNIT}; "
+               "if pgrep -x mongod; then exit 5; fi; "
+               "systemctl start postgresql@17-main.service && "
+               "systemctl is-active postgresql@17-main.service && pg_lsclusters")
+    for attempt in range(1, 4):
+        try:
+            with paramiko.SSHClient() as fresh:
+                fresh.load_system_host_keys(str(Path.home() / ".ssh/known_hosts"))
+                fresh.connect(host, username=user, password=password, timeout=10,
+                              allow_agent=False, look_for_keys=False)
+                if base["log_command"](fresh, raw / f"recuperacion-servicio-{attempt}.log",
+                                       SUDO + "/bin/sh -c " + quote(command), password, timeout=35):
+                    raise RuntimeError("No se pudo levantar el clúster tras cerrar el servicio experimental.")
+                return
+        except (OSError, paramiko.SSHException) as exc:
+            (raw / f"recuperacion-error-{attempt}.log").write_text(type(exc).__name__ + "\n", encoding="utf-8")
+            if attempt == 3:
+                raise
+            sleep(15)
+
+
 @contextmanager
-def server(ssh, password, raw):
+def server(ssh, password, raw, host, user):
     capture = base["log_command"]
     _, out, _ = ssh.exec_command("find /var/tmp -maxdepth 1 -type d -user $(id -un) -name 'edge-mongo.*'", timeout=8)
     stage = out.read().decode().strip()
@@ -114,13 +138,17 @@ systemd-run {isolation} --unit={UNIT} /bin/sh -c 'db=$(mktemp -d "$STATE_DIRECTO
         try:
             yield
         finally:
-            if ssh.get_transport().is_active():
-                capture(ssh, raw / "cierre-servicio.log", SUDO + f"systemctl stop {UNIT}", password)
+            try:
+                if not ssh.get_transport().is_active():
+                    raise paramiko.SSHException("SSH desconectado durante el cierre")
+                stopped = capture(ssh, raw / "cierre-servicio.log", SUDO + f"systemctl stop {UNIT}", password)
                 reader.join(50)
-                result = capture(ssh, raw / "estado-final.log", "pg_lsclusters; free -k; pgrep -a -x mongod || :; "
+                result = capture(ssh, raw / "estado-final.log", "pg_lsclusters; free -k; if pgrep -a -x mongod; then exit 5; fi; "
                                  "systemctl is-active postgresql@17-main.service")
-                if result or reader.is_alive():
+                if stopped or result or reader.is_alive():
                     raise RuntimeError("Revisar parada de MongoDB y retorno de PostgreSQL.")
+            except (OSError, RuntimeError, paramiko.SSHException):
+                restore_services(host, user, password, raw)
 
 
 def load(collection, path):
@@ -193,7 +221,7 @@ def experiment(args, password):
             ssh.connect(args.host, username=args.user, password=password, timeout=10, allow_agent=False, look_for_keys=False)
             ssh.get_transport().set_keepalive(15)
             base["log_command"](ssh, raw / "entorno.log", "date -u; uname -srmo; cat /etc/os-release; free -k; df -h /; pg_lsclusters; cat /proc/sys/kernel/random/boot_id")
-            with server(ssh, password, raw), Tunnel(ssh) as tunnel, MongoClient(
+            with server(ssh, password, raw, args.host, args.user), Tunnel(ssh) as tunnel, MongoClient(
                 "127.0.0.1", tunnel.server_address[1], directConnection=True, serverSelectionTimeoutMS=15000,
                 connectTimeoutMS=8000, socketTimeoutMS=12000, retryReads=False, retryWrites=False,
             ) as client, Telemetry(ssh, raw / "telemetria.csv", "mongod", timeout=20) as telemetry:

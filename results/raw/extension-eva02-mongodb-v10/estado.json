@@ -1,0 +1,10 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-22T04:57:02.006+00:00",
+  "completed": 0,
+  "attempted": 0,
+  "phase": "reposo",
+  "phase_started_utc": "2026-11-22T04:57:17.536+00:00",
+  "error": "Timeout opening channel.",
+  "ended_utc": "2026-11-22T05:03:51.253+00:00"
+}
