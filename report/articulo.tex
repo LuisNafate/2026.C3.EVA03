@@ -25,160 +25,254 @@
 \newcommand{\clave}[1]{\texttt{#1}}
 \input{resultados.tex}
 
+\input{extension_resultados.tex}
+\newcommand{\tablaMotor}[4]{%
+\begin{center}
+\small
+\begin{tabular}{@{}rlrrrrrrr@{}}
+\toprule
+Pedidos & Consulta & Clientes & Vál./int. & Consultas/s & P50 & P95 [P25, P75] & P99 & $n_{<100}$\\
+\midrule
+#1
+\bottomrule
+\end{tabular}
+\par\smallskip
+\textit{Tabla #3. Rendimiento.} Latencias en ms. P25 y P75 describen la dispersión entre los cinco P95.
+\par\medskip
+\begin{tabular}{@{}rlrrrrrrr@{}}
+\toprule
+Pedidos & Consulta & Clientes & CPU (\%) & RSS (MiB) & RAM (MiB) & SoC (°C) & Lect. (MiB) & Escr. (MiB)\\
+\midrule
+#2
+\bottomrule
+\end{tabular}
+\par\smallskip
+\textit{Tabla #4. Recursos.} Medianas por celda de CPU media, RSS máximo, RAM disponible mínima, temperatura máxima y lectura/escritura de la microSD por ventana.
+\end{center}
+}
 \begin{document}
 \begin{titlepage}
 \thispagestyle{fancy}
-\vspace*{21mm}
-{\color{verde}\large\bfseries COMPUTACIÓN DE BORDE \hfill ESTUDIO DE CASO\par}
-\vspace{10mm}
-{\fontsize{34}{39}\selectfont\bfseries\color{azul}
-¿Hasta dónde llega una\\ Raspberry Pi con JSON?\par}
-\vspace{6mm}
-{\Large PostgreSQL JSONB y MongoDB comunitario en una Zero 2 W\par}
-\vspace{12mm}
-{\large Proyecto EDGE-DB · IT2iD\par}
-{\normalsize Bases de Datos en la Nube · Actividad 2026.C3.EVA03\par}
+\vspace*{23mm}
+{\large\color{azul}\textbf{Universidad Politécnica de Chiapas}\par}
+Ingeniería en Tecnologías de la Información e Innovación Digital\par
+\vspace{18mm}
+{\large\color{verde}\textbf{REPORTE TÉCNICO EXPERIMENTAL}\par}
+\vspace{4mm}
+{\fontsize{33}{38}\selectfont\bfseries\color{azul} Agregaciones JSON en una\\ Raspberry Pi Zero 2 W\par}
+\vspace{4mm}
+{\Large PostgreSQL JSONB frente a MongoDB comunitario\par}
 \vspace{13mm}
-\noindent\fcolorbox{veladura}{veladura}{\begin{minipage}{0.943\linewidth}
-\vspace{4pt}
-\textbf{\color{azul}El hallazgo.} Ambos motores completaron las dos consultas con 50,000 pedidos y un cliente. En la ampliación se obtuvieron 140 corridas válidas y 52,998 operaciones verificadas. PostgreSQL tuvo mayor throughput en las 14 celdas comparables y menor P95 en 13. La comparación abarca el recorrido completo desde la laptop y las configuraciones ensayadas.
-\vspace{4pt}
-\end{minipage}}\par
-\vspace{10mm}
-\entrada{La pregunta detrás de la cifra}
-¿Puede un equipo pequeño resumir datos cerca de donde se producen, sin mandar cada evento a un servidor de nube? Acercar el procesamiento al origen reduce la dependencia de una infraestructura remota en algunos escenarios \cite{nist}. El reto es cuánto trabajo cabe en la memoria, el almacenamiento y el margen térmico de una sola placa.
+\begin{tabular}{@{}ll@{}}
+Alumno & Luis Alberto Nafate Hernandez\\
+Materia & Bases de Datos en la Nube\\
+Evaluación & 2026.C3.EVA03\\
+Proyecto & EDGE-DB\\
+\end{tabular}
+\vspace{15mm}
 
-En este experimento, un pedido es un documento con fecha, cliente, pago y lista de artículos. Se eligió JSONB, la representación interna de PostgreSQL para datos JSON que facilita procesar documentos sin volver a interpretar el texto completo en cada operación \cite{pgjson}. El estudio mide hasta dónde llegó esta configuración y cómo se comportó mientras trabajaba.
-
+\noindent\colorbox{veladura}{\begin{minipage}{.94\linewidth}
+\vspace{4pt}
+\textbf{140 corridas principales válidas · 52,998 operaciones cotejadas.}
+Dos consultas documentales, cinco tamaños y hasta cinco clientes, con telemetría de una sola placa.
+\vspace{4pt}
+\end{minipage}}
 \vfill
-{\small \textbf{Alcance.} Una placa, una microSD y una condición térmica. El estudio inicial mide PostgreSQL. El anexo B compara la ampliación con la compilación comunitaria de MongoDB. Los pedidos son sintéticos y las mediciones provienen del hardware real.}
+{\small Noviembre de 2026\par}
 \end{titlepage}
 \setcounter{page}{2}
 
-\section{Diseño y método}
-La Raspberry Pi Zero 2 W Rev 1.0 incorpora un Cortex-A53 de cuatro núcleos y 512 MB nominales \cite{pi}. Se utilizó Raspberry Pi OS Lite de 64 bits, Debian 13.7, kernel \clave{6.18.50+rpt-rpi-v8}, y una microSD ADATA de 64 GB UHS-I, Class 10, V10. El usuario confirmó el montaje sin disipador. La fuente y el cable quedaron sin identificar y no se midieron ambiente ni energía. La propuesta original contempla dos placas \cite{playbook}. Este estudio registra como desviación el uso de una sola.
+\section*{Resumen}
+Se evaluaron PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoDB 7.0.40 en una Raspberry Pi Zero 2 W sin disipador. Se ejecutaron dos consultas equivalentes en cinco tamaños de 1,000 a 50,000 pedidos y, a 10,000 pedidos, con 1, 2 y 5 clientes. Se obtuvieron cinco corridas válidas por combinación de tamaño, consulta y concurrencia para cada motor. Ambos completaron las consultas a 50,000 pedidos con un cliente. PostgreSQL obtuvo mayor throughput en 14 de 14 celdas y menor P95 en 13 de 14. En Q2 a 50,000 pedidos, el P95 mediano fue de 469.6 ms con PostgreSQL y 2163.0 ms con MongoDB. El resultado caracteriza dos configuraciones de extremo a extremo en una placa y una red particulares.
 
-\entrada{Factibilidad y validez de las consultas}
-PostgreSQL se instaló mediante APT. Se cargaron los cinco conjuntos en una base aislada, se compararon ambas salidas con un oráculo Python y se comprobó la persistencia de 1,000 pedidos y su Q1 tras reiniciar el clúster. Los binarios oficiales de MongoDB 8.0 para ARM64 requieren ARMv8.2-A o posterior \cite{mongo}. El Cortex-A53 implementa Armv8-A \cite{arm}.
+\textbf{Palabras clave.} Computación de borde, JSONB, MongoDB, latencia de cola, reproducibilidad.
+\tableofcontents
 
-En un ensayo separado, la compilación comunitaria 7.0.40 \cite{community} requirió añadir OpenSSL 1.1 a una unidad aislada. Cargó 1,000 pedidos y coincidió con el oráculo en los 16 grupos de Q1 y los 598 pedidos de Q2, antes y después del reinicio. El ensayo prueba la factibilidad funcional de esa variante. La corrección de WiredTiger sin atómicas LSE requiere verificaciones adicionales \cite{wiredtiger}. La matriz cronometrada se limita a PostgreSQL.
+\clearpage
+\section{Plataforma y pregunta de investigación}
+La computación de borde permite ejecutar parte del procesamiento cerca del origen de los datos \cite{nist}. En EVA02 se ensayaron consultas documentales sobre 500,000 pedidos en Docker Desktop, bajo perfiles de CPU y RAM y con ventanas de 300 s \cite{eva02}. Este estudio conserva las preguntas de carga, concurrencia y recursos en una placa física. El playbook planteaba dos unidades y se utilizó una, con montaje sin disipador \cite{playbook}.
 
-\textbf{Q1} desanida artículos con \clave{jsonb\_array\_elements} \cite{pgfunctions}, conserva precios mayores a 50 y agrupa subtotales por país y categoría. \textbf{Q2} toma pedidos completados entre el 1 de marzo inclusive y el 1 de diciembre exclusivo de 2025. Devuelve los 1,000 mayores por total de pago, con desempate por identificador ascendente. La tabla usa una clave primaria sobre el identificador y una columna JSONB. Se conservó la configuración del motor, con \clave{shared\_buffers} de 128 MiB y \clave{work\_mem} de 4 MiB.
+\textbf{Pregunta.} ¿Cómo cambian la latencia de cola, el throughput y el uso de recursos al escalar el volumen y la concurrencia de dos consultas documentales equivalentes en la Raspberry Pi Zero 2 W?
 
-\medskip
+\begin{center}
+\small
+\begin{tabularx}{.98\linewidth}{@{}lX@{}}
+\toprule Aspecto & Configuración observada\\
+\midrule
+Placa y CPU & Zero 2 W Rev 1.0, cuatro Cortex-A53, frecuencia reportada entre 600 y 1,000 MHz \cite{pi,arm}.\\
+Sistema & Raspberry Pi OS Lite de 64 bits, Debian 13.7, kernel \clave{6.18.50+rpt-rpi-v8}.\\
+Memoria & 512 MB nominales. Linux reportó 425,116 KiB utilizables y 424,956 KiB de swap con zram.\\
+Almacenamiento & microSD ADATA de 64 GB UHS-I, Class 10, V10, con ext4.\\
+PostgreSQL & 17.12 ARM64, tabla con clave primaria y columna JSONB, \clave{shared\_buffers} de 128 MiB, \clave{work\_mem} de 4 MiB y JIT activo.\\
+MongoDB & 7.0.40 comunitario ARM64, colección con BSON, caché WiredTiger de 0.25 GiB y límite de memoria de 320 MiB.\\
+Cliente y red & Laptop Windows por Wi-Fi. PostgreSQL usó \clave{psql} por SSH y MongoDB usó PyMongo por un túnel SSH.\\
+Montaje y energía & Sin disipador. Fuente y cable sin identificar. Temperatura ambiente y consumo eléctrico sin medición.\\
+\bottomrule
+\end{tabularx}
+\par\smallskip\textit{Tabla 1.} Plataforma y configuraciones de la ampliación.
+\end{center}
+
+\subsection{Factibilidad y versiones}
+MongoDB 8.0 oficial para ARM64 requiere ARMv8.2-A o posterior \cite{mongo}. El Cortex-A53 implementa Armv8-A \cite{arm}. Se usó la compilación comunitaria 7.0.40 \cite{community}, con OpenSSL 1.1 dentro de una unidad temporal. La prueba de 1,000 pedidos coincidió con el oráculo antes y después de reiniciar MongoDB. WiredTiger sin atómicas LSE tiene consideraciones de corrección adicionales \cite{wiredtiger}.
+
+\subsection{Pedidos y oráculo}
+Los motores usaron los mismos documentos sintéticos. Cada prefijo procede de la semilla 202603 y se identifica por SHA-256. El oráculo Python calcula las filas esperadas de forma independiente.
 \begin{center}
 \small
 \begin{tabular}{@{}rrrrr@{}}
-\toprule
-Pedidos & Artículos & Califican en Q2 & JSONL (MiB) & En PostgreSQL (MiB)\\
+\toprule Pedidos & Artículos & Elegibles en Q2 & JSONL (MiB) & PostgreSQL (MiB)\\
 \midrule
 \EdgeDatasetRows
 \bottomrule
 \end{tabular}
-\par\smallskip
-\textit{Tabla 1.} Prefijos de un generador con semilla 202603. El tamaño almacenado incluye la clave primaria. Los hashes SHA-256 están en el manifiesto.
+\par\smallskip\textit{Tabla 2.} Los cinco conjuntos. El tamaño PostgreSQL incluye la clave primaria.
 \end{center}
 
-\entrada{La medición desde la laptop}
-El piloto ejecutó ambas consultas tres veces en 1,000 pedidos con un cliente. El plan inicial fijó \EdgeDato{warm}\ s de calentamiento, \EdgeDato{window}\ s de medición y \EdgeDato{cool}\ s de espera entre intentos. Se usó caché caliente. Se midieron cinco tamaños con un cliente y, en 10,000 pedidos, también dos y cinco clientes. Se varió el orden Q1/Q2 con semilla fija dentro de cada repetición.
+\clearpage
+\section{Método de medición}
+\subsection{Consultas y matriz}
+\textbf{Q1} expande los ítems de cada pedido, conserva artículos de precio mayor a 50 y calcula suma, promedio y conteo por país y categoría \cite{pgjson,pgfunctions}. \textbf{Q2} filtra pedidos completados entre el 1 de marzo inclusive y el 1 de diciembre exclusivo de 2025. Devuelve hasta 1,000 pares de identificador e importe. Ordena por total descendente y resuelve empates por identificador ascendente. En el piloto de MongoDB con 5,000 pedidos se cotejaron los primeros 1,000 de 3,004 elegibles. A 50,000 pedidos calificaron 30,171.
 
-En una corrida de Q1 a 50,000 pedidos el resultado válido llegó fuera de la ventana inicial. La enmienda conservó esos intentos y reinició las dos celdas de 50,000 pedidos. Amplió Q1 a 20 s y separó el calentamiento de la medición en la continuación. Q2 y las celdas de concurrencia conservaron 5 s. El cambio de ventana y orden de sesión limita la comparación directa entre celdas.
+La matriz abarca siete combinaciones de volumen y concurrencia por motor. Incluye cinco tamaños con un cliente y dos condiciones adicionales con 10,000 pedidos y 2 o 5 clientes. Se ejecutaron Q1 y Q2 en cada combinación, con cinco corridas válidas por celda. Los motores se probaron secuencialmente. Se varió el orden Q1/Q2 con semilla fija. La corrida es la unidad de resumen y todas las repeticiones comparten la placa \cite{benchmark}.
 
-La laptop envió las consultas por SSH a clientes persistentes de \clave{psql} y recibió todas las filas. El reloj empieza al enviar la consulta y termina al recibir el marcador de fin. Por eso la cifra incluye la red, el procesamiento y la transferencia, además del tiempo del motor. Cinco pings previos dieron un RTT medio de 6 ms y un rango de 4 a 9 ms, una fotografía inicial de la red. La validación de las filas ocurre después del cronómetro. La telemetría se guardó a una cadencia próxima a 1 Hz.
+\subsection{Ventanas, telemetría y exclusiones}
+Cada sesión principal comenzó con 10 minutos de reposo instrumentado. Los pilotos usaron ventanas de 30 s. La matriz final usó 10 s de calentamiento, 60 s de observación y 120 s de recuperación, extensibles a 300 s. Se prolongó la pausa si la mediana de temperatura de los últimos 15 s superaba en más de 3 °C la referencia de reposo. Se trabajó con caché caliente y se volvieron a cotejar los conjuntos al reanudar.
 
-\newpage
-\section{Qué muestran las corridas}
-\entrada{1. Análisis exploratorio}
-Se registraron \EdgeDato{attempts}\ intentos: \EdgeDato{pilot_runs}\ piloto, \EdgeDato{final_runs}\ incorporados a la matriz final, \EdgeDato{superseded_completed}\ completos bajo el plan inicial de 50,000 pedidos y \EdgeDato{failed}\ fallido por la ventana. Las \EdgeDato{total_operations}\ operaciones finales aceptadas coincidieron con el oráculo. Las salidas fuera de ventana quedaron marcadas. El identificador de arranque \EdgeDato{boot_check}\ al inicio y al cierre. La búsqueda de OOM en el kernel quedó \EdgeDato{kernel_oom}.
+El cronómetro abarca desde el envío de la consulta hasta que la laptop recibe el resultado completo. Después se verifica la salida. Cada ventana cuenta las operaciones completas, válidas y dentro del plazo. Las operaciones que cruzaron el final quedaron marcadas en el CSV.
 
-El ensayo previo a instalar el motor registró 121 muestras en 602.208 s y 267.3 MiB de RAM disponible en promedio. El reposo con PostgreSQL aportó \EdgeDato{idle_samples}\ muestras en \EdgeDato{idle_duration}\ s, con \EdgeDato{idle_ram}\ MiB disponibles en promedio. Son capturas independientes, de distinta duración y estado del sistema. Su diferencia describe las dos sesiones y no estima por sí sola el costo causal del motor.
+La telemetría, cercana a 1 Hz, registra CPU global, RSS agregado del motor, RAM disponible, temperatura del SoC y contadores de microSD. El RSS puede contar páginas compartidas más de una vez. Lecturas y escrituras corresponden al dispositivo completo. El protocolo fijó paradas por 70 °C, menos de 64 MiB de RAM disponible, flags activos, errores de validación o pérdida de telemetría. La reanudación aplicó un máximo de 5 s entre muestras dentro de la ventana. Se conservó el historial de intentos para reconstruir la selección \cite{sandve}.
 
-\entrada{2. Análisis descriptivo}
-\textbf{P95} es el tiempo bajo el que terminó aproximadamente el 95\,\% de las operaciones de una corrida. P99 describe una cola más extrema. Los percentiles de cola ayudan a ver demoras que el promedio oculta \cite{tail}. Se usó rango más cercano. En \EdgeDato{low_p99}\ corridas finales hubo menos de 100 operaciones válidas, por lo que P99 puede representar una de las lecturas más altas y resulta inestable.
-
-\begin{center}
-\small
-\begin{tabular}{@{}rrlrrrr@{}}
-\toprule
-Pedidos & Clientes & Carga & Ops. mín. & P95 [P25, P75] (ms) & P99 (ms) & Consultas/s\\
-\midrule
-\EdgeRows
-\bottomrule
-\end{tabular}
-\par\smallskip
-\textit{Tabla 2.} Medianas de cinco repeticiones por celda. Los corchetes muestran cuartiles 25 y 75 del P95. «Ops. mín.» es el menor número de operaciones aceptadas por repetición.
-\end{center}
-
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=.94\linewidth,height=58mm,xmode=log,
-  xtick={1000,5000,10000,25000,50000},xticklabels={1k,5k,10k,25k,50k},
-  ylabel={P95 (ms)},xlabel={Pedidos · un cliente},grid=major,
-  legend pos=north west,legend style={font=\footnotesize}]
-\EdgeLatency
-\end{axis}
-\end{tikzpicture}
-\par\smallskip
-{\small \textit{Figura 1.} Mediana de P95 frente al volumen. El eje horizontal usa escala logarítmica. Los cuartiles están en la tabla 2.}
-\end{center}
-
-\newpage
-\section{Diagnóstico y límites}
-\entrada{3. Qué ayuda a explicar la degradación}
-Al pasar de 1,000 a 50,000 pedidos con un cliente, el P95 de Q1 pasó de \EdgeDato{q1_1000_1_p95}\ a \EdgeDato{q1_50000_1_p95}\ ms y el de Q2 de \EdgeDato{q2_1000_1_p95}\ a \EdgeDato{q2_50000_1_p95}\ ms. Cada consulta tiene un costo distinto. Q1 visita los artículos anidados y agrupa los que pasan el filtro. Q2 devuelve hasta 1,000 filas y parte de su tiempo de respuesta puede corresponder al envío de resultados.
-
-A 50,000 pedidos, Q1 registró un ordenamiento externo (\textit{\EdgeDato{50000-q1-sort}}) y \EdgeDato{50000-q1-temp}\ bloques temporales escritos. Q2 usó \textit{\EdgeDato{50000-q2-sort}} y escribió \EdgeDato{50000-q2-temp}\ bloques temporales. El tiempo del motor fue \EdgeDato{50000-q1-ms}\ y \EdgeDato{50000-q2-ms}\ ms respectivamente. Estos planes de \clave{EXPLAIN ANALYZE} se tomaron fuera del benchmark y omiten el envío de las filas del resultado \cite{pgexplain}. El ordenamiento externo da evidencia directa de trabajo temporal en disco en Q1. Una comprobación adicional sin compilación JIT dio \EdgeDato{50000-q1-jit-off-ms}\ ms en una sola invocación, insuficiente para aislar el costo del JIT.
-
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=.49\linewidth,height=53mm,xtick={1,2,5},xmin=.7,xmax=5.3,
-  ylabel={Consultas/s},xlabel={Clientes · 10,000 pedidos},grid=major,
-  legend pos=north west,legend style={font=\scriptsize},tick label style={font=\scriptsize},label style={font=\footnotesize}]
-\EdgeThroughput
-\end{axis}
-\end{tikzpicture}
-\hfill
-\begin{tikzpicture}
-\begin{axis}[width=.47\linewidth,height=53mm,
-  ylabel={Temperatura del SoC (°C)},xlabel={Minutos desde el piloto},grid=major,
-  tick label style={font=\scriptsize},label style={font=\footnotesize}]
-\EdgeTemperature
-\end{axis}
-\end{tikzpicture}
-\par\smallskip
-{\small \textit{Figuras 2 y 3.} Throughput mediano a 10,000 pedidos (izq.) y traza térmica de las dos etapas (der., punto cada cinco muestras). El espacio entre líneas corresponde a la pausa de la enmienda.}
-\end{center}
-
-En 10,000 pedidos, Q1 pasó de \EdgeDato{q1_10000_1_qps}\ a \EdgeDato{q1_10000_5_qps}\ consultas/s al subir de uno a cinco clientes. En Q2 pasó de \EdgeDato{q2_10000_1_qps}\ a \EdgeDato{q2_10000_5_qps}. A la vez, el P95 de Q2 subió de \EdgeDato{q2_10000_1_p95}\ a \EdgeDato{q2_10000_5_p95}\ ms. En esta configuración, el aumento de capacidad vino acompañado de una respuesta de cola más lenta.
-
-En las ventanas finales, la RAM disponible bajó hasta \EdgeDato{run_ram_min}\ MiB y la suma de RSS de procesos PostgreSQL llegó a \EdgeDato{run_rss_max}\ MiB. Esta suma puede contar memoria compartida más de una vez. La CPU global observada llegó a \EdgeDato{run_cpu_max}\,\%, el swap hasta \EdgeDato{run_swap_max}\ MiB y el SoC a \EdgeDato{run_temp_max}\ °C. Las máscaras observadas fueron \clave{\EdgeDato{flags}}. Los máximos independientes de actividad microSD por ventana fueron \EdgeDato{read_mib}\ MiB leídos y \EdgeDato{write_mib}\ MiB escritos. La cadencia de muestreo, la caché y la ruta Wi-Fi impiden atribuir las colas a un único recurso.
-
-\entrada{Qué pudimos observar sobre el voltaje}
-En un ensayo separado, el firmware rechazó la consulta del canal de entrada de 5 V. Registramos 64 muestras del riel interno VC4 durante reposo, carga Q1 a 10,000 pedidos y recuperación. Sus medianas fueron 1.2500, 1.2625 y 1.2500 V respectivamente \cite{firmware}. La familia Zero carece del circuito de aviso de bajo voltaje documentado para otros modelos \cite{power}. Por tanto, incluso con máscara \clave{0x0}, el voltaje real de entrada y la energía quedan sin medir.
-
-\newpage
-\section{Qué se puede afirmar}
-El máximo volumen probado con éxito fue de 50,000 pedidos a un cliente. En 10,000 pedidos se observaron hasta cinco clientes. Es una frontera de cobertura: configura un punto reproducible para esta unidad, pero deja abierta la capacidad por encima de esos niveles o con concurrencia a 50,000 pedidos. Se midió el SoC en una única condición térmica. Quedaron fuera del análisis causal el efecto de un disipador y el consumo eléctrico.
-
-Como recomendación de ingeniería, conviene definir qué latencia de cola tolera la aplicación. El rango intercuartílico aquí describe variación entre corridas, mientras que las diferencias entre placas y sesiones exigirían replicación en esos niveles \cite{benchmark}. Futuras sesiones pueden alargar las ventanas, medir RTT continuamente y ejecutar un diseño cruzado seguro con y sin disipador. Una comparación específica del transporte puede conservar la consulta y separar el tiempo del motor y de la respuesta completa.
-
-\entrada{Cómo seguir la evidencia}
+\subsection{Métricas}
 \begin{tabularx}{\linewidth}{@{}lX@{}}
-\toprule
-Ruta del proyecto & Evidencia\\
+\toprule Métrica & Cálculo e interpretación\\
 \midrule
-\clave{hardware/} & Inventario de la placa y características físicas declaradas.\\
-\clave{dataset/} & Generador, archivos JSONL y manifiesto con semilla y hashes.\\
-\clave{workloads/} & Consultas verificadas en las dos configuraciones ensayadas.\\
-\clave{results/raw/} & Línea base, ejecución por operación, telemetría, planes y logs.\\
-\clave{results/processed/} & Resumen por celda, cálculos y planes normalizados.\\
-\clave{protocol/} & Diseño, bitácora, prompt maestro y auditoría de IA.\\
+Consultas/s & Operaciones completas, válidas y dentro de la ventana divididas entre 60 s.\\
+P50, P95, P99 & Percentiles de latencia de una corrida por rango más cercano. P95 y P99 describen la cola \cite{tail}.\\
+Resumen de celda & Medianas de los cinco valores por corrida. Para P95 se incluyen P25 y P75 entre corridas.\\
+P99 con pocos datos & Se informa cuántas repeticiones tuvieron menos de 100 operaciones útiles. Su P99 es una observación extrema.\\
 \bottomrule
 \end{tabularx}
 
-\medskip
-\textbf{Uso de IA.} Codex asistió con código, ejecución, análisis y redacción. Los logs y las mediciones son salidas de la placa y del cliente, y el oráculo es un cálculo independiente en Python. El repositorio contiene la trazabilidad de esa asistencia y los puntos pendientes de revisión humana.
+\subsection{Relación con la serie inicial}
+La primera serie de PostgreSQL usó ventanas de 5 s y una enmienda a 20 s para Q1 a 50,000 pedidos. Conservó 80 intentos, incluidos seis pilotos y cuatro intentos anteriores a la enmienda. Sus 70 corridas y 2,750 operaciones válidas documentan la evolución del protocolo. La comparación entre los motores corresponde a la ampliación de 60 s.
 
+\clearpage
+\section{Resultados consolidados}
+\subsection{Análisis exploratorio de la matriz}
+De 150 intentos principales, 140 entraron en la comparación. PostgreSQL aportó 70 corridas válidas de 72 intentos y 36,288 operaciones. MongoDB aportó 70 de 78 y 16,710 operaciones. Los intentos excluidos quedan en el anexo. Cada fila de rendimiento indica válidas sobre intentos. La columna $n_{<100}$ cuenta las repeticiones con menos de 100 operaciones completas.
+
+\subsection{PostgreSQL JSONB}
+\tablaMotor{\PgPerformance}{\PgResources}{3}{4}
+En Q1 con un cliente, el P95 pasó de 110.9 ms a 1,000 pedidos a 3133.3 ms a 50,000. En Q2 a 10,000 pedidos, el throughput mediano aumentó de 7.33 a 27.90 consultas/s entre uno y cinco clientes y el P95 subió de 156.6 a 236.7 ms. Once corridas quedaron por debajo de 100 operaciones válidas.
+
+\clearpage
+\subsection{MongoDB comunitario}
+\tablaMotor{\MongoPerformance}{\MongoResources}{5}{6}
+En Q1 a 50,000 pedidos y un cliente, el P95 fue de 4148.1 ms. La misma consulta obtuvo 97.8 ms a 1,000 pedidos. En Q2 a 10,000 pedidos, el throughput aumentó de 2.35 a 8.27 consultas/s entre uno y cinco clientes y el P95 subió de 975.9 a 1719.7 ms. Veinticuatro corridas quedaron por debajo de 100 operaciones válidas.
+
+El CSV por sesión permite rastrear la dispersión y los reintentos detrás de cada fila. Para comparar las cifras de memoria conviene leer juntas la RAM disponible y el RSS, porque PostgreSQL usa varios procesos y MongoDB se ejecutó con un presupuesto de servicio.
+
+\clearpage
+\section{Análisis gráfico}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.95\linewidth,height=67mm,xmode=log,ymode=log,grid=major,
+xtick={1000,5000,10000,25000,50000},xticklabels={1k,5k,10k,25k,50k},
+xlabel={Pedidos con un cliente},ylabel={Mediana del P95 (ms)},legend pos=north west,legend columns=2,legend style={font=\small}]
+\addplot[azul,thick,mark=*] coordinates {\PgOneVolume}; \addlegendentry{PostgreSQL Q1}
+\addplot[verde,thick,mark=square*] coordinates {\MongoOneVolume}; \addlegendentry{MongoDB Q1}
+\addplot[azul,thick,dashed,mark=*] coordinates {\PgTwoVolume}; \addlegendentry{PostgreSQL Q2}
+\addplot[verde,thick,dashed,mark=square*] coordinates {\MongoTwoVolume}; \addlegendentry{MongoDB Q2}
+\end{axis}
+\end{tikzpicture}
+
+\textit{Figura 1.} P95 frente al volumen. Ambos ejes usan escala logarítmica. Cada punto resume cinco ventanas de 60 s.
+\end{center}
+La latencia de Q1 creció con el tamaño en ambos motores. PostgreSQL obtuvo menor P95 en 13 de 14 celdas. En la excepción, Q1 a 1,000 pedidos con un cliente, MongoDB obtuvo 97.8 ms y PostgreSQL 110.9 ms. En Q2 a 50,000 pedidos, la relación entre el P95 observado con MongoDB y el observado con PostgreSQL fue de aproximadamente 4.6.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.95\linewidth,height=67mm,xtick={1,2,5},ymin=0,grid=major,
+xlabel={Clientes a 10,000 pedidos},ylabel={Mediana de consultas/s},legend pos=north west,legend columns=2,legend style={font=\small}]
+\addplot[azul,thick,mark=*] coordinates {\PgOneClients}; \addlegendentry{PostgreSQL Q1}
+\addplot[verde,thick,mark=square*] coordinates {\MongoOneClients}; \addlegendentry{MongoDB Q1}
+\addplot[azul,thick,dashed,mark=*] coordinates {\PgTwoClients}; \addlegendentry{PostgreSQL Q2}
+\addplot[verde,thick,dashed,mark=square*] coordinates {\MongoTwoClients}; \addlegendentry{MongoDB Q2}
+\end{axis}
+\end{tikzpicture}
+
+\textit{Figura 2.} Throughput frente a concurrencia. El máximo ensayado fue de cinco clientes a 10,000 pedidos.
+\end{center}
+
+\clearpage
+\section{Planes de ejecución y diagnósticos}
+Los planes se obtuvieron fuera de las ventanas cronometradas. PostgreSQL aportó \clave{EXPLAIN ANALYZE} con buffers desde la serie inicial y MongoDB, \clave{executionStats} al cierre de la ampliación. Los tiempos del plan y la latencia de la laptop describen recorridos diferentes \cite{pgexplain}.
+
+\begin{center}
+\small
+\begin{tabularx}{\linewidth}{@{}lllXr@{}}
+\toprule Motor & Consulta & Resultado & Evidencia a 50,000 pedidos & Tiempo (ms)\\
+\midrule
+PostgreSQL & Q1 & 16 grupos & Escaneo, expansión y agregado. Ordenamiento externo y 3,532 bloques temporales escritos en el plan. & 3179.7\\
+PostgreSQL & Q2 & 1,000 filas & Límite y ordenamiento \textit{top-N heapsort}. Cero bloques temporales escritos. & 305.6\\
+MongoDB & Q1 & 16 grupos & \clave{COLLSCAN}, expansión a 149,760 ítems y filtro a 106,861. Cero derrames en las etapas que informaron el contador. & 3438\\
+MongoDB & Q2 & 1,000 filas & \clave{COLLSCAN}, 50,000 documentos examinados y 30,171 elegibles. Cero derrames en la etapa que informó el contador. & 879\\
+\bottomrule
+\end{tabularx}
+\par\smallskip\textit{Tabla 7.} En MongoDB se indica \clave{executionTimeMillis} de las estadísticas del cursor. En PostgreSQL se indica \clave{Execution Time}.
+\end{center}
+
+\subsection{Diagnósticos complementarios}
+A 10,000 pedidos, MongoDB completó cinco corridas Q2 con permiso de escritura temporal y cinco sin permiso. Las medianas de P95 fueron 676.8 y 511.1 ms, con 2.63 y 3.17 consultas/s respectivamente. Las condiciones se ejecutaron por bloques. La diferencia puede incluir efectos de sesión y el uso efectivo del disco se verifica en el plan de cada ejecución.
+
+El diagnóstico de PostgreSQL para contrastar 4 y 16 MiB de \clave{work\_mem} se detuvo al agotarse el tiempo límite de consulta en la primera corrida a 4 MiB. El efecto de cambiar a 16 MiB quedó sin estimar. El ordenamiento externo de Q1 procede del plan de la serie inicial.
+
+\section{Discusión y conclusiones}
+PostgreSQL procesó más consultas por segundo en las 14 celdas comparables. En las dos configuraciones, aumentar clientes a 10,000 pedidos elevó throughput y latencia de cola. La Q2 de PostgreSQL a cinco clientes ilustra el intercambio. Alcanzó 27.90 consultas/s y 236.7 ms de P95 frente a 7.33 consultas/s y 156.6 ms con un cliente.
+
+Los máximos de temperatura durante ventanas válidas fueron 66.6 °C en PostgreSQL y 68.2 °C en MongoDB. La RAM disponible mínima fue de 158.2 y 150.3 MiB respectivamente. Se observó CPU global cercana a saturación y máscara 0x0 en ambos. Los enfriamientos, la falta de medición ambiental y las sesiones reanudadas limitan la atribución térmica.
+
+El estudio caracteriza una placa, dos recorridos de cliente, presupuestos de servicio distintos y una compilación comunitaria concreta. Para ampliar la inferencia se necesitarían otras placas, alternar bloques entre motores, instrumentar RTT y ambiente, y ampliar las ventanas en celdas con pocas operaciones. Para elegir una configuración importa el patrón de consulta y el tiempo de respuesta que admite la aplicación.
+
+\clearpage
+\appendix
+\section{Incidentes y trazabilidad}
+\subsection{Exclusiones conservadas}
+\begin{center}
+\small
+\begin{tabularx}{.98\linewidth}{@{}llrX@{}}
+\toprule Motor & Incidente & Intentos & Evidencia y tratamiento\\
+\midrule
+PostgreSQL & Pérdida de telemetría & 2 & Corte en Q1 a 1,000 pedidos y brecha de 6.7 s en Q2 a 10,000 con dos clientes.\\
+MongoDB & Brecha de telemetría & 4 & Eventos de 5.2 a 10.1 s en celdas de 10,000, 25,000 y 50,000 pedidos.\\
+MongoDB & Tiempo de espera del cliente & 4 & Eventos a 1,000 y 10,000 pedidos. El CSV conserva la condición y el mensaje.\\
+\bottomrule
+\end{tabularx}
+\par\smallskip\textit{Tabla A1.} Diez exclusiones de la matriz principal. Las incidencias fuera de las corridas se conservan por sesión.
+\end{center}
+Una interrupción de SSH dejó activo un servicio temporal de MongoDB. La recuperación comprobó el fin del servicio y el retorno de PostgreSQL antes de reanudar. Los incidentes de conexión y telemetría forman parte de la evidencia sobre el montaje.
+
+\subsection{Verificación eléctrica}
+En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medianas fueron 1.2500 V en reposo, 1.2625 V en Q1 a 10,000 pedidos y 1.2500 V durante recuperación. El firmware rechazó la consulta del canal de entrada de 5 V. La familia Zero tiene limitaciones de aviso de bajo voltaje \cite{firmware,power}. El voltaje de entrada y la energía quedaron sin medir.
+
+\subsection{Disponibilidad de datos y código}
+\begin{tabularx}{\linewidth}{@{}lX@{}}
+\toprule Ruta en el repositorio & Evidencia\\
+\midrule
+\clave{dataset/} & Generador, semilla y manifiesto SHA-256.\\
+\clave{workloads/} & SQL y pipelines de las dos consultas.\\
+\clave{results/raw/} & Estados de sesión, CSV por corrida y operación, telemetría, enfriamiento, fallos y planes.\\
+\clave{results/processed/} & Resúmenes por sesión y celda.\\
+\clave{report/} & Fuente, tablas generadas y comando de reconstrucción que coteja las mediciones por operación.\\
+\clave{protocol/} & Decisiones, enmiendas, bitácora, prompts y auditoría de IA.\\
+\bottomrule
+\end{tabularx}
+
+\textbf{Revisión.} El proyecto conserva los datos en su repositorio privado. Codex asistió en código, ejecución, análisis y redacción. Están pendientes la revisión humana formal y la aceptación docente de la variante comunitaria.
+
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Referencias}
 \begin{thebibliography}{99}
 \small\raggedright
 \bibitem{nist} M. Iorga y otros. \textit{Fog Computing Conceptual Model}. NIST SP 500-325, 2018. \href{https://doi.org/10.6028/NIST.SP.500-325}{DOI: 10.6028/NIST.SP.500-325}.
@@ -196,62 +290,7 @@ Ruta del proyecto & Evidencia\\
 \bibitem{community} themattman. \textit{r7.0.40 Unofficial Raspberry Pi Binaries}. \href{https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial}{Distribución comunitaria y SHA-256}.
 \bibitem{wiredtiger} MongoDB. \textit{Investigate changes to WiredTiger for non-LSE ARM platforms}. \href{https://jira.mongodb.org/browse/WT-9256}{Registro técnico WT-9256}.
 \bibitem{eva02} L. A. Nafate Hernandez. \textit{Medición de métricas en bases documentales: MongoDB frente a PostgreSQL JSONB bajo contención de CPU y memoria}. Reporte EVA02, 2026.
+\bibitem{sandve} G. K. Sandve y otros. \textit{Ten Simple Rules for Reproducible Computational Research}. PLOS Computational Biology, 2013. \href{https://doi.org/10.1371/journal.pcbi.1003285}{DOI}.
+\bibitem{mensh} B. Mensh y K. Kording. \textit{Ten Simple Rules for Structuring Papers}. PLOS Computational Biology, 2017. \href{https://doi.org/10.1371/journal.pcbi.1005619}{DOI}.
 \end{thebibliography}
-
-\newpage
-\appendix
-\section{Recursos durante el ensayo}
-La RAM disponible y la frecuencia de CPU 0 forman parte de \EdgeDato{trace_samples}\ observaciones instrumentadas. Las dos series incluyen intervalos entre corridas. Una separación entre líneas indica la pausa entre etapas.
-
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=.96\linewidth,height=62mm,ymin=64,grid=major,
-  xlabel={Minutos desde el piloto},ylabel={RAM disponible (MiB)}]
-\EdgeRam
-\end{axis}
-\end{tikzpicture}
-\par\smallskip
-{\small \textit{Figura A1.} RAM disponible, muestreada en la Pi y registrada en la laptop. Se muestra un punto cada cinco muestras. El protocolo fijó 64 MiB disponibles como umbral preventivo.}
-\end{center}
-
-\begin{center}
-\begin{tikzpicture}
-\begin{axis}[width=.96\linewidth,height=62mm,ymin=560,ymax=1050,grid=major,
-  xlabel={Minutos desde el piloto},ylabel={Frecuencia de CPU 0 (MHz)}]
-\EdgeFrequency
-\end{axis}
-\end{tikzpicture}
-\par\smallskip
-{\small \textit{Figura A2.} Lectura de \texttt{scaling\_cur\_freq} de CPU 0. Se muestra un punto cada cinco muestras. La frecuencia reportada complementa la máscara de limitación y la temperatura del SoC.}
-\end{center}
-\newpage
-\section{Ampliación del experimento anterior}
-EVA02 probó las dos consultas con 500,000 pedidos en Docker Desktop y ventanas de 300 s \cite{eva02}. En la Pi se reutilizaron las consultas y el oráculo, con cinco volúmenes y concurrencia de 1, 2 y 5 clientes a 10,000 pedidos. La ampliación usó 10 s de calentamiento, 60 s de medición y pausas de 120 s ampliables a 300 s según la recuperación térmica. Las cifras de las secciones anteriores corresponden al primer estudio de PostgreSQL.
-
-\entrada{Resultados de la ampliación}
-Cada motor completó 70 corridas válidas, cinco por celda. PostgreSQL aportó 36,288 operaciones verificadas y MongoDB comunitario 7.0.40 aportó 16,710. Se conservaron dos intentos excluidos de PostgreSQL y ocho de MongoDB en la matriz principal. El P99 se calculó con menos de 100 operaciones en 11 corridas de PostgreSQL y 24 de MongoDB.
-
-\begin{center}
-\small
-\begin{tabular}{llrrrr}
-\toprule
-Pedidos / clientes & Consulta & \multicolumn{2}{c}{P95 (ms)} & \multicolumn{2}{c}{Consultas/s}\\
-& & PostgreSQL & MongoDB & PostgreSQL & MongoDB\\
-\midrule
-10,000 / 5 & Q1 & 811.1 & 1558.8 & 7.80 & 5.13\\
-10,000 / 5 & Q2 & 236.7 & 1719.7 & 27.90 & 8.27\\
-50,000 / 1 & Q1 & 3133.3 & 4148.1 & 0.33 & 0.28\\
-50,000 / 1 & Q2 & 469.6 & 2163.0 & 3.48 & 0.83\\
-\bottomrule
-\end{tabular}
-\par\smallskip
-\textit{Tabla B1.} Medianas de cinco corridas por condición. La latencia incluye el transporte y la recepción de resultados en la laptop.
-\end{center}
-
-PostgreSQL tuvo mayor throughput en las 14 celdas y menor P95 en 13. La excepción fue Q1 a 1,000 pedidos, con 110.9 ms para PostgreSQL y 97.8 ms para MongoDB. La comparación refleja combinaciones de motor, cliente y transporte. PostgreSQL usó \clave{psql} sobre SSH y MongoDB usó PyMongo por un túnel SSH con caché WiredTiger de 0.25 GiB y límite de memoria de 320 MiB. Los picos de temperatura durante las ventanas válidas fueron 66.6~°C y 68.2~°C respectivamente.
-
-\entrada{Diagnósticos y límites}
-En los planes de MongoDB a 50,000 pedidos hubo escaneo de colección y cero derrames a disco en las etapas que reportaron ese contador. Q2 examinó 50,000 documentos y devolvió 1,000. A 10,000 pedidos, MongoDB completó cinco corridas de Q2 por configuración de permiso de escritura temporal. El P95 mediano fue de 511.1 ms sin permiso y 676.8 ms con permiso. Esta diferencia describe las configuraciones observadas. El contraste adicional de \clave{work\_mem} para PostgreSQL se detuvo por el tiempo límite de consulta durante la primera corrida a 4 MiB, por lo que queda sin estimar el efecto de cambiar a 16 MiB.
-
-La comparación corresponde a una sola placa sin disipador y a la compilación comunitaria indicada. La temperatura ambiente y el consumo eléctrico quedaron sin medir. Los CSV consolidados, los planes y los intentos interrumpidos están en el repositorio.
 \end{document}

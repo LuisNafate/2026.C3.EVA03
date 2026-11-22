@@ -54,7 +54,56 @@ def summarize(valid, field):
     return median(numbers) if numbers else None
 
 
-def analyze(sources, output):
+def write_latex(combined, output):
+    lines = ["% Generado por results/analizar_extension.py."]
+    cells = {}
+    for (engine, phase, documents, query, clients, window), attempts in combined.items():
+        if phase == "ampliacion" and window == "60":
+            cells[engine, int(documents), int(clients), query] = attempts
+
+    def macro(name, rows):
+        lines.extend([fr"\newcommand{{\{name}}}{{%", *rows, "}"])
+
+    def pair(fields):
+        return " & ".join(str(value) for value in fields) + r" \\"
+
+    def value(rows, field, precision=1, scale=1):
+        number = summarize(rows, field)
+        return "--" if number is None else f"{number / scale:.{precision}f}"
+
+    for engine, prefix in (("PostgreSQL", "Pg"), ("MongoDB comunitario", "Mongo")):
+        performance, resources = [], []
+        for (_, documents, clients, query), rows in sorted((k, v) for k, v in cells.items() if k[0] == engine):
+            valid = [row for row in rows if row["status"] == "completed"]
+            if len(valid) != 5:
+                raise ValueError(f"El artículo requiere cinco corridas válidas en {engine}, {documents}, {clients}, {query}.")
+            key = (f"{documents:,}", query.upper(), clients)
+            p95 = [float(row["latency_p95_ms"]) for row in valid]
+            low, _, high = quantiles(p95, n=4, method="inclusive")
+            performance.append(pair((*key, f"{len(valid)}/{len(rows)}", value(valid, "throughput_qps", 2),
+                                     value(valid, MOMENTS[0]), f"{median(p95):.1f} [{low:.1f}, {high:.1f}]",
+                                     value(valid, MOMENTS[2]), sum(row["p99_low_sample"] == "True" for row in valid))))
+            resources.append(pair((*key, value(valid, "cpu_percent_mean"), value(valid, "rss_sum_max_mib"),
+                                   value(valid, "available_memory_min_mib"), value(valid, "temperature_max_c"),
+                                   value(valid, "io_read_bytes", scale=1048576), value(valid, "io_write_bytes", scale=1048576))))
+        if len(performance) != 14:
+            raise ValueError(f"Se esperaban 14 condiciones para {engine}.")
+        macro(prefix + "Performance", performance)
+        macro(prefix + "Resources", resources)
+        for query, letter in (("q1", "One"), ("q2", "Two")):
+            for measure, suffix, levels in (("latency_p95_ms", "Volume", (1000, 5000, 10000, 25000, 50000)),
+                                             ("throughput_qps", "Clients", (1, 2, 5))):
+                points = []
+                for level in levels:
+                    documents, clients = (level, 1) if suffix == "Volume" else (10000, level)
+                    rows = cells[engine, documents, clients, query]
+                    valid = [row for row in rows if row["status"] == "completed"]
+                    points.append(f"({level},{value(valid, measure, 4)})")
+                macro(prefix + letter + suffix, [" ".join(points)])
+    output.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
+def analyze(sources, output, latex=None):
     output.mkdir(parents=True, exist_ok=True)
     groups = defaultdict(list)
     combined = defaultdict(list)
@@ -113,11 +162,14 @@ def analyze(sources, output):
                                  summarize(valid, MOMENTS[1]), quartiles[0], quartiles[2], summarize(valid, MOMENTS[2]),
                                  summarize(valid, "throughput_qps")))
     (output / "sesiones.json").write_text(json.dumps(sessions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if latex is not None:
+        write_latex(combined, latex)
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("sessions", type=Path, nargs="+")
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--latex", type=Path, help="Genera tablas y coordenadas para el artículo.")
     args = parser.parse_args()
-    analyze(args.sessions, args.out)
+    analyze(args.sessions, args.out, args.latex)
