@@ -1,0 +1,15 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-21T22:19:04.690+00:00",
+  "completed": 9,
+  "attempted": 9,
+  "phase": "enfriamiento",
+  "phase_started_utc": "2026-11-21T23:16:14.830+00:00",
+  "baseline_temperature_c": 44.546,
+  "query": "q2",
+  "documents": 25000,
+  "clients": 1,
+  "repetition": 5,
+  "error": "Telemetría: TimeoutError: ",
+  "ended_utc": "2026-11-21T23:16:14.834+00:00"
+}
