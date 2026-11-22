@@ -54,7 +54,7 @@ def summarize(valid, field):
     return median(numbers) if numbers else None
 
 
-def write_latex(combined, output):
+def write_latex(combined, final_recoveries, output):
     lines = ["% Generado por results/analizar_extension.py."]
     cells = {}
     for (engine, phase, documents, query, clients, window), attempts in combined.items():
@@ -71,6 +71,7 @@ def write_latex(combined, output):
         number = summarize(rows, field)
         return "--" if number is None else f"{number / scale:.{precision}f}"
 
+    budget_rows = []
     for engine, prefix in (("PostgreSQL", "Pg"), ("MongoDB comunitario", "Mongo")):
         performance, resources = [], []
         for (_, documents, clients, query), rows in sorted((k, v) for k, v in cells.items() if k[0] == engine):
@@ -100,6 +101,26 @@ def write_latex(combined, output):
                     valid = [row for row in rows if row["status"] == "completed"]
                     points.append(f"({level},{value(valid, measure, 4)})")
                 macro(prefix + letter + suffix, [" ".join(points)])
+
+        at_50k = {
+            query: [row for row in cells[engine, 50000, 1, query] if row["status"] == "completed"]
+            for query in ("q1", "q2")
+        }
+        macro(prefix + "Writes", [value(at_50k["q1"], "io_write_bytes", scale=1048576)])
+        q2_p95 = [float(row["latency_p95_ms"]) for row in at_50k["q2"]]
+        budget_rows.append(pair((engine, f"{median(q2_p95):.1f}", f"{min(q2_p95):.1f}--{max(q2_p95):.1f}",
+                                 f"{sum(p95 <= 500 for p95 in q2_p95)}/{len(q2_p95)}")))
+
+        recoveries = final_recoveries[engine]
+        recovered = [float(row["cooldown_s"]) for row in recoveries if row["within_baseline_plus_3c"] == "1"]
+        at_limit = sum(float(row["cooldown_s"]) >= 300 and row["within_baseline_plus_3c"] == "0" for row in recoveries)
+        on_time = sum(120 <= duration < 125 for duration in recovered)
+        extended = sum(duration >= 125 for duration in recovered)
+        macro(prefix + "Cooling", [f"(base,{on_time}) (extendida,{extended}) (limite,{at_limit})"])
+        macro(prefix + "CoolingEvaluable", [str(on_time + extended + at_limit)])
+        macro(prefix + "CoolingProlonged", [str(extended + at_limit)])
+        macro(prefix + "CoolingUnrecovered", [str(at_limit)])
+    macro("BudgetRows", budget_rows)
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -108,6 +129,7 @@ def analyze(sources, output, latex=None):
     groups = defaultdict(list)
     combined = defaultdict(list)
     completed_ids = set()
+    final_recoveries = defaultdict(list)
     sessions = []
     for directory in sources:
         session = meta(directory)
@@ -130,6 +152,10 @@ def analyze(sources, output, latex=None):
         recoveries = read_csv(cooldown_path) if cooldown_path.exists() else []
         if not {row["run_id"] for row in recoveries} <= {row["run_id"] for row in complete}:
             raise ValueError(f"El enfriamiento contiene corridas no conciliadas de {directory.name}.")
+        final_engines = {row["run_id"]: row["engine"] for row in complete if row["phase"] == "ampliacion"}
+        for row in recoveries:
+            if row["run_id"] in final_engines:
+                final_recoveries[final_engines[row["run_id"]]].append(row)
         telem = directory / "telemetria.csv"
         samples = read_csv(telem) if telem.exists() else []
         session.update(
@@ -163,7 +189,7 @@ def analyze(sources, output, latex=None):
                                  summarize(valid, "throughput_qps")))
     (output / "sesiones.json").write_text(json.dumps(sessions, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     if latex is not None:
-        write_latex(combined, latex)
+        write_latex(combined, final_recoveries, latex)
 
 
 if __name__ == "__main__":

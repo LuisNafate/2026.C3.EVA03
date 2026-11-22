@@ -209,6 +209,52 @@ xlabel={Clientes a 10,000 pedidos},ylabel={Mediana de consultas/s},legend pos=no
 \end{center}
 
 \clearpage
+\subsection{Escritura en microSD y recuperación térmica}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.84\linewidth,height=50mm,ybar,bar width=20pt,ymin=0,ymax=260,
+symbolic x coords={pg,mongo},xtick=data,xticklabels={PostgreSQL,MongoDB},
+ylabel={Escritura por ventana (MiB)},enlarge x limits=.38,ymajorgrids,
+nodes near coords,point meta=y,every node near coord/.append style={font=\small}]
+\addplot[draw=azul,fill=azul!48] coordinates {(pg,\PgWrites) (mongo,\MongoWrites)};
+\end{axis}
+\end{tikzpicture}
+
+\textit{Figura 3.} Escritura mediana en la microSD para Q1 con 50,000 pedidos y un cliente. Cinco ventanas válidas de 60 s por configuración.
+\end{center}
+En esa condición, la microSD registró \PgWrites{} MiB con PostgreSQL y \MongoWrites{} MiB con MongoDB por ventana. PostgreSQL obtuvo además menor P95. Los contadores incluyen toda la actividad de escritura de la tarjeta. El plan de PostgreSQL de la serie inicial mostró un ordenamiento externo, una observación de otra sesión que ayuda a contextualizar el resultado.
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.94\linewidth,height=53mm,ybar,bar width=14pt,ymin=0,ymax=66,
+symbolic x coords={base,extendida,limite},xtick=data,
+xticklabels={Recuperó a 120 s,Recuperó con extensión,Alcanzó 300 s sin recuperar},
+xticklabel style={font=\footnotesize},ylabel={Pausas evaluables},enlarge x limits=.19,ymajorgrids,
+nodes near coords,point meta=y,every node near coord/.append style={font=\footnotesize},legend style={at={(.98,.98)},anchor=north east,font=\footnotesize}]
+\addplot[draw=azul,fill=azul!48] coordinates {\PgCooling}; \addlegendentry{PostgreSQL}
+\addplot[draw=verde,fill=verde!42] coordinates {\MongoCooling}; \addlegendentry{MongoDB}
+\end{axis}
+\end{tikzpicture}
+
+\textit{Figura 4.} Pausas evaluables por desenlace. Se considera recuperación cuando la mediana de los últimos 15 s cae dentro del margen de 3 °C sobre el reposo de la sesión.
+\end{center}
+Se prolongaron \PgCoolingProlonged{} de \PgCoolingEvaluable{} pausas evaluables de PostgreSQL y \MongoCoolingProlonged{} de \MongoCoolingEvaluable{} de MongoDB. Llegaron al límite sin recuperar la banda \PgCoolingUnrecovered{} pausas de PostgreSQL y \MongoCoolingUnrecovered{} de MongoDB. Otras dos pausas de PostgreSQL quedaron incompletas por interrupciones. Las pausas ampliadas forman parte del tiempo experimental observado.
+
+\subsection{Ejemplo de aplicación con un presupuesto de latencia}
+\begin{center}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule
+Motor & P95 mediano (ms) & Rango de P95 (ms) & Corridas con P95 $\leq 500$ ms\\
+\midrule
+\BudgetRows
+\bottomrule
+\end{tabular}
+\par\smallskip\textit{Tabla 7.} Q2 con 50,000 pedidos y un cliente. El objetivo de 500 ms es ilustrativo.
+\end{center}
+La mediana de PostgreSQL quedó dentro del objetivo, aunque una repetición lo superó. Las cinco de MongoDB lo superaron. El recuento muestra cómo cambió el cumplimiento entre ventanas bajo el mismo escenario medido.
+
+\clearpage
 \section{Planes de ejecución y diagnósticos}
 Los planes se obtuvieron fuera de las ventanas cronometradas. PostgreSQL aportó \clave{EXPLAIN ANALYZE} con buffers desde la serie inicial y MongoDB, \clave{executionStats} al cierre de la ampliación. Los tiempos del plan y la latencia de la laptop describen recorridos diferentes \cite{pgexplain}.
 
@@ -223,7 +269,7 @@ MongoDB & Q1 & 16 grupos & \clave{COLLSCAN}, expansión a 149,760 ítems y filtr
 MongoDB & Q2 & 1,000 filas & \clave{COLLSCAN}, 50,000 documentos examinados y 30,171 elegibles. Cero derrames en la etapa que informó el contador. & 879\\
 \bottomrule
 \end{tabularx}
-\par\smallskip\textit{Tabla 7.} En MongoDB se indica \clave{executionTimeMillis} de las estadísticas del cursor. En PostgreSQL se indica \clave{Execution Time}.
+\par\smallskip\textit{Tabla 8.} En MongoDB se indica \clave{executionTimeMillis} de las estadísticas del cursor. En PostgreSQL se indica \clave{Execution Time}.
 \end{center}
 
 \subsection{Diagnósticos complementarios}
