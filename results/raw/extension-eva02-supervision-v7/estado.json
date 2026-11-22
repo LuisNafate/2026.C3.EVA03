@@ -1,0 +1,52 @@
+{
+  "started_utc": "2026-11-22T05:08:32.096+00:00",
+  "stage": "closed",
+  "status": "partial",
+  "blocks": {
+    "postgresql": {
+      "status": "completed",
+      "started_utc": "2026-11-21T23:17:44.958+00:00",
+      "completed": 11,
+      "attempted": 11,
+      "phase": "enfriamiento",
+      "phase_started_utc": "2026-11-22T00:05:15.505+00:00",
+      "baseline_temperature_c": 45.084,
+      "query": "q2",
+      "documents": 50000,
+      "clients": 1,
+      "repetition": 5,
+      "ended_utc": "2026-11-22T00:08:30.519+00:00"
+    },
+    "mongodb": {
+      "status": "completed",
+      "started_utc": "2026-11-22T05:46:57.752+00:00",
+      "completed": 10,
+      "attempted": 10,
+      "phase": "enfriamiento",
+      "phase_started_utc": "2026-11-22T06:22:34.198+00:00",
+      "baseline_temperature_c": 45.622,
+      "documents": 10000,
+      "clients": 1,
+      "query": "q2",
+      "repetition": 5,
+      "ended_utc": "2026-11-22T06:24:58.857+00:00"
+    },
+    "postgresql-diagnostico": {
+      "status": "interrupted",
+      "started_utc": "2026-11-22T06:26:28.889+00:00",
+      "completed": 0,
+      "attempted": 1,
+      "phase": "work_mem_4MiB",
+      "phase_started_utc": "2026-11-22T06:27:03.314+00:00",
+      "baseline_temperature_c": 46.16,
+      "query": "q1",
+      "documents": 50000,
+      "clients": 1,
+      "repetition": 1,
+      "error": "v2-work_mem_4MiB-50000-q1-c1-r1: psql interrumpido: ERROR:  canceling statement due to statement timeout",
+      "ended_utc": "2026-11-22T06:27:14.455+00:00"
+    }
+  },
+  "current_session": "extension-eva02-postgresql-diagnostico-v02",
+  "ended_utc": "2026-11-22T06:27:15.934+00:00"
+}

@@ -4,7 +4,7 @@
 [![Motor medido: PostgreSQL 17.12](https://img.shields.io/badge/motor-PostgreSQL%2017.12-007960)](protocol/diseno-y-decisiones.md)
 [![Artículo: LaTeX y PDF](https://img.shields.io/badge/art%C3%ADculo-LaTeX%20%2B%20PDF-526A7A)](report/articulo.pdf)
 
-Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. PostgreSQL se evalúa con cargas JSONB. El estudio incluye una revisión documental de MongoDB Community 8.0 y una prueba funcional de una compilación comunitaria de MongoDB 7.0.40.
+Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. El estudio mide PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoDB 7.0.40. Incluye una revisión documental de MongoDB Community 8.0.
 
 ## Resultado observado
 
@@ -21,7 +21,7 @@ La latencia incluye la ruta por Wi-Fi y SSH. El [resumen por celda](results/proc
 
 La [comprobación del voltaje interno](results/raw/alimentacion-software/resumen.json) es un ensayo posterior. El [plan de trabajo](protocol/plan-de-trabajo.md) indica qué sigue pendiente del requisito eléctrico.
 
-La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La matriz de rendimiento corresponde a PostgreSQL.
+La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La [matriz de la ampliación](results/processed/extension-eva02/matriz_consolidada.csv) contiene 70 corridas válidas por motor y 52 998 operaciones verificadas. En las 14 celdas comparables, PostgreSQL tuvo mayor throughput en las 14 y menor P95 en 13.
 
 La [ampliación a partir de EVA02](protocol/extension-eva02.md) detalla la auditoría de la consigna, las ventanas de 60 segundos y el orden de los diagnósticos y de la comparación entre motores.
 

@@ -1,0 +1,15 @@
+{
+  "status": "interrupted",
+  "started_utc": "2026-11-22T05:10:17.103+00:00",
+  "completed": 7,
+  "attempted": 8,
+  "phase": "sin-disco",
+  "phase_started_utc": "2026-11-22T05:44:47.590+00:00",
+  "baseline_temperature_c": 45.622,
+  "documents": 10000,
+  "clients": 1,
+  "query": "q2",
+  "repetition": 1,
+  "error": "v2-sin-disco-10000-q2-c1-r1: Brecha de telemetría de 5.1 s dentro de la ventana.",
+  "ended_utc": "2026-11-22T05:45:27.719+00:00"
+}

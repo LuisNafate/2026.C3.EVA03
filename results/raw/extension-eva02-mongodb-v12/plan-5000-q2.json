@@ -1,0 +1,225 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "edge_lab.orders_5000",
+          "indexFilterSet": false,
+          "parsedQuery": {
+            "$and": [
+              {
+                "status": {
+                  "$eq": "completed"
+                }
+              },
+              {
+                "timestamp": {
+                  "$lt": "2025-12-01"
+                }
+              },
+              {
+                "timestamp": {
+                  "$gte": "2025-03-01"
+                }
+              }
+            ]
+          },
+          "queryHash": "CA8EA044",
+          "planCacheKey": "CA8EA044",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_DEFAULT",
+            "transformBy": {
+              "order_id": 1,
+              "payment.final_total": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "status": {
+                      "$eq": "completed"
+                    }
+                  },
+                  {
+                    "timestamp": {
+                      "$lt": "2025-12-01"
+                    }
+                  },
+                  {
+                    "timestamp": {
+                      "$gte": "2025-03-01"
+                    }
+                  }
+                ]
+              },
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 3004,
+          "executionTimeMillis": 108,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 5000,
+          "executionStages": {
+            "stage": "PROJECTION_DEFAULT",
+            "nReturned": 3004,
+            "executionTimeMillisEstimate": 35,
+            "works": 5001,
+            "advanced": 3004,
+            "needTime": 1996,
+            "needYield": 0,
+            "saveState": 6,
+            "restoreState": 6,
+            "isEOF": 1,
+            "transformBy": {
+              "order_id": 1,
+              "payment.final_total": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "filter": {
+                "$and": [
+                  {
+                    "status": {
+                      "$eq": "completed"
+                    }
+                  },
+                  {
+                    "timestamp": {
+                      "$lt": "2025-12-01"
+                    }
+                  },
+                  {
+                    "timestamp": {
+                      "$gte": "2025-03-01"
+                    }
+                  }
+                ]
+              },
+              "nReturned": 3004,
+              "executionTimeMillisEstimate": 28,
+              "works": 5001,
+              "advanced": 3004,
+              "needTime": 1996,
+              "needYield": 0,
+              "saveState": 6,
+              "restoreState": 6,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 5000
+            }
+          }
+        }
+      },
+      "nReturned": 3004,
+      "executionTimeMillisEstimate": 53
+    },
+    {
+      "$set": {
+        "final_total": {
+          "$convert": {
+            "input": "$payment.final_total",
+            "to": {
+              "$const": "decimal"
+            }
+          }
+        }
+      },
+      "nReturned": 3004,
+      "executionTimeMillisEstimate": 83
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "final_total": -1,
+          "order_id": 1
+        },
+        "limit": 1000
+      },
+      "totalDataSizeSortedBytesEstimate": 709000,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 1000,
+      "executionTimeMillisEstimate": 98
+    },
+    {
+      "$project": {
+        "order_id": true,
+        "final_total": true,
+        "_id": false
+      },
+      "nReturned": 1000,
+      "executionTimeMillisEstimate": 98
+    }
+  ],
+  "serverInfo": {
+    "host": "edge-db",
+    "port": 28081,
+    "version": "7.0.40",
+    "gitVersion": "d18b92bf3d150c32f129aba9317efb627d3f5ab1"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "orders_5000",
+    "pipeline": [
+      {
+        "$match": {
+          "status": "completed",
+          "timestamp": {
+            "$gte": "2025-03-01",
+            "$lt": "2025-12-01"
+          }
+        }
+      },
+      {
+        "$set": {
+          "final_total": {
+            "$toDecimal": "$payment.final_total"
+          }
+        }
+      },
+      {
+        "$sort": {
+          "final_total": -1,
+          "order_id": 1
+        }
+      },
+      {
+        "$limit": 1000
+      },
+      {
+        "$project": {
+          "_id": 0,
+          "order_id": 1,
+          "final_total": 1
+        }
+      }
+    ],
+    "cursor": {},
+    "allowDiskUse": true,
+    "$db": "edge_lab"
+  },
+  "ok": 1.0
+}

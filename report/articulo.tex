@@ -34,14 +34,14 @@
 {\fontsize{34}{39}\selectfont\bfseries\color{azul}
 ¿Hasta dónde llega una\\ Raspberry Pi con JSON?\par}
 \vspace{6mm}
-{\Large Latencia, memoria y temperatura de PostgreSQL JSONB en una Zero 2 W\par}
+{\Large PostgreSQL JSONB y MongoDB comunitario en una Zero 2 W\par}
 \vspace{12mm}
 {\large Proyecto EDGE-DB · IT2iD\par}
 {\normalsize Bases de Datos en la Nube · Actividad 2026.C3.EVA03\par}
 \vspace{13mm}
 \noindent\fcolorbox{veladura}{veladura}{\begin{minipage}{0.943\linewidth}
 \vspace{4pt}
-\textbf{\color{azul}El hallazgo.} En la placa probada, PostgreSQL 17.12 completó dos consultas de agregación JSONB con hasta 50,000 pedidos y un cliente. Con 10,000 pedidos se ensayaron también dos y cinco clientes. La latencia P95 fue de \EdgeDato{q1_50000_1_p95}\ ms para Q1 y \EdgeDato{q2_50000_1_p95}\ ms para Q2 a 50,000 pedidos. Son medianas de cinco repeticiones y corresponden al recorrido completo observado desde la laptop por SSH.
+\textbf{\color{azul}El hallazgo.} Ambos motores completaron las dos consultas con 50,000 pedidos y un cliente. En la ampliación se obtuvieron 140 corridas válidas y 52,998 operaciones verificadas. PostgreSQL tuvo mayor throughput en las 14 celdas comparables y menor P95 en 13. La comparación abarca el recorrido completo desde la laptop y las configuraciones ensayadas.
 \vspace{4pt}
 \end{minipage}}\par
 \vspace{10mm}
@@ -51,7 +51,7 @@
 En este experimento, un pedido es un documento con fecha, cliente, pago y lista de artículos. Se eligió JSONB, la representación interna de PostgreSQL para datos JSON que facilita procesar documentos sin volver a interpretar el texto completo en cada operación \cite{pgjson}. El estudio mide hasta dónde llegó esta configuración y cómo se comportó mientras trabajaba.
 
 \vfill
-{\small \textbf{Alcance.} Una placa, una microSD y una condición térmica. La matriz mide PostgreSQL. Una compilación comunitaria de MongoDB se verificó funcionalmente en una sesión aparte. Los pedidos son sintéticos y las mediciones provienen del hardware real.}
+{\small \textbf{Alcance.} Una placa, una microSD y una condición térmica. El estudio inicial mide PostgreSQL. El anexo B compara la ampliación con la compilación comunitaria de MongoDB. Los pedidos son sintéticos y las mediciones provienen del hardware real.}
 \end{titlepage}
 \setcounter{page}{2}
 
@@ -226,18 +226,32 @@ La RAM disponible y la frecuencia de CPU 0 forman parte de \EdgeDato{trace_sampl
 \end{center}
 \newpage
 \section{Ampliación del experimento anterior}
-El antecedente EVA02 probó las dos consultas con 500,000 pedidos en Docker Desktop, tres perfiles de CPU y RAM y ventanas de observación de 300 s \cite{eva02}. En la Raspberry Pi se conservan la validación independiente, la ejecución por motor, los percentiles de latencia, los planes y el registro de fallos. Los tamaños, la condición de caché y los tiempos se adaptan a la memoria física, la microSD y la red. Los resultados de Docker describen su propio entorno.
+EVA02 probó las dos consultas con 500,000 pedidos en Docker Desktop y ventanas de 300 s \cite{eva02}. En la Pi se reutilizaron las consultas y el oráculo, con cinco volúmenes y concurrencia de 1, 2 y 5 clientes a 10,000 pedidos. La ampliación usó 10 s de calentamiento, 60 s de medición y pausas de 120 s ampliables a 300 s según la recuperación térmica. Las cifras de las secciones anteriores corresponden al primer estudio de PostgreSQL.
 
-\entrada{Cobertura y límites de la consigna}
-El repositorio contiene el prompt, las reglas y la auditoría de IA, el código y los CSV. El artículo cubre los análisis exploratorio, descriptivo y diagnóstico para la matriz original de PostgreSQL. Se utilizó una placa sin disipador. Quedan pendientes la segunda condición térmica, la identificación de la fuente y del cable y la comparación de rendimiento entre motores. El consumo eléctrico requiere instrumentación externa. La revisión humana final y la aceptación docente de la variante comunitaria están pendientes.
+\entrada{Resultados de la ampliación}
+Cada motor completó 70 corridas válidas, cinco por celda. PostgreSQL aportó 36,288 operaciones verificadas y MongoDB comunitario 7.0.40 aportó 16,710. Se conservaron dos intentos excluidos de PostgreSQL y ocho de MongoDB en la matriz principal. El P99 se calculó con menos de 100 operaciones en 11 corridas de PostgreSQL y 24 de MongoDB.
 
-\entrada{Protocolo de ventanas largas}
-El bloque de PostgreSQL se inició con 10 minutos de reposo instrumentado. El diseño prevé seis pilotos con ventanas de 30 s y una matriz de hasta 70 corridas. Cada corrida final contempla 10 s de calentamiento, 60 s de medición y 15 s de recuperación. Se reutilizan los cinco volúmenes, la concurrencia a 10,000 pedidos y el oráculo. Se registran resultados, errores, métricas por operación y telemetría, con parada preventiva a 70~°C o menos de 64 MiB de memoria disponible.
+\begin{center}
+\small
+\begin{tabular}{llrrrr}
+\toprule
+Pedidos / clientes & Consulta & \multicolumn{2}{c}{P95 (ms)} & \multicolumn{2}{c}{Consultas/s}\\
+& & PostgreSQL & MongoDB & PostgreSQL & MongoDB\\
+\midrule
+10,000 / 5 & Q1 & 811.1 & 1558.8 & 7.80 & 5.13\\
+10,000 / 5 & Q2 & 236.7 & 1719.7 & 27.90 & 8.27\\
+50,000 / 1 & Q1 & 3133.3 & 4148.1 & 0.33 & 0.28\\
+50,000 / 1 & Q2 & 469.6 & 2163.0 & 3.48 & 0.83\\
+\bottomrule
+\end{tabular}
+\par\smallskip
+\textit{Tabla B1.} Medianas de cinco corridas por condición. La latencia incluye el transporte y la recepción de resultados en la laptop.
+\end{center}
 
-El tiempo estimado de PostgreSQL es de 1 h 55 min a 2 h 15 min, más 10 a 20 min para el contraste de memoria de ordenamiento y los planes. El piloto y la matriz de MongoDB podrían tomar 2 a 3 h si la variante se mantiene estable y valida el Top-1000. El total estimado es de 4 a 6 h con preparación y cierre. Los datos de la ampliación quedan identificados por sesión y por ventana de medición.
+PostgreSQL tuvo mayor throughput en las 14 celdas y menor P95 en 13. La excepción fue Q1 a 1,000 pedidos, con 110.9 ms para PostgreSQL y 97.8 ms para MongoDB. La comparación refleja combinaciones de motor, cliente y transporte. PostgreSQL usó \clave{psql} sobre SSH y MongoDB usó PyMongo por un túnel SSH con caché WiredTiger de 0.25 GiB y límite de memoria de 320 MiB. Los picos de temperatura durante las ventanas válidas fueron 66.6~°C y 68.2~°C respectivamente.
 
-En EVA02, las 162 corridas principales de 420 s sumaban 18 h 54 min de reloj programado, antes de verificaciones, pausas y recuperación. Aplicar ese mismo ciclo a las 140 corridas principales previstas en la Raspberry demandaría 16 h 20 min solo para la matriz. Las ventanas de 60 s permiten ampliar cobertura en menos tiempo, a costa de contar con menos datos para estimar el P99 de las consultas lentas.
+\entrada{Diagnósticos y límites}
+En los planes de MongoDB a 50,000 pedidos hubo escaneo de colección y cero derrames a disco en las etapas que reportaron ese contador. Q2 examinó 50,000 documentos y devolvió 1,000. A 10,000 pedidos, MongoDB completó cinco corridas de Q2 por configuración de permiso de escritura temporal. El P95 mediano fue de 511.1 ms sin permiso y 676.8 ms con permiso. Esta diferencia describe las configuraciones observadas. El contraste adicional de \clave{work\_mem} para PostgreSQL se detuvo por el tiempo límite de consulta durante la primera corrida a 4 MiB, por lo que queda sin estimar el efecto de cambiar a 16 MiB.
 
-\entrada{Primer intento en la Raspberry}
-PostgreSQL completó los seis pilotos de 30 s sobre 1,000 pedidos y las 3,363 operaciones aceptadas coincidieron con el oráculo. La primera corrida de 60 s se excluyó al perderse la telemetría; se conservaron sus operaciones y el log. El identificador de arranque coincidió, la temperatura máxima registrada fue de 50.5~°C y la búsqueda de OOM y errores de I/O en el kernel no encontró coincidencias. La reanudación conserva los pilotos y verifica la cobertura de la telemetría dentro de cada ventana.
+La comparación corresponde a una sola placa sin disipador y a la compilación comunitaria indicada. La temperatura ambiente y el consumo eléctrico quedaron sin medir. Los CSV consolidados, los planes y los intentos interrumpidos están en el repositorio.
 \end{document}

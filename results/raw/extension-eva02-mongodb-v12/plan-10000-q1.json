@@ -1,0 +1,225 @@
+{
+  "explainVersion": "1",
+  "stages": [
+    {
+      "$cursor": {
+        "queryPlanner": {
+          "namespace": "edge_lab.orders_10000",
+          "indexFilterSet": false,
+          "parsedQuery": {},
+          "queryHash": "3BFA58E3",
+          "planCacheKey": "3BFA58E3",
+          "optimizationTimeMillis": 0,
+          "maxIndexedOrSolutionsReached": false,
+          "maxIndexedAndSolutionsReached": false,
+          "maxScansToExplodeReached": false,
+          "winningPlan": {
+            "stage": "PROJECTION_DEFAULT",
+            "transformBy": {
+              "customer.country": 1,
+              "items": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "direction": "forward"
+            }
+          },
+          "rejectedPlans": []
+        },
+        "executionStats": {
+          "executionSuccess": true,
+          "nReturned": 10000,
+          "executionTimeMillis": 727,
+          "totalKeysExamined": 0,
+          "totalDocsExamined": 10000,
+          "executionStages": {
+            "stage": "PROJECTION_DEFAULT",
+            "nReturned": 10000,
+            "executionTimeMillisEstimate": 84,
+            "works": 10001,
+            "advanced": 10000,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 11,
+            "restoreState": 11,
+            "isEOF": 1,
+            "transformBy": {
+              "customer.country": 1,
+              "items": 1,
+              "_id": 0
+            },
+            "inputStage": {
+              "stage": "COLLSCAN",
+              "nReturned": 10000,
+              "executionTimeMillisEstimate": 24,
+              "works": 10001,
+              "advanced": 10000,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 11,
+              "restoreState": 11,
+              "isEOF": 1,
+              "direction": "forward",
+              "docsExamined": 10000
+            }
+          }
+        }
+      },
+      "nReturned": 10000,
+      "executionTimeMillisEstimate": 124
+    },
+    {
+      "$unwind": {
+        "path": "$items"
+      },
+      "nReturned": 29939,
+      "executionTimeMillisEstimate": 223
+    },
+    {
+      "$match": {
+        "items.price": {
+          "$gt": 50
+        }
+      },
+      "nReturned": 21266,
+      "executionTimeMillisEstimate": 398
+    },
+    {
+      "$set": {
+        "subtotal": {
+          "$multiply": [
+            "$items.qty",
+            {
+              "$convert": {
+                "input": "$items.price",
+                "to": {
+                  "$const": "decimal"
+                }
+              }
+            }
+          ]
+        }
+      },
+      "nReturned": 21266,
+      "executionTimeMillisEstimate": 517
+    },
+    {
+      "$group": {
+        "_id": {
+          "country": "$customer.country",
+          "category": "$items.category"
+        },
+        "sum_subtotal": {
+          "$sum": "$subtotal"
+        },
+        "avg_subtotal": {
+          "$avg": "$subtotal"
+        },
+        "items": {
+          "$sum": {
+            "$const": 1
+          }
+        }
+      },
+      "maxAccumulatorMemoryUsageBytes": {
+        "sum_subtotal": 1536,
+        "avg_subtotal": 1664,
+        "items": 1536
+      },
+      "totalOutputDataSizeBytes": 9888,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "numBytesSpilledEstimate": 0,
+      "spilledRecords": 0,
+      "nReturned": 16,
+      "executionTimeMillisEstimate": 718
+    },
+    {
+      "$sort": {
+        "sortKey": {
+          "_id.country": 1,
+          "_id.category": 1
+        }
+      },
+      "totalDataSizeSortedBytesEstimate": 11168,
+      "usedDisk": false,
+      "spills": 0,
+      "spilledDataStorageSize": 0,
+      "nReturned": 16,
+      "executionTimeMillisEstimate": 718
+    }
+  ],
+  "serverInfo": {
+    "host": "edge-db",
+    "port": 28081,
+    "version": "7.0.40",
+    "gitVersion": "d18b92bf3d150c32f129aba9317efb627d3f5ab1"
+  },
+  "serverParameters": {
+    "internalQueryFacetBufferSizeBytes": 104857600,
+    "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+    "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+    "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+    "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+    "internalQueryProhibitBlockingMergeOnMongoS": 0,
+    "internalQueryMaxAddToSetBytes": 104857600,
+    "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+    "internalQueryFrameworkControl": "forceClassicEngine"
+  },
+  "command": {
+    "aggregate": "orders_10000",
+    "pipeline": [
+      {
+        "$unwind": "$items"
+      },
+      {
+        "$match": {
+          "items.price": {
+            "$gt": 50
+          }
+        }
+      },
+      {
+        "$set": {
+          "subtotal": {
+            "$multiply": [
+              "$items.qty",
+              {
+                "$toDecimal": "$items.price"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "$group": {
+          "_id": {
+            "country": "$customer.country",
+            "category": "$items.category"
+          },
+          "sum_subtotal": {
+            "$sum": "$subtotal"
+          },
+          "avg_subtotal": {
+            "$avg": "$subtotal"
+          },
+          "items": {
+            "$sum": 1
+          }
+        }
+      },
+      {
+        "$sort": {
+          "_id.country": 1,
+          "_id.category": 1
+        }
+      }
+    ],
+    "cursor": {},
+    "allowDiskUse": true,
+    "$db": "edge_lab"
+  },
+  "ok": 1.0
+}
