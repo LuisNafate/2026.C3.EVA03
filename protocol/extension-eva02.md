@@ -8,13 +8,13 @@ Se revisaron las secciones de método, resultados, planes y fallos de EVA02 (pp.
 
 | Criterio | Estado y evidencia |
 | --- | --- |
-| Repositorio con proceso, agentes, reglas, habilidades, herramientas, prompts y CSV | Documentado. El [prompt](prompts/maestro-edge-db.md), las [reglas del repositorio](../AGENTS.md), la [auditoría](auditoria-ia.md), los scripts y los CSV se conservan junto al informe. La auditoría identifica agente, herramientas y habilidades. |
+| Repositorio con proceso, agentes, reglas, habilidades, herramientas, prompts y CSV | [Registro del proceso](registro-del-proceso.md) con rutas a cada evidencia y a las habilidades específicas de EDGE-DB. |
 | Integridad y originalidad | Los manifiestos, el oráculo y los logs enlazan entradas y resultados. La revisión de coincidencias con entregas ajenas corresponde a la evaluación docente. |
-| Análisis exploratorio, descriptivo y diagnóstico, en LaTeX y PDF | Cubierto para la matriz original de PostgreSQL. [Artículo y fuente](../report/). |
+| Análisis exploratorio, descriptivo y diagnóstico, en LaTeX y PDF | Los tres niveles incluyen la ampliación comparativa. [Artículo y fuente](../reporte/). |
 | Modelos de IA y auditoría | El [registro](auditoria-ia.md) identifica el modelo, el papel de IA y las verificaciones. La revisión humana formal está pendiente. |
 | Diseño de dos placas y disipación cruzada | Parcial. El usuario trabaja con una placa sin disipador. Falta confirmar con el docente la adaptación y quedan sin estimar diferencias entre placas y condiciones térmicas. |
 | Motores probados secuencialmente | Factibilidad documentada para [ambos motores](mongodb-armv8-experimental.md). El servicio PostgreSQL se detuvo durante la prueba aislada de MongoDB y se restauró. PostgreSQL siguió instalado. Se debe declarar esta diferencia respecto del playbook. |
-| Rendimiento, concurrencia y límites operativos por motor | La matriz original cubre PostgreSQL. MongoDB comunitario solo tiene evidencia funcional de 1 000 pedidos. |
+| Rendimiento, concurrencia y límites operativos por motor | La [matriz consolidada](../results/processed/extension-eva02/matriz_consolidada.csv) contiene 70 corridas válidas por motor. El diagnóstico de `work_mem` queda inconcluso. |
 | Montaje, reposo y telemetría | Inventario, reposo de al menos 10 minutos previo a instalar el motor y telemetría disponibles. Se vuelve a medir reposo de 10 minutos con PostgreSQL. Fuente, cable y temperatura ambiental siguen sin verificar. |
 | Entrada de 5 V, corriente y energía | Sin medición externa. El firmware dio lecturas del riel interno VC4. El KPI de energía es condicional en el playbook. |
 

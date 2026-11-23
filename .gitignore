@@ -1,8 +1,9 @@
 __pycache__/
 tmp/
 dataset/generado-v1/*.jsonl
-report/*.log
-report/*.aux
-report/*.out
+reporte/*.log
+reporte/*.aux
+reporte/*.out
+reporte/*.toc
 results/raw/sesion-2026-11-18/inventario.log
 results/raw/benchmark-v1/rtt.log

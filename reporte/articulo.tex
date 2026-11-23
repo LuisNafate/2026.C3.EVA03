@@ -165,12 +165,12 @@ La primera serie de PostgreSQL usó ventanas de 5 s y una enmienda a 20 s para Q
 \subsection{Análisis exploratorio de la matriz}
 De 150 intentos principales, 140 entraron en la comparación. PostgreSQL aportó 70 corridas válidas de 72 intentos y 36,288 operaciones. MongoDB aportó 70 de 78 y 16,710 operaciones. Los intentos excluidos quedan en el anexo. Cada fila de rendimiento indica válidas sobre intentos. La columna $n_{<100}$ cuenta las repeticiones con menos de 100 operaciones completas.
 
-\subsection{PostgreSQL JSONB}
+\subsection{Análisis descriptivo de PostgreSQL JSONB}
 \tablaMotor{\PgPerformance}{\PgResources}{3}{4}
 En Q1 con un cliente, el P95 pasó de 110.9 ms a 1,000 pedidos a 3133.3 ms a 50,000. En Q2 a 10,000 pedidos, el throughput mediano aumentó de 7.33 a 27.90 consultas/s entre uno y cinco clientes y el P95 subió de 156.6 a 236.7 ms. Once corridas quedaron por debajo de 100 operaciones válidas.
 
 \clearpage
-\subsection{MongoDB comunitario}
+\subsection{Análisis descriptivo de MongoDB comunitario}
 \tablaMotor{\MongoPerformance}{\MongoResources}{5}{6}
 En Q1 a 50,000 pedidos y un cliente, el P95 fue de 4148.1 ms. La misma consulta obtuvo 97.8 ms a 1,000 pedidos. En Q2 a 10,000 pedidos, el throughput aumentó de 2.35 a 8.27 consultas/s entre uno y cinco clientes y el P95 subió de 975.9 a 1719.7 ms. Veinticuatro corridas quedaron por debajo de 100 operaciones válidas.
 
@@ -301,7 +301,7 @@ Con dos clientes, PostgreSQL alcanzó 13.57 consultas/s y un P95 mediano de 181.
 El numerador puede incluir actividad del sistema y trabajo de consultas que cruzaron el cierre. Para identificar el origen de las escrituras, una prueba de seguimiento alternaría ventanas de reposo y de Q1 con 50,000 pedidos, un cliente y la misma duración. En cada ventana se registrarían los contadores del dispositivo y, durante la carga, la evidencia de archivos temporales del motor con sus marcas de tiempo.
 
 \clearpage
-\section{Planes de ejecución y diagnósticos}
+\section{Análisis diagnóstico y planes de ejecución}
 Los planes se obtuvieron fuera de las ventanas cronometradas. PostgreSQL aportó \clave{EXPLAIN ANALYZE} con buffers desde la serie inicial y MongoDB, \clave{executionStats} al cierre de la ampliación. Los tiempos del plan y la latencia de la laptop describen recorridos diferentes \cite{pgexplain}.
 
 \begin{center}
@@ -379,12 +379,12 @@ En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medi
 \clave{workloads/} & SQL y pipelines de las dos consultas.\\
 \clave{results/raw/} & Estados de sesión, CSV por corrida y operación, telemetría, enfriamiento, fallos y planes.\\
 \clave{results/processed/} & Resúmenes por sesión y celda.\\
-\clave{report/} & Fuente, tablas generadas y comando de reconstrucción que coteja las mediciones por operación.\\
+\clave{reporte/} & Fuente, tablas generadas y comando de reconstrucción que coteja las mediciones por operación.\\
 \clave{protocol/} & Decisiones, enmiendas, bitácora, prompts y auditoría de IA.\\
 \bottomrule
 \end{tabularx}
 
-\textbf{Revisión.} El proyecto conserva los datos en su repositorio privado. Codex asistió en código, ejecución, análisis y redacción. Están pendientes la revisión humana formal y la aceptación docente de la variante comunitaria.
+\textbf{Revisión.} El repositorio del proyecto conserva los datos y la ruta de reconstrucción. Codex asistió en código, ejecución, análisis y redacción. Están pendientes la revisión humana formal y la aceptación docente de la variante comunitaria.
 
 \clearpage
 \phantomsection

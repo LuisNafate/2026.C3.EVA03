@@ -8,7 +8,7 @@
 | Factibilidad | PostgreSQL 17.12 y MongoDB comunitario 7.0.40 pasaron la prueba de inserción, consultas y persistencia. MongoDB oficial se evaluó documentalmente | [Decisiones](diseno-y-decisiones.md), [evidencia de MongoDB](mongodb-armv8-experimental.md) |
 | Datos y consultas | Cinco prefijos reproducibles con SHA-256. Q1 y Q2 cotejadas contra un oráculo independiente | [Manifiesto](../dataset/generado-v1/manifiesto.json), [consultas](../workloads/) |
 | Rendimiento | 6 corridas piloto, 70 finales utilizables, 4 intentos conservados del plan inicial de 50k | [Selección de corridas](../results/processed/benchmark/seleccion_corridas.csv) |
-| Análisis y entrega | Exploratorio, descriptivo y diagnóstico. Artículo, evidencia y auditoría de IA en el repositorio privado | [Artículo](../report/articulo.pdf), [auditoría](auditoria-ia.md) |
+| Análisis y entrega | Exploratorio, descriptivo y diagnóstico. Artículo, evidencia y auditoría de IA en el repositorio privado | [Artículo](../reporte/articulo.pdf), [auditoría](auditoria-ia.md) |
 | Comprobación eléctrica por software | Consulta de capacidades, voltaje interno del VC4 y señales de operación. Sesión separada de la matriz final | [Carpeta de evidencia](../results/raw/alimentacion-software/) |
 | Voltaje de entrada, corriente y energía | Sin medición directa. El firmware no expone el canal de entrada de 5 V en esta placa | [Respuesta del firmware](../results/raw/alimentacion-software/capacidades.log) |
 
