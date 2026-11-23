@@ -71,7 +71,7 @@ def write_latex(combined, final_recoveries, output):
         number = summarize(rows, field)
         return "--" if number is None else f"{number / scale:.{precision}f}"
 
-    budget_rows = []
+    budget_rows, tradeoff_rows, write_cost_rows = [], [], []
     for engine, prefix in (("PostgreSQL", "Pg"), ("MongoDB comunitario", "Mongo")):
         performance, resources = [], []
         for (_, documents, clients, query), rows in sorted((k, v) for k, v in cells.items() if k[0] == engine):
@@ -107,9 +107,24 @@ def write_latex(combined, final_recoveries, output):
             for query in ("q1", "q2")
         }
         macro(prefix + "Writes", [value(at_50k["q1"], "io_write_bytes", scale=1048576)])
+        write_cost = [float(row["io_write_bytes"]) / (1048576 * int(row["operations_completed"]))
+                      for row in at_50k["q1"]]
+        write_cost_rows.append(pair((engine, len(write_cost), f"{median(write_cost):.3f}",
+                                      f"{min(write_cost):.3f}--{max(write_cost):.3f}")))
         q2_p95 = [float(row["latency_p95_ms"]) for row in at_50k["q2"]]
         budget_rows.append(pair((engine, f"{median(q2_p95):.1f}", f"{min(q2_p95):.1f}--{max(q2_p95):.1f}",
                                  f"{sum(p95 <= 500 for p95 in q2_p95)}/{len(q2_p95)}")))
+
+        tradeoff_points = []
+        for clients in (1, 2, 5):
+            valid = [row for row in cells[engine, 10000, clients, "q2"] if row["status"] == "completed"]
+            qps = summarize(valid, "throughput_qps")
+            p95s = [float(row["latency_p95_ms"]) for row in valid]
+            p95 = median(p95s)
+            tradeoff_points.append(f"({qps:.4f},{p95:.3f}) [{clients}]")
+            tradeoff_rows.append(pair((engine, clients, f"{qps:.2f}", f"{p95:.1f}",
+                                       f"{sum(sample <= 200 for sample in p95s)}/{len(valid)}")))
+        macro(prefix + "Tradeoff", [" ".join(tradeoff_points)])
 
         recoveries = final_recoveries[engine]
         recovered = [float(row["cooldown_s"]) for row in recoveries if row["within_baseline_plus_3c"] == "1"]
@@ -121,6 +136,8 @@ def write_latex(combined, final_recoveries, output):
         macro(prefix + "CoolingProlonged", [str(extended + at_limit)])
         macro(prefix + "CoolingUnrecovered", [str(at_limit)])
     macro("BudgetRows", budget_rows)
+    macro("TradeoffRows", tradeoff_rows)
+    macro("WriteCostRows", write_cost_rows)
     output.write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 

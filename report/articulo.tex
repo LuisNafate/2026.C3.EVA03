@@ -96,7 +96,7 @@ Se evaluaron PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoD
 \section{Plataforma y pregunta de investigación}
 La computación de borde permite ejecutar parte del procesamiento cerca del origen de los datos \cite{nist}. En EVA02 se ensayaron consultas documentales sobre 500,000 pedidos en Docker Desktop, bajo perfiles de CPU y RAM y con ventanas de 300 s \cite{eva02}. Este estudio conserva las preguntas de carga, concurrencia y recursos en una placa física. El playbook planteaba dos unidades y se utilizó una, con montaje sin disipador \cite{playbook}.
 
-\textbf{Pregunta.} ¿Cómo cambian la latencia de cola, el throughput y el uso de recursos al escalar el volumen y la concurrencia de dos consultas documentales equivalentes en la Raspberry Pi Zero 2 W?
+\textbf{Pregunta.} ¿Qué compromisos aparecen entre latencia de cola, consultas por segundo y uso de recursos al escalar dos consultas documentales equivalentes en la Raspberry Pi Zero 2 W?
 
 \begin{center}
 \small
@@ -255,6 +255,52 @@ Motor & P95 mediano (ms) & Rango de P95 (ms) & Corridas con P95 $\leq 500$ ms\\
 La mediana de PostgreSQL quedó dentro del objetivo, aunque una repetición lo superó. Las cinco de MongoDB lo superaron. El recuento muestra cómo cambió el cumplimiento entre ventanas bajo el mismo escenario medido.
 
 \clearpage
+\subsection{El rendimiento frente a un límite de latencia}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[width=.92\linewidth,height=66mm,ymode=log,xmin=0,xmax=31,ymin=120,ymax=2550,
+xlabel={Mediana de consultas/s},ylabel={Mediana del P95 (ms)},grid=major,
+ytick={125,200,500,1000,2000},yticklabels={125,200,500,1000,2000},
+legend style={at={(.98,.98)},anchor=north east,font=\small}]
+\addplot[azul,thick,mark=*,point meta=explicit symbolic,nodes near coords,
+every node near coord/.append style={font=\scriptsize,above right}] coordinates {\PgTradeoff};
+\addlegendentry{PostgreSQL}
+\addplot[verde,thick,mark=square*,point meta=explicit symbolic,nodes near coords,
+every node near coord/.append style={font=\scriptsize,above right}] coordinates {\MongoTradeoff};
+\addlegendentry{MongoDB}
+\addplot[tinta,dashed,thin] coordinates {(0,200) (31,200)};
+\addlegendentry{Objetivo de 200 ms}
+\end{axis}
+\end{tikzpicture}
+
+\textit{Figura 5.} Latencia frente a throughput en Q2 con 10,000 pedidos. Los números junto a los puntos indican clientes. Cada punto combina dos medianas de cinco corridas. El eje vertical es logarítmico.
+\end{center}
+\begin{center}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule Motor & Clientes & Consultas/s & P95 (ms) & Corridas con P95 $\leq 200$ ms\\
+\midrule
+\TradeoffRows
+\bottomrule
+\end{tabular}
+\par\smallskip\textit{Tabla 8.} Medianas por condición y recuento observado de cumplimiento del umbral ilustrativo.
+\end{center}
+Con dos clientes, PostgreSQL alcanzó 13.57 consultas/s y un P95 mediano de 181.8 ms. Con cinco clientes alcanzó 27.90 consultas/s y 236.7 ms. Dos clientes fue la condición más rápida de las ensayadas que cumplió el objetivo mediano de 200 ms. Lo cumplió en cuatro de cinco corridas, mientras que con un cliente se cumplió en cinco de cinco. Una meta operativa requiere comprobar la variación bajo la carga real de la aplicación.
+
+\subsection{Escritura registrada por consulta completada}
+\begin{center}
+\small
+\begin{tabular}{@{}lrrr@{}}
+\toprule Motor & Corridas & Mediana (MiB/consulta) & Rango (MiB/consulta)\\
+\midrule
+\WriteCostRows
+\bottomrule
+\end{tabular}
+\par\smallskip\textit{Tabla 9.} Q1 a 50,000 pedidos con un cliente. Para cada ventana se dividió la escritura observada en toda la microSD entre las consultas válidas completadas, antes de calcular la mediana y el rango.
+\end{center}
+El numerador puede incluir actividad del sistema y trabajo de consultas que cruzaron el cierre. Para identificar el origen de las escrituras, una prueba de seguimiento alternaría ventanas de reposo y de Q1 con 50,000 pedidos, un cliente y la misma duración. En cada ventana se registrarían los contadores del dispositivo y, durante la carga, la evidencia de archivos temporales del motor con sus marcas de tiempo.
+
+\clearpage
 \section{Planes de ejecución y diagnósticos}
 Los planes se obtuvieron fuera de las ventanas cronometradas. PostgreSQL aportó \clave{EXPLAIN ANALYZE} con buffers desde la serie inicial y MongoDB, \clave{executionStats} al cierre de la ampliación. Los tiempos del plan y la latencia de la laptop describen recorridos diferentes \cite{pgexplain}.
 
@@ -269,7 +315,7 @@ MongoDB & Q1 & 16 grupos & \clave{COLLSCAN}, expansión a 149,760 ítems y filtr
 MongoDB & Q2 & 1,000 filas & \clave{COLLSCAN}, 50,000 documentos examinados y 30,171 elegibles. Cero derrames en la etapa que informó el contador. & 879\\
 \bottomrule
 \end{tabularx}
-\par\smallskip\textit{Tabla 8.} En MongoDB se indica \clave{executionTimeMillis} de las estadísticas del cursor. En PostgreSQL se indica \clave{Execution Time}.
+\par\smallskip\textit{Tabla 10.} En MongoDB se indica \clave{executionTimeMillis} de las estadísticas del cursor. En PostgreSQL se indica \clave{Execution Time}.
 \end{center}
 
 \subsection{Diagnósticos complementarios}
@@ -282,7 +328,12 @@ PostgreSQL procesó más consultas por segundo en las 14 celdas comparables. En 
 
 Los máximos de temperatura durante ventanas válidas fueron 66.6 °C en PostgreSQL y 68.2 °C en MongoDB. La RAM disponible mínima fue de 158.2 y 150.3 MiB respectivamente. Se observó CPU global cercana a saturación y máscara 0x0 en ambos. Los enfriamientos, la falta de medición ambiental y las sesiones reanudadas limitan la atribución térmica.
 
-El estudio caracteriza una placa, dos recorridos de cliente, presupuestos de servicio distintos y una compilación comunitaria concreta. Para ampliar la inferencia se necesitarían otras placas, alternar bloques entre motores, instrumentar RTT y ambiente, y ampliar las ventanas en celdas con pocas operaciones. Para elegir una configuración importa el patrón de consulta y el tiempo de respuesta que admite la aplicación.
+\subsection{Amenazas a la validez}
+\textbf{Comparabilidad.} Cambian el motor, el cliente, la serialización y el presupuesto de memoria. El cronómetro contiene todos esos componentes. Aislar la contribución del motor requeriría medir por separado el tiempo de servidor y el de transporte, con bloques de carga alternados y RTT instrumentado.
+
+\textbf{Selección e incertidumbre.} Los percentiles describen operaciones aceptadas en ventanas válidas. Los intentos excluidos se informan aparte y la variación entre cinco corridas no mide variación entre placas. El P99 con pocas operaciones es particularmente sensible a un solo valor. Comparar el 2/72 de exclusiones de PostgreSQL con el 8/78 de MongoDB describe lo que ocurrió en el montaje. Los mensajes disponibles no aíslan una tasa de fallo de cada motor.
+
+\textbf{Alcance.} El máximo de 50,000 pedidos corresponde a un cliente y cinco clientes se probaron a 10,000 pedidos. Para ampliar la inferencia se necesitarían otras placas, alternar bloques entre motores, medir la temperatura ambiente y ampliar las ventanas con pocas operaciones.
 
 \clearpage
 \appendix
@@ -301,6 +352,21 @@ MongoDB & Tiempo de espera del cliente & 4 & Eventos a 1,000 y 10,000 pedidos. E
 \par\smallskip\textit{Tabla A1.} Diez exclusiones de la matriz principal. Las incidencias fuera de las corridas se conservan por sesión.
 \end{center}
 Una interrupción de SSH dejó activo un servicio temporal de MongoDB. La recuperación comprobó el fin del servicio y el retorno de PostgreSQL antes de reanudar. Los incidentes de conexión y telemetría forman parte de la evidencia sobre el montaje.
+
+\subsection{Cronología de una exclusión y su reintento}
+\begin{center}
+\small
+\begin{tabularx}{.98\linewidth}{@{}lX@{}}
+\toprule 19 de noviembre, hora local & Q2 con 10,000 pedidos, dos clientes, repetición 5 de PostgreSQL\\
+\midrule
+22:18:53 & Inició el intento V02. La última muestra dentro de la ventana se recibió a los 53.26 s. Quedaron 6.74 s hasta el cierre, por encima del umbral de 5 s.\\
+22:20:13 & El supervisor cerró la sesión y conservó las 560 operaciones completas del intento. Esa ventana quedó excluida. Las 38 corridas válidas previas permanecieron disponibles para reanudar.\\
+22:32:13 & El intento V03 repitió la misma condición con el mismo identificador de corrida. Completó 835 operaciones válidas en una ventana aceptada y aportó la repetición a la matriz final.\\
+\bottomrule
+\end{tabularx}
+\par\smallskip\textit{Tabla A2.} El identificador de sesión distingue el primer intento de su reintento. La marca corresponde al inicio de la corrida o al cierre documentado de la sesión.
+\end{center}
+La regla de exclusión comprueba la cobertura de telemetría. El reintento restituye la réplica planificada y el registro conserva el intento anterior para reconstruir la selección.
 
 \subsection{Verificación eléctrica}
 En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medianas fueron 1.2500 V en reposo, 1.2625 V en Q1 a 10,000 pedidos y 1.2500 V durante recuperación. El firmware rechazó la consulta del canal de entrada de 5 V. La familia Zero tiene limitaciones de aviso de bajo voltaje \cite{firmware,power}. El voltaje de entrada y la energía quedaron sin medir.
