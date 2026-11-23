@@ -16,8 +16,8 @@
 \setlength{\headheight}{14pt}
 \pagestyle{fancy}
 \fancyhf{}
-\fancyhead[L]{\small\textcolor{azul}{EDGE-DB · BASES DE DATOS EN LA NUBE}}
-\fancyhead[R]{\small Universidad Politécnica de Chiapas}
+\fancyhead[L]{\small\textcolor{azul}{EDGE-DB · BENCHMARK EN RASPBERRY PI}}
+\fancyhead[R]{\small Luis Alberto Nafate Hernandez}
 \fancyfoot[L]{\small Caso de estudio · noviembre de 2026}
 \fancyfoot[R]{\small\thepage}
 \renewcommand{\headrulewidth}{0.3pt}
@@ -57,25 +57,15 @@ Pedidos & Consulta & Clientes & CPU (\%) & RSS (MiB) & RAM (MiB) & SoC (°C) & L
 \setlength{\parskip}{0pt}
 \color{black}
 \vspace*{4mm}
-{\Large\textbf{Universidad Politécnica de Chiapas}\par}
-\vspace{6mm}
-{\large Ingeniería en Tecnologías de la Información\\e Innovación Digital\par}
-\vspace{22mm}
+{\Large\textbf{EDGE-DB}\par}
+\vspace{30mm}
 {\fontsize{25}{30}\selectfont\bfseries\color{azul} Agregaciones JSON en una\\Raspberry Pi Zero 2 W\par}
 \vspace{7mm}
 {\Large PostgreSQL JSONB frente a MongoDB\\comunitario en computación de borde\par}
 \vspace{13mm}
-{\large Evaluación 2026.C3.EVA03\par}
-\vspace{14mm}
-{\renewcommand{\arraystretch}{1.35}
-\begin{tabular}{@{}r@{\quad}l@{}}
-\textbf{Alumno:} & Luis Alberto Nafate Hernandez\\
-\textbf{Matrícula:} & 243728\\
-\textbf{Profesor:} & Horacio Irán Solís Cisneros\\
-\textbf{Materia:} & Bases de Datos en la Nube\\
-\textbf{Grupo y periodo:} & 7B -- 2026.C3\\
-\end{tabular}
-\par}
+{\large Luis Alberto Nafate Hernandez\par}
+\vspace{4mm}
+Proyecto personal de computación de borde\par
 \vfill
 {\large\textbf{REPORTE TÉCNICO EXPERIMENTAL}\par}
 \vspace{4mm}
@@ -94,7 +84,7 @@ Se evaluaron PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoD
 
 \clearpage
 \section{Plataforma y pregunta de investigación}
-La computación de borde permite ejecutar parte del procesamiento cerca del origen de los datos \cite{nist}. En EVA02 se ensayaron consultas documentales sobre 500,000 pedidos en Docker Desktop, bajo perfiles de CPU y RAM y con ventanas de 300 s \cite{eva02}. Este estudio conserva las preguntas de carga, concurrencia y recursos en una placa física. El playbook planteaba dos unidades y se utilizó una, con montaje sin disipador \cite{playbook}.
+La computación de borde permite ejecutar parte del procesamiento cerca del origen de los datos \cite{nist}. Un ensayo previo del autor en Docker Desktop estudió el rendimiento bajo distintos presupuestos de CPU y RAM \cite{antecedente}. EDGE-DB traslada la pregunta a una sola placa física con montaje sin disipador.
 
 \textbf{Pregunta.} ¿Qué compromisos aparecen entre latencia de cola, consultas por segundo y uso de recursos al escalar dos consultas documentales equivalentes en la Raspberry Pi Zero 2 W?
 
@@ -384,7 +374,7 @@ En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medi
 \bottomrule
 \end{tabularx}
 
-\textbf{Revisión.} El repositorio del proyecto conserva los datos y la ruta de reconstrucción. Codex asistió en código, ejecución, análisis y redacción. Están pendientes la revisión humana formal y la aceptación docente de la variante comunitaria.
+\textbf{Revisión.} El repositorio del proyecto conserva los datos y la ruta de reconstrucción. Codex asistió en código, ejecución, análisis y redacción. La variante comunitaria y los límites del montaje se documentan como parte del alcance experimental.
 
 \clearpage
 \phantomsection
@@ -394,7 +384,6 @@ En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medi
 \bibitem{nist} M. Iorga y otros. \textit{Fog Computing Conceptual Model}. NIST SP 500-325, 2018. \href{https://doi.org/10.6028/NIST.SP.500-325}{DOI: 10.6028/NIST.SP.500-325}.
 \bibitem{pgjson} PostgreSQL Global Development Group. \textit{PostgreSQL 17: JSON Types}. \href{https://www.postgresql.org/docs/17/datatype-json.html}{Documentación oficial}.
 \bibitem{pi} Raspberry Pi Ltd. \textit{Zero models}. \href{https://www.raspberrypi.com/documentation/computers/zero.html}{Especificaciones oficiales}.
-\bibitem{playbook} Universidad Politécnica de Chiapas. \textit{Caracterización de bases de datos JSON en computación de borde}. Playbook EDGE-DB v1.3, Bases de Datos en la Nube, 2026. Documento de la actividad.
 \bibitem{mongo} MongoDB Inc. \textit{MongoDB 8.0: Production Notes}, apartado ARM64. \href{https://www.mongodb.com/docs/v8.0/administration/production-notes/#arm64}{Requisitos oficiales}.
 \bibitem{arm} Arm. \textit{Cortex-A53 MPCore Processor Technical Reference Manual}, sección 1.2.1. \href{https://documentation-service.arm.com/static/6040c321ee937942ba301626}{Manual de arquitectura}.
 \bibitem{pgfunctions} PostgreSQL Global Development Group. \textit{PostgreSQL 17: JSON Functions and Operators}. \href{https://www.postgresql.org/docs/17/functions-json.html}{Funciones de JSONB}.
@@ -405,7 +394,7 @@ En un ensayo separado se guardaron 64 lecturas del voltaje interno VC4. Las medi
 \bibitem{power} Raspberry Pi Ltd. \textit{Raspberry Pi computer hardware: Power supply warnings}. \href{https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#power-supply-warnings}{Detección de bajo voltaje por familia}.
 \bibitem{community} themattman. \textit{r7.0.40 Unofficial Raspberry Pi Binaries}. \href{https://github.com/themattman/mongodb-raspberrypi-binaries/releases/tag/r7.0.40-rpi-unofficial}{Distribución comunitaria y SHA-256}.
 \bibitem{wiredtiger} MongoDB. \textit{Investigate changes to WiredTiger for non-LSE ARM platforms}. \href{https://jira.mongodb.org/browse/WT-9256}{Registro técnico WT-9256}.
-\bibitem{eva02} L. A. Nafate Hernandez. \textit{Medición de métricas en bases documentales: MongoDB frente a PostgreSQL JSONB bajo contención de CPU y memoria}. Reporte EVA02, 2026.
+\bibitem{antecedente} L. A. Nafate Hernandez. \textit{Medición de métricas en bases documentales: MongoDB frente a PostgreSQL JSONB bajo contención de CPU y memoria}. Informe técnico previo del autor, 2026.
 \bibitem{sandve} G. K. Sandve y otros. \textit{Ten Simple Rules for Reproducible Computational Research}. PLOS Computational Biology, 2013. \href{https://doi.org/10.1371/journal.pcbi.1003285}{DOI}.
 \bibitem{mensh} B. Mensh y K. Kording. \textit{Ten Simple Rules for Structuring Papers}. PLOS Computational Biology, 2017. \href{https://doi.org/10.1371/journal.pcbi.1005619}{DOI}.
 \end{thebibliography}

@@ -22,7 +22,7 @@ Descarga `mongodb.ce.pi4.r7.0.40.tar.gz` del enlace de origen y [libssl1.1 ARM64
 python runner/probar_mongo_arm.py --host IP_DE_LA_PI --user USUARIO --archive RUTA_AL_ARCHIVO --compat RUTA_A_LIBSSL_DEB --dataset dataset/generado-v1/orders-1000.jsonl --raw results/raw/nuevo-ensayo-mongo
 ```
 
-En cada intento se conservan información de la plataforma, transferencia, prueba de versión, salida del servidor/cliente cuando se genera, comparación con el oráculo y estado posterior. Esta página documenta la factibilidad. La [matriz cronometrada de ambos motores](../results/processed/extension-eva02/matriz_consolidada.csv) corresponde a la ampliación posterior.
+En cada intento se conservan información de la plataforma, transferencia, prueba de versión, salida del servidor/cliente cuando se genera, comparación con el oráculo y estado posterior. Esta página documenta la factibilidad. La [matriz cronometrada de ambos motores](../results/processed/benchmark-extendido/matriz_consolidada.csv) corresponde a la ampliación posterior.
 
 ## Resultados comprobados
 
@@ -32,4 +32,4 @@ En cada intento se conservan información de la plataforma, transferencia, prueb
 | [v2](../results/raw/mongo-arm-v2/) | El binario llegó al cargador dinámico. Faltaba libcrypto.so.1.1 y salió con código 127. |
 | [v3](../results/raw/mongo-arm-v3/) | Con libssl1.1 extraída en la unidad, mongod 7.0.40 arrancó en la Pi. Q1 devolvió 16 grupos y Q2 598 pedidos. Las salidas coincidieron con el oráculo antes y después del reinicio. PostgreSQL se verificó activo al terminar. |
 
-La muestra inicial valida el filtro y la ordenación de Q2. El [piloto posterior a 5,000 pedidos](../results/raw/extension-eva02-mongodb-v1/validacion.json) verificó el recorte a 1,000 de 3,004 pedidos elegibles. La aceptación académica de la variante comunitaria sigue pendiente.
+La muestra inicial valida el filtro y la ordenación de Q2. El [piloto posterior a 5,000 pedidos](../results/raw/benchmark-extendido-mongodb-v1/validacion.json) verificó el recorte a 1,000 de 3,004 pedidos elegibles.

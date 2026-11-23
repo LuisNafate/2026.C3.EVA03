@@ -2,7 +2,7 @@
 
 ## Alcance
 
-Caso de estudio de una Raspberry Pi Zero 2 W. El protocolo original propone dos unidades. Se trabajó con una, sin disipador. Queda pendiente la confirmación docente de la desviación. El responsable declaró una microSD ADATA 64 GB UHS-I Class 10 V10 y ausencia de termómetro ambiental y medidor USB. No se estiman ambiente, potencia ni energía a partir de los sensores de la placa. Las series térmicas describen el SoC bajo este único montaje. La fuente y el cable exactos pendientes de confirmar limitan la interpretación eléctrica.
+Caso de estudio de una Raspberry Pi Zero 2 W. Se trabajó con una sola unidad sin disipador. El responsable declaró una microSD ADATA 64 GB UHS-I Class 10 V10 y ausencia de termómetro ambiental y medidor USB. No se estiman ambiente, potencia ni energía a partir de los sensores de la placa. Las series térmicas describen el SoC bajo este único montaje. La fuente y el cable exactos pendientes de confirmar limitan la interpretación eléctrica.
 
 ## Factibilidad por motor
 

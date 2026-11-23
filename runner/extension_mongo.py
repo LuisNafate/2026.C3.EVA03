@@ -20,12 +20,12 @@ import paramiko
 from pymongo import MongoClient
 
 from experimento import ROOT, Telemetry, base, expected, run_cell, utc, write_json
-from extension_eva02 import DIAGNOSTIC_TIMES, FINAL_TIMES, SIZES, check, cooldown, history, temperature
+from benchmark_extendido import DIAGNOSTIC_TIMES, FINAL_TIMES, SIZES, check, cooldown, history, temperature
 from probar_mongo_arm import ISOLATION, MONGOD_SHA, RELEASE, SSL_SHA, cents
 
 
 PORT = 28081
-UNIT = "edge-mongo-eva02"
+UNIT = "edge-mongo-benchmark"
 SUDO = "sudo -k -S -p '' "
 
 

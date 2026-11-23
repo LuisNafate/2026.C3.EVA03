@@ -1,6 +1,6 @@
 [
   {
-    "session": "extension-eva02-mongodb-v03",
+    "session": "benchmark-extendido-mongodb-v03",
     "status": "interrupted",
     "started_utc": "2026-11-22T00:10:01.849+00:00",
     "completed": 16,
@@ -27,7 +27,7 @@
     "longest_cooldown_s": 120.0
   },
   {
-    "session": "extension-eva02-mongodb-v04",
+    "session": "benchmark-extendido-mongodb-v04",
     "status": "interrupted",
     "started_utc": "2026-11-22T01:13:42.095+00:00",
     "completed": 13,
@@ -54,7 +54,7 @@
     "longest_cooldown_s": 140.0
   },
   {
-    "session": "extension-eva02-mongodb-v05",
+    "session": "benchmark-extendido-mongodb-v05",
     "status": "interrupted",
     "started_utc": "2026-11-22T02:08:43.656+00:00",
     "completed": 6,
@@ -81,7 +81,7 @@
     "longest_cooldown_s": 230.0
   },
   {
-    "session": "extension-eva02-mongodb-v06",
+    "session": "benchmark-extendido-mongodb-v06",
     "status": "interrupted",
     "started_utc": "2026-11-22T02:44:25.163+00:00",
     "completed": 5,
@@ -108,7 +108,7 @@
     "longest_cooldown_s": 215.0
   },
   {
-    "session": "extension-eva02-mongodb-v07",
+    "session": "benchmark-extendido-mongodb-v07",
     "status": "interrupted",
     "started_utc": "2026-11-22T03:17:09.646+00:00",
     "completed": 4,
@@ -135,7 +135,7 @@
     "longest_cooldown_s": 220.0
   },
   {
-    "session": "extension-eva02-mongodb-v08",
+    "session": "benchmark-extendido-mongodb-v08",
     "status": "interrupted",
     "started_utc": "2026-11-22T03:47:16.864+00:00",
     "completed": 6,
@@ -162,7 +162,7 @@
     "longest_cooldown_s": 135.0
   },
   {
-    "session": "extension-eva02-mongodb-v09",
+    "session": "benchmark-extendido-mongodb-v09",
     "status": "interrupted",
     "started_utc": "2026-11-22T04:20:27.791+00:00",
     "completed": 7,
@@ -189,7 +189,7 @@
     "longest_cooldown_s": 120.0
   },
   {
-    "session": "extension-eva02-mongodb-v1",
+    "session": "benchmark-extendido-mongodb-v1",
     "status": "interrupted",
     "started_utc": "2026-11-20T01:14:38.857+00:00",
     "completed": 6,
@@ -215,7 +215,7 @@
     "longest_cooldown_s": null
   },
   {
-    "session": "extension-eva02-mongodb-v10",
+    "session": "benchmark-extendido-mongodb-v10",
     "status": "interrupted",
     "started_utc": "2026-11-22T04:57:02.006+00:00",
     "completed": 0,
@@ -237,7 +237,7 @@
     "longest_cooldown_s": null
   },
   {
-    "session": "extension-eva02-mongodb-v11",
+    "session": "benchmark-extendido-mongodb-v11",
     "status": "interrupted",
     "started_utc": "2026-11-22T05:10:17.103+00:00",
     "completed": 7,
@@ -264,7 +264,7 @@
     "longest_cooldown_s": 120.0
   },
   {
-    "session": "extension-eva02-mongodb-v12",
+    "session": "benchmark-extendido-mongodb-v12",
     "status": "completed",
     "started_utc": "2026-11-22T05:46:57.752+00:00",
     "completed": 10,
@@ -290,7 +290,7 @@
     "longest_cooldown_s": 120.0
   },
   {
-    "session": "extension-eva02-mongodb-v2",
+    "session": "benchmark-extendido-mongodb-v2",
     "status": "interrupted",
     "started_utc": "2026-11-20T01:32:20.694+00:00",
     "completed": 6,
@@ -317,7 +317,7 @@
     "longest_cooldown_s": 120.0
   },
   {
-    "session": "extension-eva02-postgresql-diagnostico-v01",
+    "session": "benchmark-extendido-postgresql-diagnostico-v01",
     "status": "interrupted",
     "started_utc": "2026-11-22T05:05:21.278+00:00",
     "completed": 0,
@@ -337,7 +337,7 @@
     "longest_cooldown_s": null
   },
   {
-    "session": "extension-eva02-postgresql-diagnostico-v02",
+    "session": "benchmark-extendido-postgresql-diagnostico-v02",
     "status": "interrupted",
     "started_utc": "2026-11-22T06:26:28.889+00:00",
     "completed": 0,
@@ -364,7 +364,7 @@
     "longest_cooldown_s": null
   },
   {
-    "session": "extension-eva02-postgresql-v03",
+    "session": "benchmark-extendido-postgresql-v03",
     "status": "paused",
     "started_utc": "2026-11-19T22:22:09.104-06:00",
     "completed": 12,
@@ -391,7 +391,7 @@
     "longest_cooldown_s": 300.1
   },
   {
-    "session": "extension-eva02-postgresql-v04",
+    "session": "benchmark-extendido-postgresql-v04",
     "status": "interrupted",
     "started_utc": "2026-11-21T22:19:04.690+00:00",
     "completed": 9,
@@ -418,7 +418,7 @@
     "longest_cooldown_s": 150.0
   },
   {
-    "session": "extension-eva02-postgresql-v05",
+    "session": "benchmark-extendido-postgresql-v05",
     "status": "completed",
     "started_utc": "2026-11-21T23:17:44.958+00:00",
     "completed": 11,
@@ -444,7 +444,7 @@
     "longest_cooldown_s": 195.0
   },
   {
-    "session": "extension-eva02-postgresql-v1",
+    "session": "benchmark-extendido-postgresql-v1",
     "status": "interrupted",
     "started_utc": "2026-11-20T00:57:50.937+00:00",
     "completed": 6,
@@ -470,7 +470,7 @@
     "longest_cooldown_s": null
   },
   {
-    "session": "extension-eva02-postgresql-v2",
+    "session": "benchmark-extendido-postgresql-v2",
     "status": "interrupted",
     "started_utc": "2026-11-20T02:03:46.553+00:00",
     "completed": 38,

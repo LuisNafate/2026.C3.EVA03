@@ -1,10 +1,10 @@
 # Prompt maestro · EDGE-DB
 
-Trabaja sobre EVA03, un estudio de agregaciones documentales en una Raspberry Pi Zero 2 W. La pregunta es cómo cambian latencia de cola, rendimiento y recursos al escalar Q1 y Q2 en las configuraciones documentadas de PostgreSQL JSONB y MongoDB comunitario. La audiencia es el curso de Bases de Datos en la Nube. Presenta resultados en español con unidades, condiciones y evidencia de respaldo.
+Trabaja sobre EDGE-DB, un estudio de agregaciones documentales en una Raspberry Pi Zero 2 W. La pregunta es cómo cambian latencia de cola, rendimiento y recursos al escalar Q1 y Q2 en las configuraciones documentadas de PostgreSQL JSONB y MongoDB comunitario. La audiencia son desarrolladores interesados en bases de datos y computación de borde. Presenta resultados en español con unidades, condiciones y evidencia de respaldo.
 
 ## Entrada y alcance
 
-- Lee la consigna, el [inventario](../../hardware/inventario-pi.md), el [diseño](../diseno-y-decisiones.md) y la [bitácora](../bitacora.md). Usa la bitácora y los estados de sesión para determinar qué fase está cerrada.
+- Lee el [inventario](../../hardware/inventario-pi.md), el [diseño](../diseno-y-decisiones.md) y la [bitácora](../bitacora.md). Usa la bitácora y los estados de sesión para determinar qué fase está cerrada.
 - Mantén trazables las desviaciones entre lo propuesto y lo ejecutado. El montaje documentado usa una placa sin disipador. La temperatura ambiente y la energía carecen de medición directa.
 - Reutiliza los scripts del repositorio. Conserva el código original del proyecto, acredita las dependencias y registra las decisiones que afecten la comparabilidad.
 
@@ -14,7 +14,7 @@ Trabaja sobre EVA03, un estudio de agregaciones documentales en una Raspberry Pi
 | --- | --- | --- |
 | Ejecutar o reanudar una sesión autorizada | [Reanudar el benchmark](../../skills/edge-db-reanudar-benchmark/SKILL.md) | Estado de la Pi y servicios, sesión, corridas incorporadas, exclusiones y siguiente celda |
 | Verificar una cifra o reconstruir el análisis | [Auditar las mediciones](../../skills/edge-db-auditar-mediciones/SKILL.md) | Valores calculados, celdas comparables y rutas a los CSV |
-| Editar o evaluar el reporte de entrega | [Revisar el artículo](../../skills/edge-db-revisar-articulo/SKILL.md) | LaTeX y PDF en [reporte](../../reporte/), figuras cotejadas y alcance de las conclusiones |
+| Editar o evaluar el informe técnico | [Revisar el artículo](../../skills/edge-db-revisar-articulo/SKILL.md) | LaTeX y PDF en [reporte](../../reporte/), figuras cotejadas y alcance de las conclusiones |
 
 ## Criterios de revisión
 
@@ -26,4 +26,4 @@ Trabaja sobre EVA03, un estudio de agregaciones documentales en una Raspberry Pi
 
 Resume el resultado, la ruta de su evidencia y cualquier limitación que afecte su interpretación. Entrega solo los artefactos correspondientes al encargo. Si la matriz está cerrada, comienza por los datos guardados y los scripts de reconstrucción.
 
-El prompt de la fase inicial se conserva en el historial de Git, en el commit `fa28bed`. Esta revisión organiza el trabajo posterior y la entrega.
+El prompt de la fase inicial se conserva en el historial de Git, en el commit `fa28bed`. Esta revisión organiza el trabajo posterior y la publicación del estudio.

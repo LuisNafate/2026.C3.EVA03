@@ -5,7 +5,7 @@
 [![MongoDB comunitario 7.0.40](https://img.shields.io/badge/motor-MongoDB%207.0.40%20comunitario-007960)](protocol/mongodb-armv8-experimental.md)
 [![Artículo: LaTeX y PDF](https://img.shields.io/badge/art%C3%ADculo-LaTeX%20%2B%20PDF-526A7A)](reporte/articulo.pdf)
 
-Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Universidad Politécnica de Chiapas. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. El estudio mide PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoDB 7.0.40. Incluye una revisión documental de MongoDB Community 8.0.
+Proyecto personal de Luis Alberto Nafate Hernandez. Benchmark reproducible de consultas documentales en computación de borde. La plataforma observada es una Raspberry Pi Zero 2 W con una microSD ADATA de 64 GB. El estudio mide PostgreSQL 17.12 con JSONB y una compilación comunitaria de MongoDB 7.0.40. Incluye una revisión documental de MongoDB Community 8.0.
 
 ## Resultado observado
 
@@ -16,33 +16,24 @@ Estudio de caso reproducible para 2026.C3.EVA03, Bases de Datos en la Nube, Univ
 | Comparación a 50,000 pedidos, un cliente | P95 mediano de Q1 de 3,133.3 ms en PostgreSQL y 4,148.1 ms en MongoDB. En Q2, 469.6 ms y 2,163.0 ms respectivamente |
 | Escala en concurrencia | Hasta cinco clientes a 10,000 pedidos. En Q2 subió el throughput y también el P95 |
 | Factibilidad de MongoDB | El binario oficial ARM64 requiere otra microarquitectura. La variante comunitaria 7.0.40 pasó la prueba funcional de 1,000 pedidos en la Pi |
-| Revisión académica | Pendientes la verificación humana final, la confirmación docente del cambio a una placa y la etiqueta de la fuente |
 
 La latencia incluye la ruta por Wi-Fi y SSH. El [resumen de la serie inicial](results/processed/benchmark/resumen_celdas.csv) conserva medianas, cuartiles y tamaño de muestra. El [artículo PDF](reporte/articulo.pdf) explica las diferencias entre las consultas y sus límites.
 
 La [comprobación del voltaje interno](results/raw/alimentacion-software/resumen.json) es un ensayo posterior. El [plan de trabajo](protocol/plan-de-trabajo.md) indica qué sigue pendiente del requisito eléctrico.
 
-La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La [matriz de la ampliación](results/processed/extension-eva02/matriz_consolidada.csv) contiene 70 corridas válidas por motor y 52 998 operaciones verificadas. En las 14 celdas comparables, PostgreSQL tuvo mayor throughput en las 14 y menor P95 en 13.
+La [prueba aislada de MongoDB](protocol/mongodb-armv8-experimental.md) conserva las salidas, los hashes y los intentos fallidos. La [matriz de la ampliación](results/processed/benchmark-extendido/matriz_consolidada.csv) contiene 70 corridas válidas por motor y 52 998 operaciones verificadas. En las 14 celdas comparables, PostgreSQL tuvo mayor throughput en las 14 y menor P95 en 13.
 
-La [ampliación a partir de EVA02](protocol/extension-eva02.md) detalla la auditoría de la consigna, las ventanas de 60 segundos y el orden de los diagnósticos y de la comparación entre motores.
+El [protocolo ampliado](protocol/protocolo-ampliado.md) describe las ventanas de 60 segundos, los controles y los diagnósticos de ambos motores.
 
 ![P95 por volumen de pedidos con un cliente. Q1 aumenta más rápido que Q2.](results/figures/latencia-p95.png)
-
-## Evidencia para la evaluación
-
-| Criterio | Dónde revisarlo |
-| --- | --- |
-| 1. Proceso completo | [Registro de agentes, reglas, habilidades, herramientas y prompts](protocol/registro-del-proceso.md), [CSV crudos](results/raw/) y [matriz consolidada](results/processed/extension-eva02/matriz_consolidada.csv) |
-| 2. Integridad y procedencia | [Historial y procedencia documentada](protocol/registro-del-proceso.md#procedencia-y-trazabilidad), [manifiesto de datos](dataset/generado-v1/manifiesto.json), [validación por operación](results/analizar_extension.py) y [bitácora de incidencias](protocol/bitacora.md) |
-| 3. Análisis en tres niveles | [Fuente LaTeX](reporte/articulo.tex) y [PDF](reporte/articulo.pdf). El apartado 3 incluye los análisis exploratorio y descriptivo. El apartado 5 contiene el análisis diagnóstico y los planes de ejecución |
-| 4. Modelos de IA | [Auditoría por sesión](protocol/auditoria-ia.md), con agente, identificador cuando consta, intervención y verificación |
 
 ## Dónde está cada evidencia
 
 | Ruta | Contenido |
 | --- | --- |
-| [Protocolo y decisiones](protocol/diseno-y-decisiones.md) | Cambios frente al playbook, controles, mediciones y criterios de parada |
+| [Protocolo y decisiones](protocol/diseno-y-decisiones.md) | Diseño, controles, mediciones y criterios de parada |
 | [Bitácora](protocol/bitacora.md) y [auditoría de IA](protocol/auditoria-ia.md) | Cronología, herramientas, comprobaciones y revisión humana pendiente |
+| [Registro del proceso](protocol/registro-del-proceso.md) | Código, datos, herramientas y asistencia de IA |
 | [Prompt maestro](protocol/prompts/maestro-edge-db.md) | Alcance y reglas de trabajo |
 | [Inventario](hardware/inventario-pi.md) | Plataforma instalada y datos físicos declarados |
 | [Generador](dataset/generar.py) y [manifiesto](dataset/generado-v1/manifiesto.json) | JSONL reproducible y hashes SHA-256 |

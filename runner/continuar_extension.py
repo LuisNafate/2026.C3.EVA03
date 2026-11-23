@@ -13,7 +13,7 @@ from time import monotonic, sleep, time
 from types import SimpleNamespace
 import traceback
 
-import extension_eva02
+import benchmark_extendido
 import extension_mongo
 from experimento import ROOT, utc, write_json
 
@@ -40,7 +40,7 @@ def checkpoints(args, stop):
     with (args.raw / "seguimiento.jsonl").open("x", encoding="utf-8", buffering=1) as stream:
         while True:
             active = {}
-            for path in args.raw.parent.glob("extension-eva02-*/estado.json"):
+            for path in args.raw.parent.glob("benchmark-extendido-*/estado.json"):
                 try:
                     record = json.loads(path.read_text(encoding="utf-8"))
                 except (OSError, json.JSONDecodeError):
@@ -56,7 +56,7 @@ def checkpoints(args, stop):
 
 
 def recover(root, host, user, password, tag, experiment, inputs, update):
-    previous = sorted(root.glob(f"extension-eva02-{tag}-v*"), key=lambda path: int(path.name.rsplit("-v", 1)[1]))
+    previous = sorted(root.glob(f"benchmark-extendido-{tag}-v*"), key=lambda path: int(path.name.rsplit("-v", 1)[1]))
     consecutive_empty = 0
     for attempt in range(1, 13):
         if previous:
@@ -68,8 +68,8 @@ def recover(root, host, user, password, tag, experiment, inputs, update):
                 latest.get("error", ""),
             ):
                 return latest
-        directory = root / f"extension-eva02-{tag}-v{len(previous) + 1:02d}"
-        before = len(extension_eva02.history(previous)[1])
+        directory = root / f"benchmark-extendido-{tag}-v{len(previous) + 1:02d}"
+        before = len(benchmark_extendido.history(previous)[1])
         update(tag, directory.name)
         sleep(90)
         try:
@@ -77,7 +77,7 @@ def recover(root, host, user, password, tag, experiment, inputs, update):
         except Exception:
             traceback.print_exc()
         previous.append(directory)
-        added = len(extension_eva02.history(previous)[1]) - before
+        added = len(benchmark_extendido.history(previous)[1]) - before
         consecutive_empty = 0 if added else consecutive_empty + 1
         if consecutive_empty >= 2:
             break
@@ -96,14 +96,14 @@ def run(args, password):
     try:
         first = predecessor(args.predecessor)
         previous = ROOT / "results/raw/benchmark-v1"
-        diagnostic = ("postgresql-diagnostico", extension_eva02.experiment, {"previous": previous, "diagnostic": True})
+        diagnostic = ("postgresql-diagnostico", benchmark_extendido.experiment, {"previous": previous, "diagnostic": True})
         if args.recover:
             def update(tag, name):
                 status.update(stage=tag, current_session=name)
                 write_json(state_path, status)
 
             for tag, experiment, inputs in (
-                ("postgresql", extension_eva02.experiment, {"previous": previous, "diagnostic": False}),
+                ("postgresql", benchmark_extendido.experiment, {"previous": previous, "diagnostic": False}),
                 ("mongodb", extension_mongo.experiment, {"dataset": ROOT / "dataset/generado-v1"}),
                 diagnostic,
             ):
@@ -117,12 +117,12 @@ def run(args, password):
             status["blocks"]["mongodb-intento-previo"] = first
             targets = [("mongodb-v2", extension_mongo.experiment, {
                 "dataset": ROOT / "dataset/generado-v1", "resume": args.predecessor,
-            }), ("postgresql-v2", extension_eva02.experiment, {
+            }), ("postgresql-v2", benchmark_extendido.experiment, {
                 "previous": previous, "diagnostic": False, "resume": args.restart_both,
             }), diagnostic]
         elif args.resume_from:
             status["blocks"]["mongodb"] = first
-            targets = [("postgresql-v2", extension_eva02.experiment, {
+            targets = [("postgresql-v2", benchmark_extendido.experiment, {
                 "previous": previous, "diagnostic": False, "resume": args.resume_from,
             }), diagnostic]
         else:
@@ -136,7 +136,7 @@ def run(args, password):
             status.update(stage=name)
             write_json(state_path, status)
             sleep(90)  # Recuperación entre motores o bloques independientes.
-            directory = sibling / f"extension-eva02-{name if name.endswith('-v2') else name + '-v1'}"
+            directory = sibling / f"benchmark-extendido-{name if name.endswith('-v2') else name + '-v1'}"
             try:
                 experiment(SimpleNamespace(host=args.host, user=args.user, raw=directory, **extra), password)
             except Exception:

@@ -8,10 +8,10 @@ try {
         throw "Falló la verificación de la evidencia ($LASTEXITCODE)."
     }
     $sessions = @(Get-ChildItem results/raw -Directory | Where-Object {
-        $_.Name -match '^extension-eva02-(postgresql(?:-diagnostico)?|mongodb)-v\d+$'
+        $_.Name -match '^benchmark-extendido-(postgresql(?:-diagnostico)?|mongodb)-v\d+$'
     } | ForEach-Object { $_.FullName })
     $extensionLatex = Join-Path $PSScriptRoot 'extension_resultados.tex'
-    python results/analizar_extension.py @sessions --out results/processed/extension-eva02 --latex $extensionLatex
+    python results/analizar_extension.py @sessions --out results/processed/benchmark-extendido --latex $extensionLatex
     if ($LASTEXITCODE -ne 0) {
         throw "Falló la reconstrucción de la matriz de la ampliación ($LASTEXITCODE)."
     }

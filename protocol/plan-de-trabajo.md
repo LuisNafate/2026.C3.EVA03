@@ -25,9 +25,8 @@ El ensayo produjo 64 muestras y 49 operaciones Q1 válidas. Las medianas de VC4 
 | Siguiente paso | Tiempo activo | Criterio de cierre |
 | --- | ---: | --- |
 | Fotografiar o copiar la línea `Output` del cargador y describir el cable | 5 min | Fuente, voltaje nominal y cable contrastados con la etiqueta |
-| Confirmar con el docente la única placa y el alcance de la parte eléctrica | 5–10 min, aparte de la espera | Aclarar si acepta el diagnóstico interno o requiere una lectura física de la entrada |
 | Confirmar la admisibilidad de MongoDB comunitario | En la misma consulta | Decidir si la prueba funcional es suficiente o si hace falta una matriz cronometrada separada. El primer piloto debe verificar el recorte de Q2 con más de 1,000 pedidos elegibles |
 | Revisar el artículo, autoría, referencias y auditoría de IA | 20–30 min | Lectura humana y cifras contrastadas con CSV y logs |
 | Si exigen voltaje de entrada, conseguir prestado un medidor y anexar una sesión | 15–25 min con el instrumento disponible | Voltaje observado en reposo y carga, punto de medición, modelo del instrumento y CSV propio |
 
-La revisión y el registro de la fuente pueden avanzar en paralelo a la respuesta del docente. El ensayo eléctrico complementario conserva la matriz ya medida. Con solo software, el valor real de los 5 V sigue sin determinarse.
+El ensayo eléctrico complementario conserva la matriz ya medida. Con solo software, el valor real de los 5 V sigue sin determinarse.

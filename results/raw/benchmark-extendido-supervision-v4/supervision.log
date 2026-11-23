@@ -11,11 +11,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -32,11 +32,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -53,11 +53,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -74,11 +74,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -95,11 +95,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -116,11 +116,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -137,11 +137,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -158,11 +158,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -179,11 +179,11 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
@@ -200,26 +200,26 @@ Traceback (most recent call last):
   File "C:\Program Files\WindowsApps\PythonSoftwareFoundation.Python.3.13_3.13.3824.0_x64__qbz5n2kfra8p0\Lib\socketserver.py", line 766, in __init__
     self.handle()
     ~~~~~~~~~~~^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 51, in handle
+  File "<workspace>\runner\extension_mongo.py", line 51, in handle
     channel = self.server.transport.open_channel(
         "direct-tcpip", ("127.0.0.1", PORT), self.client_address, timeout=8
     )
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
+  File "<workspace>\tmp\eva02\venv\Lib\site-packages\paramiko\transport.py", line 1068, in open_channel
     raise e
 paramiko.ssh_exception.ChannelException: ChannelException(2, 'Connect failed')
 ----------------------------------------
 Traceback (most recent call last):
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\continuar_extension.py", line 94, in run
+  File "<workspace>\runner\continuar_extension.py", line 94, in run
     experiment(SimpleNamespace(host=args.host, user=args.user, raw=directory, **extra), password)
     ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_mongo.py", line 266, in experiment
+  File "<workspace>\runner\extension_mongo.py", line 266, in experiment
     raise RuntimeError(f"{row['run_id']}: {row['error']}")
 RuntimeError: v2-ampliacion-1000-q2-c1-r4: 127.0.0.1:49740: timed out (configured timeouts: socketTimeoutMS: 12000.0ms, connectTimeoutMS: 8000.0ms)
 Traceback (most recent call last):
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\continuar_extension.py", line 94, in run
+  File "<workspace>\runner\continuar_extension.py", line 94, in run
     try:
     
-  File "C:\Users\luisn\OneDrive\Escritorio\Tareas\BD\2026.C3.EVA03\runner\extension_eva02.py", line 153, in experiment
+  File "<workspace>\runner\extension_eva02.py", line 153, in experiment
     if writer is None:
         ^^^^^^^^^^^^^^
 RuntimeError: v2-ampliacion-10000-q2-c2-r5: Brecha de telemetría de 6.7 s dentro de la ventana.

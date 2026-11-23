@@ -1,4 +1,4 @@
-"""Consolida la ampliación EVA02 y coteja cada corrida con sus operaciones."""
+"""Consolida el benchmark ampliado y coteja cada corrida con sus operaciones."""
 
 import argparse
 from collections import defaultdict
