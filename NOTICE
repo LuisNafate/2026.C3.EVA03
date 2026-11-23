@@ -1,0 +1,15 @@
+EDGE-DB · Benchmark en Raspberry Pi
+Copyright 2026 Luis Alberto Nafate Hernandez
+
+El código fuente original de EDGE-DB, incluidos los scripts de generación,
+ejecución, telemetría, análisis y reconstrucción, así como las consultas SQL y
+JavaScript del proyecto, se distribuye bajo Apache License 2.0. Véase LICENSE.
+
+Los textos originales del informe y de la documentación, sus figuras y la
+presentación editorial del proyecto tienen todos los derechos reservados.
+El repositorio publica las mediciones, planes y logs como evidencia del estudio.
+
+Las dependencias, binarios, marcas y materiales de terceros conservan los
+derechos y términos de sus respectivos titulares. La procedencia de la
+compilación de MongoDB y de su biblioteca de compatibilidad se documenta en
+protocol/mongodb-armv8-experimental.md.

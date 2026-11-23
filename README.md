@@ -68,3 +68,9 @@ Los [logs redactados](results/redacted/) reemplazan los identificadores de red d
 - [PostgreSQL 17, tipos JSON](https://www.postgresql.org/docs/17/datatype-json.html) y [funciones JSON](https://www.postgresql.org/docs/17/functions-json.html)
 - [Raspberry Pi Zero, modelos y especificaciones](https://www.raspberrypi.com/documentation/computers/zero.html)
 - [Manual Arm Cortex-A53](https://documentation-service.arm.com/static/6040c321ee937942ba301626) y [requisitos ARM64 de MongoDB 8.0](https://www.mongodb.com/docs/v8.0/administration/production-notes/#arm64)
+
+## Licencia y autoría
+
+**Copyright © 2026 Luis Alberto Nafate Hernandez.** El código original del proyecto se distribuye bajo [Apache License 2.0](LICENSE). Esta licencia permite usar, modificar y redistribuir el código, también en proyectos comerciales, bajo sus condiciones de licencia y avisos de autoría.
+
+El informe, sus figuras y la documentación original conservan todos los derechos reservados. El [aviso de autoría y alcance](NOTICE) identifica el material propio y el de terceros.
